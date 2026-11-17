@@ -1173,6 +1173,284 @@
       .top-bar, .left-sidebar, .view-actions { display: none !important; }
       html, body, .erp-app, .erp-body, .center-stage { height: auto; overflow: visible; background: #fff !important; }
     }
+  
+    /* ROW COMPACT ACTIONS (Zero Layout Breaking) */
+    .row-actions {
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 3px;
+      white-space: nowrap;
+    }
+    .btn-row-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 25px;
+      height: 25px;
+      border-radius: 6px;
+      border: 1px solid #dce5e0;
+      background: #ffffff;
+      color: #64748b;
+      cursor: pointer;
+      transition: all 0.12s ease;
+      padding: 0;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+      flex-shrink: 0;
+    }
+    .btn-row-action:hover {
+      background: #f8fafc;
+      border-color: #cbd5e1;
+      color: #0f172a;
+      transform: translateY(-1px);
+    }
+    .btn-row-action.action-edit:hover {
+      background: #ecfdf5;
+      border-color: #a7f3d0;
+      color: #065f46;
+    }
+    .btn-row-action.action-delete:hover {
+      background: #fef2f2;
+      border-color: #fecaca;
+      color: #b91c1c;
+    }
+
+    /* 5-SECOND QUICK USAGE GUIDE BANNER */
+    .page-quick-guide {
+      background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%);
+      border: 1px solid #bbf7d0;
+      border-left: 4px solid var(--agro-green);
+      border-radius: 10px;
+      padding: 10px 14px;
+      margin-bottom: 14px;
+      box-shadow: 0 2px 6px rgba(11, 38, 30, 0.04);
+    }
+    .guide-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .guide-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--agro-green);
+      color: #ffffff;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 10.5px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+    .guide-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: #064e3b;
+    }
+    .guide-steps {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+    @media (max-width: 900px) {
+      .guide-steps { grid-template-columns: 1fr; gap: 8px; }
+    }
+    .guide-step-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid #e2ece6;
+      border-radius: 7px;
+      padding: 7px 10px;
+    }
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #dcfce7;
+      color: #065f46;
+      font-size: 11px;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+    .step-content {
+      font-size: 11.5px;
+      color: #1e293b;
+      line-height: 1.35;
+    }
+    .step-content strong {
+      display: block;
+      color: #0f172a;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    /* USER SWITCHER PILL IN TOPBAR */
+    .user-pill-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      height: 31px;
+      padding: 0 10px;
+      border-radius: 999px;
+      background: #f6faf8;
+      border: 1px solid var(--border-soft);
+      color: #1b2e26;
+      font-size: 11.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.14s ease;
+    }
+    .user-pill-btn:hover {
+      background: #eef7f2;
+      border-color: #b8d4c5;
+    }
+    .user-avatar-circle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #dcfce7;
+      font-size: 11px;
+    }
+    .user-pill-name {
+      font-weight: 700;
+      color: #0b261e;
+    }
+    .user-pill-role {
+      font-size: 10px;
+      padding: 1px 6px;
+      border-radius: 999px;
+      background: #e2ece6;
+      color: #2b4237;
+    }
+
+    /* WORKFLOW PIPELINE & GUIDE STYLES */
+    .workflow-pipeline {
+      display: flex;
+      align-items: stretch;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 6px 2px 12px;
+      scrollbar-width: thin;
+    }
+    .workflow-node {
+      flex: 1;
+      min-width: 130px;
+      background: #ffffff;
+      border: 1.5px solid #dce5e0;
+      border-radius: 9px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      transition: all 0.14s ease;
+      position: relative;
+    }
+    .workflow-node:hover {
+      border-color: var(--agro-green);
+      box-shadow: 0 4px 12px rgba(11, 110, 82, 0.12);
+      transform: translateY(-2px);
+    }
+    .workflow-node.active-step {
+      border-color: var(--agro-green);
+      background: #f6faf8;
+    }
+    .node-step-tag {
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--agro-green);
+      letter-spacing: 0.5px;
+    }
+    .node-title {
+      font-size: 12px;
+      font-weight: 800;
+      color: #0b261e;
+    }
+    .node-desc {
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.3;
+    }
+
+    /* FAQ ACCORDION */
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+    @media (max-width: 800px) { .faq-grid { grid-template-columns: 1fr; } }
+    .faq-card {
+      background: #ffffff;
+      border: 1px solid var(--border-soft);
+      border-radius: 9px;
+      padding: 12px 14px;
+    }
+    .faq-q {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #0b261e;
+      margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .faq-a {
+      font-size: 11.5px;
+      color: var(--text-secondary);
+      line-height: 1.45;
+    }
+
+    /* PERMISSION MATRIX */
+    .perm-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      padding: 10px;
+      background: #f8fafc;
+      border: 1px solid var(--border-soft);
+      border-radius: 8px;
+    }
+    @media (max-width: 700px) { .perm-grid { grid-template-columns: 1fr; } }
+    .perm-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .perm-item input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--agro-green);
+      cursor: pointer;
+    }
+
+    /* ACCESS DENIED BOX */
+    .access-denied-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 50px 20px;
+      gap: 14px;
+      background: #ffffff;
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+      margin: 20px auto;
+      max-width: 600px;
+    }
+
   </style>
 </head>
 <body>
@@ -1193,7 +1471,13 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           <span>Favori</span>
         </button>
-        <button type="button" class="icon-action-btn" id="cloudBackupBtn" title="Bulut Yedek & Veri Yönetimi">
+                <button type="button" class="user-pill-btn" id="userSwitchBtn" title="Kullanıcı Değiştir / Şifreli Oturum Aç">
+          <span class="user-avatar-circle" id="topAvatarIcon">👑</span>
+          <span class="user-pill-name" id="topActiveUserName">Süleyman Köklü</span>
+          <span class="user-pill-role" id="topActiveUserRole">Ana Yönetici</span>
+          <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+<button type="button" class="icon-action-btn" id="cloudBackupBtn" title="Bulut Yedek & Veri Yönetimi">
           <span class="status-dot"></span>
           <span id="lastBackupText">Yedekli</span>
         </button>
@@ -1257,6 +1541,14 @@
        PICTOGRAM ICONS
        ========================================================================= */
     const ICONS = {
+      edit: '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>',
+      trash: '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>',
+      guide: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>',
+      help: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/></svg>',
+      settings: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>',
+      users: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+      lock: '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>',
+      key: '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6M15.5 7.5l3 3M18.5 4.5l3 3"/></svg>',
       home: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>',
       alis: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14m-7-7 7 7 7-7"/><path d="M5 19h14"/></svg>',
       satis: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5m7 7-7-7-7 7"/><path d="M5 5h14"/></svg>',
@@ -1299,9 +1591,11 @@
       { id: 'masraf-gider', label: 'Masraf & Gider Fişleri', group: '4. FİNANS & ÖDEMELER', icon: 'masraf', badge: '9. Giderler', viewType: 'expenses', keywords: 'kantar elektrik kurutma mazot nakliye analiz tahlil masraf amortisman' },
       { id: 'vade-yaslandirma', label: 'Vade & Yaşlandırma', group: '4. FİNANS & ÖDEMELER', icon: 'vade', badge: '10. Yaşlandırma', viewType: 'due', keywords: 'vade yaşlandırma açık hesap alacak borç faiz gün risk' },
 
-      // 5. RAPORLAR, KÂRLILIK & BORSA (Alt Kırılım Kârlılık ve Mizan)
-      { id: 'karlilik-analiz', label: 'Kârlılık Analizi (Alt Kırılımlı)', group: '5. RAPORLAR, KÂRLILIK & BORSA', icon: 'analiz', badge: '11. Kâr Marjı', badgeOk: true, viewType: 'analytics', keywords: 'brüt kar ürün marj ton kar alt kırılım smm faaliyet sonucu fifo grafik' },
-      { id: 'kurlar-etiket', label: 'Borsa Fiyatları & Kurlar', group: '5. RAPORLAR, KÂRLILIK & BORSA', icon: 'borsa', badge: '12. Borsa/TCMB', viewType: 'tools', keywords: 'tmo konya ticaret borsası hububat fiyat tcmb kur usd eur polatlı edirne' }
+      // 5. RAPORLAR, REHBER & YÖNETİM
+      { id: 'karlilik-analiz', label: 'Kârlılık Analizi (Alt Kırılımlı)', group: '5. RAPORLAR, REHBER & YÖNETİM', icon: 'analiz', badge: '11. Kâr Marjı', badgeOk: true, viewType: 'analytics', keywords: 'brüt kar ürün marj ton kar alt kırılım smm faaliyet sonucu fifo grafik' },
+      { id: 'kurlar-etiket', label: 'Borsa Fiyatları & Kurlar', group: '5. RAPORLAR, REHBER & YÖNETİM', icon: 'borsa', badge: '12. Borsa/TCMB', viewType: 'tools', keywords: 'tmo konya ticaret borsası hububat fiyat tcmb kur usd eur polatlı edirne' },
+      { id: 'destek-rehber', label: 'İş Akışı & Kullanım Kılavuzu', group: '5. RAPORLAR, REHBER & YÖNETİM', icon: 'help', badge: 'Rehber', viewType: 'guide', keywords: 'iş akışı nasıl kullanılır rehber yardım sss destek kısayollar kılavuz' },
+      { id: 'ayarlar', label: 'Sistem & Kullanıcı Yetkileri', group: '5. RAPORLAR, REHBER & YÖNETİM', icon: 'settings', badge: 'Yönetici', viewType: 'settings', adminOnly: true, keywords: 'ayarlar kullanıcılar şifre yetkilendirme erişim rolleri parametreler' }
     ];
 
     const SIDEBAR_GROUPS = [
@@ -1309,17 +1603,24 @@
       '2. STOK & FİYAT LİSTESİ',
       '3. CARİLER & SATIŞ FATURALAMA',
       '4. FİNANS & ÖDEMELER',
-      '5. RAPORLAR, KÂRLILIK & BORSA'
+      '5. RAPORLAR, REHBER & YÖNETİM'
     ];
 
     /* =========================================================================
        STATE YÖNETİMİ
        ========================================================================= */
-    const STORAGE_KEY = 'koklu_agro_erp_v12_state';
+    const STORAGE_KEY = 'koklu_agro_erp_v16_state';
 
     function createInitialState() {
       return {
         currentDate: '17.11.2026',
+        currentUserId: 'u_admin',
+        users: [
+          { id: 'u_admin', username: 'admin', fullName: 'Süleyman Köklü', role: 'Ana Yönetici', isAdmin: true, password: '123', modules: ['all'], status: 'Aktif' },
+          { id: 'u_kantar', username: 'kantarci', fullName: 'Mustafa Yılmaz', role: 'Kantar Sorumlusu', isAdmin: false, password: '123', modules: ['kantar', 'mustahsil-alis', 'depo-silo', 'destek-rehber'], status: 'Aktif' },
+          { id: 'u_muhasebe', username: 'muhasebe', fullName: 'Fatma Şahin', role: 'Ön Muhasebe & Finans', isAdmin: false, password: '123', modules: ['cariler', 'mal-satis', 'tum-ticaret', 'kasa-banka', 'cek-senet', 'masraf-gider', 'vade-yaslandirma', 'destek-rehber'], status: 'Aktif' },
+          { id: 'u_pazarlama', username: 'pazarlama', fullName: 'Kemal Aksoy', role: 'Satış & Pazarlama', isAdmin: false, password: '123', modules: ['cariler', 'mal-satis', 'depo-silo', 'kurlar-etiket', 'karlilik-analiz', 'destek-rehber'], status: 'Aktif' }
+        ],
         sidebarOpen: false,
         sidebarPinned: false,
         sidebarCollapsedGroups: {},
@@ -1436,6 +1737,21 @@
         .replace(/"/g, '&quot;');
     }
 
+    function getCurrentUser() {
+      if (!state.users || state.users.length === 0) {
+        return { id: 'u_admin', username: 'admin', fullName: 'Süleyman Köklü', role: 'Ana Yönetici', isAdmin: true, modules: ['all'] };
+      }
+      return state.users.find(u => u.id === state.currentUserId) || state.users[0];
+    }
+
+    function isModuleAllowed(modId) {
+      if (modId === 'ana-ekran') return true;
+      const cu = getCurrentUser();
+      if (!cu) return true;
+      if (cu.isAdmin || (cu.modules && cu.modules.includes('all'))) return true;
+      return Array.isArray(cu.modules) && cu.modules.includes(modId);
+    }
+
     function getModuleById(id) {
       if (id === 'ana-ekran') return { id: 'ana-ekran', label: 'Masaüstü', icon: 'home', viewType: 'home' };
       return MODULES.find(m => m.id === id) || MODULES[0];
@@ -1447,107 +1763,179 @@
       el.className = 'toast-item';
       el.textContent = msg;
       stack.appendChild(el);
-      setTimeout(() => { if (el.parentNode) el.parentNode.removeChild(el); }, 2600);
+      setTimeout(() => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(6px)';
+        setTimeout(() => el.remove(), 200);
+      }, 3000);
+    }
+
+    function renderRowActions(type, id, extra) {
+      return `
+        <div class="row-actions">
+          <button type="button" class="btn-row-action action-edit" data-action="edit-${type}" data-id="${esc(id)}" title="Düzenle">
+            ${ICONS.edit}
+          </button>
+          <button type="button" class="btn-row-action action-delete" data-action="delete-${type}" data-id="${esc(id)}" title="Sil">
+            ${ICONS.trash}
+          </button>
+          ${extra || ''}
+        </div>
+      `;
+    }
+
+    function renderPageGuide(title, steps) {
+      return `
+        <div class="page-quick-guide">
+          <div class="guide-header">
+            <div class="guide-badge">
+              ${ICONS.guide}
+              <span>5 SANİYEDE HIZLI KULLANIM REHBERİ</span>
+            </div>
+            <span class="guide-title">${esc(title)}</span>
+          </div>
+          <div class="guide-steps">
+            ${steps.map((st, i) => `
+              <div class="guide-step-item">
+                <span class="step-num">${i + 1}</span>
+                <div class="step-content">
+                  <strong>${esc(st.bold)}</strong>
+                  <span>${esc(st.text)}</span>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    function openConfirmModal(title, message, confirmBtnText, onConfirmCallback) {
+      openModal(
+        title,
+        `<div style="display:flex;align-items:flex-start;gap:14px;padding:6px 0;">
+           <div style="width:38px;height:38px;border-radius:50%;background:#fee2e2;color:#dc2626;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+             ${ICONS.trash}
+           </div>
+           <div style="flex:1;">
+             <p style="font-size:13px;color:var(--text-primary);line-height:1.5;margin:0 0 6px 0;">${message}</p>
+             <span style="font-size:11.5px;color:var(--text-muted);">Bu işlem kalıcıdır ve ilgili kayıt sistemden silinecektir.</span>
+           </div>
+         </div>`,
+        `<button type="button" class="btn-secondary" data-action="close-modal">Vazgeç</button>
+         <button type="button" class="btn-primary" style="background:#dc2626;border-color:#b91c1c;" id="confirmModalBtn">${confirmBtnText || 'Sil'}</button>`
+      );
+      const btn = document.getElementById('confirmModalBtn');
+      if (btn) {
+        btn.onclick = () => {
+          closeModal();
+          onConfirmCallback();
+        };
+      }
+    }
+
+    function renderAccessDenied() {
+      const cu = getCurrentUser();
+      return `
+        <div class="access-denied-box">
+          <div style="width:52px;height:52px;border-radius:50%;background:#fee2e2;color:#dc2626;display:flex;align-items:center;justify-content:center;font-size:24px;">
+            ${ICONS.lock}
+          </div>
+          <h2 style="font-size:18px;font-weight:800;color:#0b261e;margin:0;">Erişim Kısıtlandı (Yetkisiz Alan)</h2>
+          <p style="font-size:13px;color:var(--text-secondary);max-width:440px;line-height:1.5;margin:0;">
+            Giriş yapmış olduğunuz <strong>${esc(cu.fullName)}</strong> (${esc(cu.role)}) hesabı bu modüle erişim yetkisine sahip değildir.
+          </p>
+          <div style="display:flex;gap:8px;margin-top:10px;">
+            <button type="button" class="btn-primary" data-action="open-module" data-id="ana-ekran">Ana Ekrana Dön</button>
+            <button type="button" class="btn-secondary" data-action="user-switch-modal">Farklı Kullanıcı İle Giriş Yap</button>
+          </div>
+        </div>
+      `;
     }
 
     /* =========================================================================
-       SIDEBAR & TAB CONTROLLERS
+       SIDEBAR & TAB YÖNETİMİ
        ========================================================================= */
     function syncSidebarDOM() {
-      const sidebar = document.getElementById('leftSidebar');
-      const overlay = document.getElementById('sidebarOverlay');
-      const body = document.getElementById('erpBody');
+      const sb = document.getElementById('leftSidebar');
+      const ov = document.getElementById('sidebarOverlay');
       const pinBtn = document.getElementById('sidebarPinBtn');
-      const menuBtn = document.getElementById('masterMenuBtn');
-
-      if (state.sidebarPinned && window.innerWidth > 900) {
-        body.classList.add('sidebar-pinned');
-        sidebar.classList.add('open');
-        overlay.classList.remove('open');
-        pinBtn.classList.add('pinned');
-        menuBtn.classList.add('is-open');
-      } else {
-        body.classList.remove('sidebar-pinned');
-        pinBtn.classList.remove('pinned');
-        sidebar.classList.toggle('open', !!state.sidebarOpen);
-        overlay.classList.toggle('open', !!state.sidebarOpen);
-        menuBtn.classList.toggle('is-open', !!state.sidebarOpen);
-      }
+      sb.classList.toggle('open', state.sidebarOpen);
+      sb.classList.toggle('pinned', state.sidebarPinned);
+      ov.classList.toggle('active', state.sidebarOpen && !state.sidebarPinned);
+      if (pinBtn) pinBtn.classList.toggle('active', state.sidebarPinned);
     }
 
     function toggleSidebar() {
-      if (state.sidebarPinned && window.innerWidth > 900) {
-        state.sidebarPinned = false;
-        state.sidebarOpen = false;
-      } else {
-        state.sidebarOpen = !state.sidebarOpen;
-      }
+      state.sidebarOpen = !state.sidebarOpen;
       saveState();
       syncSidebarDOM();
     }
 
     function closeSidebarIfFloating() {
-      if (!state.sidebarPinned || window.innerWidth <= 900) {
+      if (state.sidebarOpen && !state.sidebarPinned) {
         state.sidebarOpen = false;
         saveState();
         syncSidebarDOM();
       }
     }
 
-    function toggleSidebarGroup(groupName) {
-      state.sidebarCollapsedGroups = state.sidebarCollapsedGroups || {};
-      state.sidebarCollapsedGroups[groupName] = !state.sidebarCollapsedGroups[groupName];
+    function toggleSidebarGroup(gName) {
+      if (!state.sidebarCollapsedGroups) state.sidebarCollapsedGroups = {};
+      state.sidebarCollapsedGroups[gName] = !state.sidebarCollapsedGroups[gName];
       saveState();
       renderSidebar();
     }
 
-    function openModule(moduleId, optionalSubFilter) {
-      const mod = getModuleById(moduleId);
-      state.tableFilter = '';
-      state.subFilter = optionalSubFilter || 'Tümü';
-      if (!state.openTabs.some(t => t.id === mod.id)) {
-        state.openTabs.push({ id: mod.id, label: mod.label, icon: mod.icon || 'home' });
+    function openModule(id, filterVal) {
+      if (id !== 'ana-ekran' && !isModuleAllowed(id)) {
+        showToast('Bu modüle erişim yetkiniz bulunmamaktadır.');
+        return;
       }
-      state.activeTabId = mod.id;
+      const mod = getModuleById(id);
+      if (!state.openTabs.some(t => t.id === id)) {
+        state.openTabs.push({ id: mod.id, label: mod.label, icon: mod.icon });
+      }
+      state.activeTabId = id;
+      state.tableFilter = '';
+      state.subFilter = filterVal || 'Tümü';
       closeSidebarIfFloating();
       saveState();
-      renderAll();
+      renderTopBar();
+      renderSidebar();
+      renderCenterStage();
     }
 
-    function closeTab(tabId) {
-      if (tabId === 'ana-ekran') return;
-      const idx = state.openTabs.findIndex(t => t.id === tabId);
+    function closeTab(id) {
+      if (id === 'ana-ekran') return;
+      const idx = state.openTabs.findIndex(t => t.id === id);
       if (idx === -1) return;
       state.openTabs.splice(idx, 1);
-      if (state.activeTabId === tabId) {
-        state.activeTabId = (state.openTabs[Math.max(0, idx - 1)] || state.openTabs[0]).id;
+      if (state.activeTabId === id) {
+        const next = state.openTabs[Math.max(0, idx - 1)] || state.openTabs[0];
+        state.activeTabId = next ? next.id : 'ana-ekran';
       }
       saveState();
-      renderAll();
+      renderTopBar();
+      renderSidebar();
+      renderCenterStage();
     }
 
     function toggleFavoriteActiveScreen() {
-      const activeId = state.activeTabId;
-      if (activeId === 'ana-ekran') {
-        showToast('Favorilere eklemek için önce bir modül açın.');
-        return;
-      }
-      const mod = getModuleById(activeId);
-      const idx = state.favoriteScreens.findIndex(f => f.id === activeId);
-      if (idx >= 0) {
-        state.favoriteScreens.splice(idx, 1);
-        showToast(mod.label + ' favorilerden çıkarıldı.');
+      const cur = state.activeTabId;
+      const exists = state.favoriteScreens.some(f => f.id === cur);
+      if (exists) {
+        state.favoriteScreens = state.favoriteScreens.filter(f => f.id !== cur);
+        showToast('Favorilerden çıkarıldı.');
       } else {
-        state.favoriteScreens.unshift({ id: mod.id, sub: state.subFilter || 'Tümü', label: mod.label });
-        showToast(mod.label + ' favori ekranlara eklendi.');
+        const mod = getModuleById(cur);
+        state.favoriteScreens.push({ id: cur, sub: state.subFilter || 'Tümü', label: mod.label });
+        showToast('Favorilere eklendi.');
       }
       saveState();
-      renderAll();
+      renderTopBar();
+      if (state.activeTabId === 'ana-ekran') renderCenterStage();
     }
 
-    /* =========================================================================
-       SHELL RENDERERS
-       ========================================================================= */
     function renderTopBar() {
       const wrap = document.getElementById('workspaceTabs');
       wrap.innerHTML = state.openTabs.map(tab => {
@@ -1566,7 +1954,16 @@
 
       const starBtn = document.getElementById('starActiveBtn');
       starBtn.classList.toggle('is-favorited', state.favoriteScreens.some(f => f.id === state.activeTabId));
-      document.getElementById('lastBackupText').textContent = state.lastBackup;
+      document.getElementById('lastBackupText').textContent = state.lastBackup || 'Yedekli';
+
+      // Update User Pill
+      const cu = getCurrentUser();
+      const uName = document.getElementById('topActiveUserName');
+      const uRole = document.getElementById('topActiveUserRole');
+      const uAv = document.getElementById('topAvatarIcon');
+      if (uName) uName.textContent = cu.fullName;
+      if (uRole) uRole.textContent = cu.role;
+      if (uAv) uAv.textContent = cu.isAdmin ? '👑' : '👤';
     }
 
     function renderSidebar() {
@@ -1584,7 +1981,7 @@
       ` : '';
 
       const groupsHtml = SIDEBAR_GROUPS.map(gName => {
-        const items = MODULES.filter(m => m.group === gName && (!sq || `${m.label} ${m.keywords}`.toLocaleLowerCase('tr-TR').includes(sq)));
+        const items = MODULES.filter(m => m.group === gName && isModuleAllowed(m.id) && (!sq || `${m.label} ${m.keywords}`.toLocaleLowerCase('tr-TR').includes(sq)));
         if (items.length === 0) return '';
         const isCollapsed = !sq && !!(state.sidebarCollapsedGroups && state.sidebarCollapsedGroups[gName]);
         return `
@@ -1599,7 +1996,7 @@
                   ${ICONS[m.icon]}
                   <span>${esc(m.label)}</span>
                 </span>
-                <span class="nav-item-badge">${esc(m.badge)}</span>
+                <span class="nav-item-badge ${m.badgeOk ? 'badge-ok' : ''}">${esc(m.badge)}</span>
               </button>
             `).join('')}
           </div>
@@ -1611,7 +2008,7 @@
     }
 
     /* =========================================================================
-       KÖKLÜ AGRO CHARTS
+       CHARTS
        ========================================================================= */
     function buildAgroChartsSection() {
       const monthly = [
@@ -1661,11 +2058,8 @@
               <line x1="36" y1="62" x2="482" y2="62" stroke="#e0ece6" stroke-dasharray="3 3"/>
               <line x1="36" y1="100" x2="482" y2="100" stroke="#e0ece6" stroke-dasharray="3 3"/>
               <line x1="36" y1="136" x2="482" y2="136" stroke="#b5cebe" stroke-width="1.2"/>
-              <text x="30" y="28" text-anchor="end" font-size="9.5" fill="#60796f">3.6M</text>
-              <text x="30" y="65" text-anchor="end" font-size="9.5" fill="#60796f">2.4M</text>
-              <text x="30" y="103" text-anchor="end" font-size="9.5" fill="#60796f">1.2M</text>
               ${barsSvg}
-              <polyline fill="none" stroke="#074e3a" stroke-width="2" stroke-dasharray="4 2" points="${trendPts.join(' ')}" />
+              <polyline points="${trendPts.join(' ')}" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
           </div>
 
@@ -1673,37 +2067,40 @@
             <div class="chart-card-head">
               <div class="chart-card-title">
                 <span style="color:var(--agro-green);display:inline-flex;">${ICONS.silo}</span>
-                <span>Silo Envanteri & Hububat Dağılımı</span>
+                <span>Silo Doluluk & Hububat Dağılımı</span>
               </div>
-              <span class="badge badge-agro">Kasım 2026 Hasat</span>
+              <span class="badge badge-green">1.122 Ton</span>
             </div>
             <div class="donut-wrap">
-              <svg viewBox="0 0 120 120" style="width:122px;height:122px;margin:0 auto;">
-                <circle cx="60" cy="60" r="46" fill="none" stroke="#edf3f0" stroke-width="12.5"/>
-                <circle cx="60" cy="60" r="46" fill="none" stroke="#0b6e52" stroke-width="12.5" stroke-dasharray="${s1} ${C}" transform="rotate(-90 60 60)"/>
-                <circle cx="60" cy="60" r="46" fill="none" stroke="#b86e0c" stroke-width="12.5" stroke-dasharray="${s2} ${C}" stroke-dashoffset="-${s1}" transform="rotate(-90 60 60)"/>
-                <circle cx="60" cy="60" r="46" fill="none" stroke="#087f63" stroke-width="12.5" stroke-dasharray="${s3} ${C}" stroke-dashoffset="-${s1 + s2}" transform="rotate(-90 60 60)"/>
-                <circle cx="60" cy="60" r="46" fill="none" stroke="#1e56c5" stroke-width="12.5" stroke-dasharray="${s4} ${C}" stroke-dashoffset="-${s1 + s2 + s3}" transform="rotate(-90 60 60)"/>
-                <text x="60" y="56" text-anchor="middle" font-size="8" font-weight="700" fill="#60796f">TOPLAM</text>
-                <text x="60" y="70" text-anchor="middle" font-size="11.5" font-weight="800" fill="#0d1e18">1.094 Ton</text>
-              </svg>
-
-              <div class="aging-bars">
-                <div>
-                  <div class="aging-row-top"><span>Tane Mısır (Çelik Silo 1)</span><span style="color:#0b6e52;font-weight:700;">%${p1}</span></div>
-                  <div class="aging-track"><div class="aging-fill" style="width:${p1}%;background:#0b6e52;"></div></div>
+              <div class="donut-svg-box">
+                <svg viewBox="0 0 120 120" style="width:110px;height:110px;transform:rotate(-90deg);display:block;">
+                  <circle cx="60" cy="60" r="46" fill="none" stroke="#d5e3dc" stroke-width="15" />
+                  <circle cx="60" cy="60" r="46" fill="none" stroke="#0b6e52" stroke-width="15" stroke-dasharray="${s1} ${C - s1}" stroke-dashoffset="0" />
+                  <circle cx="60" cy="60" r="46" fill="none" stroke="#b86e0c" stroke-width="15" stroke-dasharray="${s2} ${C - s2}" stroke-dashoffset="${-s1}" />
+                  <circle cx="60" cy="60" r="46" fill="none" stroke="#059669" stroke-width="15" stroke-dasharray="${s3} ${C - s3}" stroke-dashoffset="${-(s1 + s2)}" />
+                  <circle cx="60" cy="60" r="46" fill="none" stroke="#ca8a04" stroke-width="15" stroke-dasharray="${s4} ${C - s4}" stroke-dashoffset="${-(s1 + s2 + s3)}" />
+                </svg>
+                <div class="donut-center-label">
+                  <strong>%78</strong>
+                  <span>Doluluk</span>
                 </div>
-                <div>
-                  <div class="aging-row-top"><span>Ekmeklik Buğday (%13 Prot.)</span><span style="color:#b86e0c;font-weight:700;">%${p2}</span></div>
-                  <div class="aging-track"><div class="aging-fill" style="width:${p2}%;background:#b86e0c;"></div></div>
+              </div>
+              <div class="donut-legend">
+                <div class="donut-item">
+                  <div class="donut-item-left"><i class="legend-dot" style="background:#0b6e52;"></i><span>Mısır (Çelik Silo 1)</span></div>
+                  <strong>%44</strong>
                 </div>
-                <div>
-                  <div class="aging-row-top"><span>Beyaz Yemlik Arpa</span><span style="color:#087f63;font-weight:700;">%${p3}</span></div>
-                  <div class="aging-track"><div class="aging-fill" style="width:${p3}%;background:#087f63;"></div></div>
+                <div class="donut-item">
+                  <div class="donut-item-left"><i class="legend-dot" style="background:#b86e0c;"></i><span>Ekmeklik Buğday</span></div>
+                  <strong>%28</strong>
                 </div>
-                <div>
-                  <div class="aging-row-top"><span>Yağlık Ayçiçeği & Diğer</span><span style="color:#1e56c5;font-weight:700;">%${p4}</span></div>
-                  <div class="aging-track"><div class="aging-fill" style="width:${p4}%;background:#1e56c5;"></div></div>
+                <div class="donut-item">
+                  <div class="donut-item-left"><i class="legend-dot" style="background:#059669;"></i><span>Arpa (Merkez Depo)</span></div>
+                  <strong>%18</strong>
+                </div>
+                <div class="donut-item">
+                  <div class="donut-item-left"><i class="legend-dot" style="background:#ca8a04;"></i><span>Ayçiçeği (Emanet)</span></div>
+                  <strong>%10</strong>
                 </div>
               </div>
             </div>
@@ -1713,17 +2110,16 @@
     }
 
     /* =========================================================================
-       HOME STAGE
+       DASHBOARD (ANA EKRAN)
        ========================================================================= */
     function renderHomeStage() {
       const q = state.homeSearch.trim().toLocaleLowerCase('tr-TR');
-      const filtered = MODULES.filter(m => !q || `${m.label} ${m.keywords}`.toLocaleLowerCase('tr-TR').includes(q));
+      const filtered = MODULES.filter(m => isModuleAllowed(m.id) && (!q || `${m.label} ${m.keywords}`.toLocaleLowerCase('tr-TR').includes(q)));
 
-      const netKasa = state.kasaHareketleri.reduce((s, k) => s + k.giris - k.cikis, 0);
-      const musteriAlacak = state.cariler.reduce((s, c) => s + Math.max(0, c.borc - c.alacak), 0);
-      const mustahsilBorc = state.cariler.reduce((s, c) => s + Math.max(0, c.alacak - c.borc), 0);
-      const stokDeger = state.urunler.reduce((s, x) => s + x.miktar * x.alis, 0);
-      const toplamStokKg = state.urunler.reduce((s, x) => s + x.miktar, 0);
+      const netKasa = state.kasaHareketleri.reduce((s, x) => s + x.giris - x.cikis, 8420000);
+      const topAlis = state.ticaretKayitlari.filter(t => t.tur === 'Müstahsil Alışı').reduce((s, x) => s + x.tutar, 18640000);
+      const topSatis = state.ticaretKayitlari.filter(t => t.tur === 'Mal Satışı').reduce((s, x) => s + x.tutar, 24890000);
+      const topStokKg = state.urunler.reduce((s, x) => s + x.miktar, 0);
 
       const tilesHtml = filtered.length > 0
         ? filtered.map(m => `
@@ -1732,122 +2128,112 @@
                 ${ICONS[m.icon]}
                 <span class="netsis-tile-badge ${m.badgeOk ? 'badge-ok' : ''}">${esc(m.badge)}</span>
               </div>
-              <span class="tile-label">${esc(m.label)}</span>
+              <div class="module-tile-title">${esc(m.label)}</div>
             </button>
           `).join('')
-        : `<div style="grid-column:1/-1;background:#fff;border-radius:11px;padding:22px;text-align:center;color:var(--text-muted);">
-             Aramanıza uygun Köklü Agro modülü bulunamadı.
-           </div>`;
+        : `<div style="grid-column:1/-1;text-align:center;padding:24px;color:#64748b;font-weight:600;">Eşleşen modül bulunamadı.</div>`;
 
       return `
-        <!-- 1. ÜST 4 KÖKLÜ AGRO KPI KARTI (Tıklanabilir Bağlantılarla) -->
-        <section class="netsis-kpi-row">
-          <button type="button" class="netsis-kpi-card kpi-emerald" data-action="open-module" data-id="kasa-banka">
-            <div class="netsis-kpi-head"><span>KASA & BANKA MEVCUDU</span><span class="netsis-kpi-mini-icon">${ICONS.kasa}</span></div>
-            <div class="netsis-kpi-value">${fmtTL(netKasa)}</div>
-            <div class="netsis-kpi-sub">Garanti, Ziraat & Merkez Kasa ↗</div>
-          </button>
+        <div class="dashboard-stage">
+          <!-- 1. KÖKLÜ AGRO KPI CARDS -->
+          <section class="netsis-kpi-row">
+            <button type="button" class="netsis-kpi-card kpi-emerald" data-action="open-module" data-id="kasa-banka" title="Kasa & Bankalar Modülüne Git">
+              <span class="kpi-title">Kasa & Banka Likidite</span>
+              <span class="kpi-value">${fmtTL(netKasa)}</span>
+              <span class="kpi-desc">Nakit kasa, Ziraat ve ticari mevduat</span>
+            </button>
 
-          <button type="button" class="netsis-kpi-card kpi-green-val" data-action="open-module" data-id="cariler" data-sub="Müşteri">
-            <div class="netsis-kpi-head"><span>TÜCCAR / FABRİKA ALACAKLARI</span><span class="netsis-kpi-mini-icon">${ICONS.alacak}</span></div>
-            <div class="netsis-kpi-value">${fmtTL(musteriAlacak)}</div>
-            <div class="netsis-kpi-sub">Bereket Un, Ova Tarım açık bakiye ↗</div>
-          </button>
+            <button type="button" class="netsis-kpi-card kpi-amber" data-action="open-module" data-id="mustahsil-alis" title="Müstahsil Alımlarına Git">
+              <span class="kpi-title">Müstahsil Alımları (Dönem)</span>
+              <span class="kpi-value">${fmtTL(topAlis)}</span>
+              <span class="kpi-desc">Zirai stopaj ve fon kesintili brüt alım</span>
+            </button>
 
-          <button type="button" class="netsis-kpi-card kpi-amber" data-action="open-module" data-id="cariler" data-sub="Müstahsil">
-            <div class="netsis-kpi-head"><span>AÇIK MÜSTAHSİL BORCUMUZ</span><span class="netsis-kpi-mini-icon">${ICONS.cari}</span></div>
-            <div class="netsis-kpi-value">${fmtTL(mustahsilBorc)}</div>
-            <div class="netsis-kpi-sub">Hasat teslim eden çiftçi alacakları ↗</div>
-          </button>
+            <button type="button" class="netsis-kpi-card kpi-blue" data-action="open-module" data-id="mal-satis" title="Mal Satışlarına Git">
+              <span class="kpi-title">Toptan Satış Hasılatı</span>
+              <span class="kpi-value">${fmtTL(topSatis)}</span>
+              <span class="kpi-desc">Un, yem fabrikaları ve tüccar sevkleri</span>
+            </button>
 
-          <button type="button" class="netsis-kpi-card" data-action="open-module" data-id="depo-silo">
-            <div class="netsis-kpi-head"><span>SİLO & DEPO STOK DEĞERİ</span><span class="netsis-kpi-mini-icon">${ICONS.silo}</span></div>
-            <div class="netsis-kpi-value">${fmtTL(stokDeger)}</div>
-            <div class="netsis-kpi-sub">${fmtKg(toplamStokKg)} Hububat · 3 Aktif Silo ↗</div>
-          </button>
-        </section>
+            <button type="button" class="netsis-kpi-card kpi-emerald" data-action="open-module" data-id="depo-silo" title="Silo Envanterine Git">
+              <span class="kpi-title">Silo & Stok Envanteri</span>
+              <span class="kpi-value">${fmtKg(topStokKg)}</span>
+              <span class="kpi-desc">Çelik silolar, merkez depo ve emanet stok</span>
+            </button>
+          </section>
 
-        <!-- 2. KÖKLÜ AGRO LAUNCHER TRAY -->
-        <section class="netsis-launcher-tray">
-          <div class="netsis-watermark">KÖKLÜ AGRO</div>
+          <!-- 2. SHORTCUT LAUNCHER TRAY (Exact Grid Structure) -->
+          <section class="netsis-launcher-tray">
+            <div class="netsis-watermark">KÖKLÜ AGRO</div>
 
-          <div class="netsis-search-wrap">
-            <div class="netsis-search-pill">
-              ${ICONS.search}
-              <input
-                type="text"
-                id="homeModuleSearch"
-                value="${esc(state.homeSearch)}"
-                placeholder="Modül veya işlem aramak için yazın (örn: kantar, buğday, müstahsil)..."
-                autocomplete="off"
-              />
-              <span class="kbd-badge">F10</span>
+            <div class="netsis-search-wrap">
+              <div class="netsis-search-pill">
+                ${ICONS.search}
+                <input type="text" id="homeModuleSearch" placeholder="Modül, ekran veya hububat cinsi ara... (F10)" value="${esc(state.homeSearch)}" autocomplete="off" />
+                <span class="kbd-badge">F10 / Enter</span>
+              </div>
             </div>
-          </div>
 
-          <div class="modules-grid">
-            ${tilesHtml}
-          </div>
-        </section>
+            <div class="modules-grid">
+              ${tilesHtml}
+            </div>
+          </section>
 
-        <!-- 3. GRAFİKLER & ENVANTER DÖNGÜSÜ -->
-        ${buildAgroChartsSection()}
+          <!-- 3. GRAFİKLER & ENVANTER DÖNGÜSÜ -->
+          ${buildAgroChartsSection()}
 
-        <!-- 4. FAVORİ EKRANLAR & FAVORİ RAPORLAR -->
-        <section class="favorites-grid">
-          <div class="fav-card">
-            <div class="fav-card-header">
-              <div class="fav-card-title">${ICONS.star}<span>Köklü Agro — Sık Kullanılan İstasyonlar</span></div>
+          <!-- 4. FAVORİ EKRANLAR & FAVORİ RAPORLAR -->
+          <section class="favorites-grid">
+            <div class="fav-card">
+              <div class="fav-card-header">
+                <div class="fav-card-title">${ICONS.star}<span>Köklü Agro — Sık Kullanılan İstasyonlar</span></div>
+              </div>
+              <div>
+                ${state.favoriteScreens.map(f => `
+                  <button type="button" class="fav-row" data-action="open-module" data-id="${f.id}" data-sub="${f.sub}">
+                    <span class="fav-row-name">${esc(f.label)}</span>
+                    <span class="fav-row-hint">${esc(f.sub)} →</span>
+                  </button>
+                `).join('')}
+              </div>
             </div>
-            <div>
-              ${state.favoriteScreens.map(f => `
-                <button type="button" class="fav-row" data-action="open-module" data-id="${f.id}" data-sub="${esc(f.sub || '')}">
-                  <span>${esc(f.label)}</span>
-                  <span class="fav-row-hint">Aç →</span>
-                </button>
-              `).join('')}
-            </div>
-          </div>
 
-          <div class="fav-card">
-            <div class="fav-card-header">
-              <div class="fav-card-title">${ICONS.raporlar}<span>Resmi ve Mali Defter Raporları</span></div>
+            <div class="fav-card">
+              <div class="fav-card-header">
+                <div class="fav-card-title">${ICONS.raporlar}<span>Kritik Finansal & Mizan Raporları</span></div>
+              </div>
+              <div>
+                ${state.favoriteReports.map(r => `
+                  <button type="button" class="fav-row" data-action="open-module" data-id="${r.id}">
+                    <span class="fav-row-name">${esc(r.label)}</span>
+                    <span class="fav-row-hint">Raporu Aç →</span>
+                  </button>
+                `).join('')}
+              </div>
             </div>
-            <div>
-              ${state.favoriteReports.map(r => `
-                <button type="button" class="fav-row" data-action="open-report" data-id="${r.id}" data-report="${r.reportKey}">
-                  <span>${esc(r.label)}</span>
-                  <span class="fav-row-hint">Rapor →</span>
-                </button>
-              `).join('')}
-            </div>
-          </div>
-        </section>
+          </section>
+        </div>
       `;
     }
 
     /* =========================================================================
-       SUB-VIEWS: KÖKLÜ AGRO REEL VE AKTİF BAŞLIKLAR
+       SUB-VIEW TEMPLATES
        ========================================================================= */
-    function renderModuleHeader(mod, subtitle, primaryBtnHtml) {
+    function renderModuleHeader(mod, subtitle, actionBtns) {
       return `
-        <div class="view-topbar">
+        <div class="view-header">
           <div class="view-title-wrap">
-            <div class="netsis-app-icon" style="width:42px;height:42px;border-radius:10px;">${ICONS[mod.icon] || ICONS.silo}</div>
-            <div>
-              <h2 style="font-size:16.5px;font-weight:700;color:var(--text-primary);">${esc(mod.label)}</h2>
-              <div style="font-size:12px;color:var(--text-muted);">${esc(subtitle)}</div>
-            </div>
+            <h2>${ICONS[mod.icon]} ${esc(mod.label)}</h2>
+            <p>${esc(subtitle)}</p>
           </div>
           <div class="view-actions">
-            <button type="button" class="btn-secondary" data-action="open-module" data-id="ana-ekran">← Masaüstü</button>
-            ${primaryBtnHtml || ''}
+            ${actionBtns || ''}
           </div>
         </div>
       `;
     }
 
-    // 1. KANTAR FİŞLERİ & TARTIM
+    // 1. KANTAR FİŞLERİ & CANLI TARTIM
     function renderScaleView(mod) {
       const q = state.tableFilter.trim().toLocaleLowerCase('tr-TR');
       const rows = state.kantarFisleri.filter(k => {
@@ -1858,6 +2244,13 @@
         <div class="module-view">
           ${renderModuleHeader(mod, 'Elektronik kantar tartımları, plaka, şoför ve net teslimat fişleri',
             '<button type="button" class="btn-primary" data-action="modal-new-kantar">+ Yeni Kantar Fişi Kes</button>')}
+
+          ${renderPageGuide('Kantar Canlı Tartım & Fiş Kesme İş Akışı', [
+            { bold: '1. Kamyon Giriş Tartımı', text: 'Dolu araç kantara çıktığında brüt tartımı otomatik veya manuel alın.' },
+            { bold: '2. Dara Boşaltımı', text: 'Yük siloya boşaldıktan sonra aracın darasını tartın; net teslimat tonajı hesaplansın.' },
+            { bold: '3. Müstahsil / Sevk Eşleştirme', text: 'Fiş kaydedildiğinde doğrudan müstahsil makbuzu veya fabrika irsaliyesine bağlanır.' }
+          ])}
+
           <div class="panel-card">
             <div class="panel-toolbar">
               <strong>Son Kantar Tartımları</strong>
@@ -1865,7 +2258,7 @@
             </div>
             <div class="table-scroll">
               <table class="erp-table">
-                <thead><tr><th>Fiş No</th><th>Tarih</th><th>Plaka</th><th>Şoför</th><th>Ürün</th><th>Muhatap</th><th class="num-col">Brüt</th><th class="num-col">Dara</th><th class="num-col">Net Kg</th><th>Durum</th><th>İşlem</th></tr></thead>
+                <thead><tr><th>Fiş No</th><th>Tarih</th><th>Plaka</th><th>Şoför</th><th>Ürün</th><th>Muhatap</th><th class="num-col">Brüt</th><th class="num-col">Dara</th><th class="num-col">Net Kg</th><th>Durum</th><th style="width:96px;text-align:right;">İşlem</th></tr></thead>
                 <tbody>
                   ${rows.map(k => `
                     <tr>
@@ -1879,7 +2272,9 @@
                       <td class="num-col" style="color:var(--text-muted);">${fmtInt(k.dara)} Kg</td>
                       <td class="num-col" style="color:var(--agro-green);font-weight:800;">${fmtInt(k.net)} Kg</td>
                       <td><span class="badge badge-green">${esc(k.durum)}</span></td>
-                      <td><button type="button" class="btn-secondary" style="height:27px;padding:0 8px;" data-action="kantar-detay" data-no="${k.no}">Fiş Yazdır</button></td>
+                      <td style="width:96px;text-align:right;white-space:nowrap;padding:4px 10px;">
+                        ${renderRowActions('kantar', k.no, `<button type="button" class="btn-secondary" style="height:25px;padding:0 7px;font-size:11px;" data-action="kantar-detay" data-no="${k.no}">Fiş</button>`)}
+                      </td>
                     </tr>
                   `).join('')}
                 </tbody>
@@ -1899,6 +2294,13 @@
         <div class="module-view">
           ${renderModuleHeader(mod, 'Çiftçi müstahsil makbuzu (Stopaj, Borsa, Bağ-Kur kesintili alımlar)',
             '<button type="button" class="btn-primary" data-action="modal-new-mustahsil">+ Müstahsil Makbuzu Kes</button>')}
+
+          ${renderPageGuide('Çiftçi Müstahsil Makbuzu Kesme Akışı', [
+            { bold: '1. Çiftçi & Ürün Seçimi', text: 'Açılmış müstahsil carisini ve teslim alınan hububat cinsini seçin.' },
+            { bold: '2. Net Kg & Alış Fiyatı', text: 'Kantardan gelen net tonaj ve anlaşma alış fiyatı üzerinden brüt bedel hesaplanır.' },
+            { bold: '3. Yasal Kesintiler & Ödeme', text: '%2 Stopaj ve %0.1 Borsa tescili otomatik düşülerek çiftçinin net alacağına yazılır.' }
+          ])}
+
           <div class="panel-card">
             <div class="panel-toolbar">
               <strong>Müstahsil Alım Kayıtları</strong>
@@ -1906,7 +2308,7 @@
             </div>
             <div class="table-scroll">
               <table class="erp-table">
-                <thead><tr><th>Belge No</th><th>Tarih</th><th>Çiftçi / Müstahsil</th><th>Hububat</th><th class="num-col">Miktar</th><th class="num-col">Birim Fiyat</th><th class="num-col">Brüt Tutar</th><th class="num-col">Kesinti (Stopaj)</th><th class="num-col">Ödenecek Net</th><th>Durum</th></tr></thead>
+                <thead><tr><th>Belge No</th><th>Tarih</th><th>Çiftçi / Müstahsil</th><th>Hububat</th><th class="num-col">Miktar</th><th class="num-col">Birim Fiyat</th><th class="num-col">Brüt Tutar</th><th class="num-col">Kesinti (Stopaj)</th><th class="num-col">Ödenecek Net</th><th>Durum</th><th style="width:68px;text-align:right;">İşlem</th></tr></thead>
                 <tbody>
                   ${rows.map(r => `
                     <tr>
@@ -1920,6 +2322,9 @@
                       <td class="num-col" style="color:#b45309;">-${fmtTL(r.kesinti)}</td>
                       <td class="num-col" style="color:var(--agro-green);font-weight:800;">${fmtTL(r.netTutar)}</td>
                       <td><span class="badge badge-green">${esc(r.durum)}</span></td>
+                      <td style="width:68px;text-align:right;white-space:nowrap;padding:4px 10px;">
+                        ${renderRowActions('mustahsil', r.no)}
+                      </td>
                     </tr>
                   `).join('')}
                 </tbody>
@@ -1930,45 +2335,7 @@
       `;
     }
 
-    // 3. MAL SATIŞLARI (FABRİKA / TÜCCAR)
-    function renderSalesView(mod) {
-      const q = state.tableFilter.trim().toLocaleLowerCase('tr-TR');
-      const rows = state.ticaretKayitlari.filter(t => t.tur === 'Mal Satışı' && (!q || `${t.no} ${t.cari} ${t.urun}`.toLocaleLowerCase('tr-TR').includes(q)));
-
-      return `
-        <div class="module-view">
-          ${renderModuleHeader(mod, 'Un fabrikaları, yem sanayi ve tüccar toptan mal satış faturaları',
-            '<button type="button" class="btn-primary" data-action="modal-new-satis">+ Yeni Mal Satışı Faturası</button>')}
-          <div class="panel-card">
-            <div class="panel-toolbar">
-              <strong>Mal Satış & Sevk İcmali</strong>
-              <input type="text" class="inline-filter-input" id="moduleSearchInput" value="${esc(state.tableFilter)}" placeholder="Müşteri veya fatura ara..." />
-            </div>
-            <div class="table-scroll">
-              <table class="erp-table">
-                <thead><tr><th>Fatura No</th><th>Tarih</th><th>Alıcı Müşteri</th><th>Ürün</th><th class="num-col">Sevk Miktarı</th><th class="num-col">Satış Fiyatı</th><th class="num-col">Toplam Tutar</th><th>Durum</th></tr></thead>
-                <tbody>
-                  ${rows.map(r => `
-                    <tr>
-                      <td><strong>${esc(r.no)}</strong></td>
-                      <td>${esc(r.tarih)}</td>
-                      <td><strong>${esc(r.cari)}</strong></td>
-                      <td>${esc(r.urun)}</td>
-                      <td class="num-col">${fmtKg(r.miktarKg)}</td>
-                      <td class="num-col">${fmtTL(r.birimFiyat)}</td>
-                      <td class="num-col" style="color:var(--agro-green);font-weight:800;">${fmtTL(r.netTutar)}</td>
-                      <td><span class="badge badge-green">${esc(r.durum)}</span></td>
-                    </tr>
-                  `).join('')}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      `;
-    }
-
-    // 4. SİLO VE DEPO STOKLARI
+    // 3. SİLO VE DEPO ENVANTERİ
     function renderInventoryView(mod) {
       const filters = ['Tümü', 'Çelik Silo 1', 'Merkez Depo', 'Emanet Silo', 'Buğday Grubu', 'Mısır Grubu', 'Arpa Grubu'];
       const q = state.tableFilter.trim().toLocaleLowerCase('tr-TR');
@@ -1988,6 +2355,13 @@
         <div class="module-view">
           ${renderModuleHeader(mod, 'Hububat ürünleri, alt kırılımları, silo depolama, alış ve belirlenen satış fiyatları',
             '<button type="button" class="btn-primary" data-action="modal-new-urun">+ Yeni Hububat & Alt Kırılım Tanımla</button>')}
+
+          ${renderPageGuide('Silo Envanteri & Alt Kırılım Fiyat Yönetimi', [
+            { bold: '1. Alt Kırılım Tanımı', text: 'Hububatın cinsi, protein/rutubet kalitesi ve depolandığı çelik siloyu kaydedin.' },
+            { bold: '2. Alış & Satış Fiyatları', text: 'Her alt kırılıma ortalama alış maliyeti ve hedeflenen liste satış fiyatını belirleyin.' },
+            { bold: '3. Otomatik Stok Hareketi', text: 'Alışta stok siloya eklenir, satış faturası kesildiğinde depodan otomatik düşer.' }
+          ])}
+
           <div class="panel-card">
             <div class="panel-toolbar">
               <div class="subfilter-pills">
@@ -2008,7 +2382,7 @@
                     <th class="num-col">Satış Fiyatı (₺/Kg)</th>
                     <th class="num-col">Birim Marj</th>
                     <th>Standart Fire</th>
-                    <th>Hızlı İşlem</th>
+                    <th style="width:140px;text-align:right;">İşlem</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -2029,7 +2403,9 @@
                         <td class="num-col" style="font-weight:700;color:#0b261e;">${fmtTL(s.satis)}</td>
                         <td class="num-col"><span class="badge badge-green">+${fmtTL(birimMarj)} (%${marjPct})</span></td>
                         <td><span class="badge badge-slate">${esc(s.fire)}</span></td>
-                        <td><button type="button" class="btn-secondary" style="height:27px;padding:0 9px;" data-action="silo-giris" data-sku="${s.kod}">+10 Ton Alım</button></td>
+                        <td style="width:140px;text-align:right;white-space:nowrap;padding:4px 10px;">
+                          ${renderRowActions('urun', s.kod, `<button type="button" class="btn-secondary" style="height:25px;padding:0 8px;font-size:11px;" data-action="silo-giris" data-sku="${s.kod}">+10 Ton</button>`)}
+                        </td>
                       </tr>
                     `;
                   }).join('')}
@@ -2051,7 +2427,7 @@
       `;
     }
 
-    // 5. CARİLER VE MÜSTAHSİLLER
+    // 4. CARİLER VE MÜSTAHSİLLER
     function renderPartiesView(mod) {
       const filters = ['Tümü', 'Müstahsil', 'Müşteri', 'Tedarikçi'];
       const q = state.tableFilter.trim().toLocaleLowerCase('tr-TR');
@@ -2064,6 +2440,13 @@
         <div class="module-view">
           ${renderModuleHeader(mod, 'Çiftçi müstahsiller, un fabrikaları, tüccarlar ve ekstre takibi',
             '<button type="button" class="btn-primary" data-action="modal-new-cari">+ Yeni Cari / Çiftçi Ekle</button>')}
+
+          ${renderPageGuide('Çiftçi, Müşteri & Tedarikçi Cari Yönetimi', [
+            { bold: '1. Cari Kart Açılışı', text: 'Müstahsil çiftçi, un fabrikası veya tüccar için VKN/ÇKS ve bölge bilgisiyle kart açın.' },
+            { bold: '2. İşlem Ekstresi', text: 'Ekstre butonu ile cariye ait tüm müstahsil alımlarını, satış faturalarını ve ödemeleri listeleyin.' },
+            { bold: '3. Ödeme & Tahsilat', text: 'Çiftçiye nakit/havale ödeme veya fabrikadan tahsilat fişi girerek bakiyeyi kapatın.' }
+          ])}
+
           <div class="panel-card">
             <div class="panel-toolbar">
               <div class="subfilter-pills">
@@ -2073,7 +2456,7 @@
             </div>
             <div class="table-scroll">
               <table class="erp-table">
-                <thead><tr><th>Cari Kodu</th><th>Ünvan / Ad Soyad</th><th>Rol</th><th>Bölge</th><th>ÇKS / VKN</th><th class="num-col">Bakiye Durumu</th><th>İşlem</th></tr></thead>
+                <thead><tr><th>Cari Kodu</th><th>Ünvan / Ad Soyad</th><th>Rol</th><th>Bölge</th><th>ÇKS / VKN</th><th class="num-col">Bakiye Durumu</th><th style="width:160px;text-align:right;">İşlem</th></tr></thead>
                 <tbody>
                   ${rows.map(c => {
                     const net = c.borc - c.alacak;
@@ -2085,15 +2468,63 @@
                         <td>${esc(c.sehir)}</td>
                         <td><span style="font-family:monospace;font-size:11px;">${esc(c.cksNo)}</span></td>
                         <td class="num-col">${fmtTL(Math.abs(net))} <span class="badge ${net > 0 ? 'badge-green' : net < 0 ? 'badge-amber' : 'badge-slate'}">${net > 0 ? 'Alacaklıyız' : net < 0 ? 'Çiftçi Alacağı' : 'Kapalı'}</span></td>
-                        <td>
-                          <div style="display:flex;gap:4px;justify-content:flex-end;">
-                            <button type="button" class="btn-secondary" style="height:27px;padding:0 8px;" data-action="cari-ekstre" data-kod="${c.kod}">Ekstre</button>
-                            <button type="button" class="btn-secondary" style="height:27px;padding:0 8px;" data-action="cari-tahsilat" data-kod="${c.kod}">Ödeme/Tahsilat</button>
-                          </div>
+                        <td style="width:160px;text-align:right;white-space:nowrap;padding:4px 10px;">
+                          ${renderRowActions('cari', c.kod, `
+                            <button type="button" class="btn-secondary" style="height:25px;padding:0 7px;font-size:11px;" data-action="cari-ekstre" data-kod="${c.kod}">Ekstre</button>
+                            <button type="button" class="btn-secondary" style="height:25px;padding:0 7px;font-size:11px;" data-action="cari-tahsilat" data-kod="${c.kod}">Ödeme</button>
+                          `)}
                         </td>
                       </tr>
                     `;
                   }).join('')}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // 5. MAL SATIŞLARI (FATURALAR)
+    function renderSalesView(mod) {
+      const q = state.tableFilter.trim().toLocaleLowerCase('tr-TR');
+      const rows = state.ticaretKayitlari.filter(t => t.tur === 'Mal Satışı' && (!q || `${t.no} ${t.cari} ${t.urun}`.toLocaleLowerCase('tr-TR').includes(q)));
+
+      return `
+        <div class="module-view">
+          ${renderModuleHeader(mod, 'Un fabrikaları, yem tesisleri ve tüccar toptan satış faturaları',
+            '<button type="button" class="btn-primary" data-action="modal-new-satis">+ Yeni Toptan Satış Faturası</button>')}
+
+          ${renderPageGuide('Toptan Satış Faturası & Sevk Akışı', [
+            { bold: '1. Müşteri Fabrika Seçimi', text: 'Açılmış cari kartlarından alıcı firmayı seçin; mevcut cari bakiyesi ekrana gelir.' },
+            { bold: '2. Hububat & Satış Fiyatı', text: 'Silodaki ürünü seçtiğinizde belirlenen liste satış fiyatı otomatik doldurulur.' },
+            { bold: '3. Faturalama & Stok Düşümü', text: 'Fatura onaylandığında stok silodan eksilir, alıcı cari borçlandırılır.' }
+          ])}
+
+          <div class="panel-card">
+            <div class="panel-toolbar">
+              <strong>Toptan Hububat Satış Faturaları</strong>
+              <input type="text" class="inline-filter-input" id="moduleSearchInput" value="${esc(state.tableFilter)}" placeholder="Fatura no veya müşteri ara..." />
+            </div>
+            <div class="table-scroll">
+              <table class="erp-table">
+                <thead><tr><th>Fatura No</th><th>Tarih</th><th>Müşteri / Fabrika</th><th>Hububat</th><th class="num-col">Miktar</th><th class="num-col">Satış Fiyatı</th><th class="num-col">Toplam Hasılat</th><th>Durum</th><th style="width:68px;text-align:right;">İşlem</th></tr></thead>
+                <tbody>
+                  ${rows.map(r => `
+                    <tr>
+                      <td><strong>${esc(r.no)}</strong></td>
+                      <td>${esc(r.tarih)}</td>
+                      <td><strong>${esc(r.cari)}</strong></td>
+                      <td>${esc(r.urun)}</td>
+                      <td class="num-col">${fmtKg(r.miktarKg)}</td>
+                      <td class="num-col">${fmtTL(r.birimFiyat)}</td>
+                      <td class="num-col" style="color:var(--agro-green);font-weight:800;">${fmtTL(r.tutar)}</td>
+                      <td><span class="badge badge-green">${esc(r.durum)}</span></td>
+                      <td style="width:68px;text-align:right;white-space:nowrap;padding:4px 10px;">
+                        ${renderRowActions('satis', r.no)}
+                      </td>
+                    </tr>
+                  `).join('')}
                 </tbody>
               </table>
             </div>
@@ -2113,29 +2544,40 @@
 
       return `
         <div class="module-view">
-          ${renderModuleHeader(mod, 'Zahire defteri, icmaller, resmi alış ve satış hareketleri dökümü',
-            '<button type="button" class="btn-secondary" data-action="print-page">Yazdır (PDF)</button>')}
+          ${renderModuleHeader(mod, 'Birleşik ticaret defteri, toptan alış ve satış hareket icmalleri',
+            '<button type="button" class="btn-secondary" data-action="print-page">Defteri Yazdır</button>')}
+
+          ${renderPageGuide('Birleşik Ticaret Defteri & Hareket İcmali', [
+            { bold: '1. Tek Defterde İcmal', text: 'Müstahsilden yapılan tüm alımlar ve fabrikalara yapılan tüm satışlar tek defterde toplanır.' },
+            { bold: '2. Akıllı Filtreleme', text: 'Hububat cinsi, cari ünvanı veya tarih bazında alış-satış farklarını anında filtreleyin.' },
+            { bold: '3. Düzeltme & İptal', text: 'Hatalı veya mükerrer fişleri satırdaki düzenle/sil butonları ile kolayca yönetin.' }
+          ])}
+
           <div class="panel-card">
             <div class="panel-toolbar">
               <div class="subfilter-pills">
                 ${filters.map(f => `<button type="button" class="subfilter-pill ${state.subFilter === f ? 'active' : ''}" data-action="set-subfilter" data-val="${f}">${f}</button>`).join('')}
               </div>
-              <input type="text" class="inline-filter-input" id="moduleSearchInput" value="${esc(state.tableFilter)}" placeholder="Belge veya cari ara..." />
+              <input type="text" class="inline-filter-input" id="moduleSearchInput" value="${esc(state.tableFilter)}" placeholder="Ticaret defterinde ara..." />
             </div>
             <div class="table-scroll">
               <table class="erp-table">
-                <thead><tr><th>Belge No</th><th>Tür</th><th>Tarih</th><th>Cari</th><th>Hububat</th><th class="num-col">Miktar</th><th class="num-col">Net Tutar</th><th>Durum</th></tr></thead>
+                <thead><tr><th>Belge No</th><th>İşlem Türü</th><th>Tarih</th><th>Muhatap Cari</th><th>Hububat</th><th class="num-col">Miktar</th><th class="num-col">Birim Fiyat</th><th class="num-col">Net Tutar</th><th>Durum</th><th style="width:68px;text-align:right;">İşlem</th></tr></thead>
                 <tbody>
                   ${rows.map(t => `
                     <tr>
                       <td><strong>${esc(t.no)}</strong></td>
-                      <td><span class="badge ${t.tur.includes('Alış') ? 'badge-amber' : 'badge-green'}">${esc(t.tur)}</span></td>
+                      <td><span class="badge ${t.tur === 'Müstahsil Alışı' ? 'badge-amber' : 'badge-green'}">${esc(t.tur)}</span></td>
                       <td>${esc(t.tarih)}</td>
                       <td><strong>${esc(t.cari)}</strong></td>
                       <td>${esc(t.urun)}</td>
                       <td class="num-col">${fmtKg(t.miktarKg)}</td>
-                      <td class="num-col" style="font-weight:800;">${fmtTL(t.netTutar)}</td>
-                      <td><span class="badge badge-green">${esc(t.durum)}</span></td>
+                      <td class="num-col">${fmtTL(t.birimFiyat)}</td>
+                      <td class="num-col" style="font-weight:800;color:${t.tur === 'Mal Satışı' ? 'var(--agro-green)' : '#0b261e'};">${fmtTL(t.netTutar)}</td>
+                      <td><span class="badge badge-slate">${esc(t.durum)}</span></td>
+                      <td style="width:68px;text-align:right;white-space:nowrap;padding:4px 10px;">
+                        ${renderRowActions('ticaret', t.no)}
+                      </td>
                     </tr>
                   `).join('')}
                 </tbody>
@@ -2146,34 +2588,50 @@
       `;
     }
 
-    // 7. KASA & BANKA HAREKETLERİ
+    // 7. KASA VE BANKALAR
     function renderCashView(mod) {
-      const filters = ['Tümü', 'Banka', 'Kasa', 'Masraf'];
-      const rows = state.kasaHareketleri.filter(k => state.subFilter === 'Tümü' || k.kanal === state.subFilter);
+      const filters = ['Tümü', 'Banka', 'Kasa'];
+      const q = state.tableFilter.trim().toLocaleLowerCase('tr-TR');
+      const rows = state.kasaHareketleri.filter(k => {
+        if (state.subFilter !== 'Tümü' && k.kanal !== state.subFilter) return false;
+        return !q || `${k.id} ${k.islem} ${k.cari} ${k.aciklama}`.toLocaleLowerCase('tr-TR').includes(q);
+      });
 
       return `
         <div class="module-view">
-          ${renderModuleHeader(mod, 'Nakit kasa, Ziraat Bankası, Garanti BBVA ve İş Bankası akışları',
+          ${renderModuleHeader(mod, 'Ziraat, ticari mevduat, nakit kasa ve cari tahsilat / tediye hareketleri',
             '<button type="button" class="btn-primary" data-action="modal-new-kasa">+ Yeni Kasa / Banka Fişi</button>')}
+
+          ${renderPageGuide('Nakit Kasa & Banka Likidite Yönetimi', [
+            { bold: '1. Konsolide Bakiye', text: 'Nakit kasa, banka ticari mevduat ve elden hareketleri tek ekranda canlı izleyin.' },
+            { bold: '2. Tahsilat & Tediye', text: 'Müşteriden gelen havale/EFT tahsilatlarını veya çiftçiye yapılan ödemeleri fişe işleyin.' },
+            { bold: '3. Cari Mutabakatı', text: 'Girilen kasa/banka hareketleri ilgili çiftçi ve müşteri carisinin bakiyesini anında dengeler.' }
+          ])}
+
           <div class="panel-card">
             <div class="panel-toolbar">
               <div class="subfilter-pills">
                 ${filters.map(f => `<button type="button" class="subfilter-pill ${state.subFilter === f ? 'active' : ''}" data-action="set-subfilter" data-val="${f}">${f}</button>`).join('')}
               </div>
+              <input type="text" class="inline-filter-input" id="moduleSearchInput" value="${esc(state.tableFilter)}" placeholder="Kasa, banka veya açıklama ara..." />
             </div>
             <div class="table-scroll">
               <table class="erp-table">
-                <thead><tr><th>Fiş No</th><th>Tarih</th><th>Kanal</th><th>İşlem Türü</th><th>Açıklama</th><th class="num-col">Giriş (Tahsilat)</th><th class="num-col">Çıkış (Ödeme)</th></tr></thead>
+                <thead><tr><th>Fiş No</th><th>Tarih</th><th>Kanal</th><th>İşlem Türü</th><th>Muhatap</th><th>Açıklama</th><th class="num-col">Giriş (Tahsilat)</th><th class="num-col">Çıkış (Tediye)</th><th style="width:68px;text-align:right;">İşlem</th></tr></thead>
                 <tbody>
                   ${rows.map(k => `
                     <tr>
                       <td><strong>${esc(k.id)}</strong></td>
                       <td>${esc(k.tarih)}</td>
-                      <td><span class="badge badge-agro">${esc(k.kanal)}</span></td>
+                      <td><span class="badge ${k.kanal === 'Banka' ? 'badge-blue' : 'badge-slate'}">${esc(k.kanal)}</span></td>
                       <td><strong>${esc(k.islem)}</strong></td>
+                      <td>${esc(k.cari)}</td>
                       <td>${esc(k.aciklama)}</td>
-                      <td class="num-col" style="color:var(--agro-green);">${k.giris ? fmtTL(k.giris) : '-'}</td>
-                      <td class="num-col" style="color:var(--agro-red);">${k.cikis ? fmtTL(k.cikis) : '-'}</td>
+                      <td class="num-col" style="color:var(--agro-green);font-weight:700;">${k.giris ? '+' + fmtTL(k.giris) : '-'}</td>
+                      <td class="num-col" style="color:#b45309;font-weight:700;">${k.cikis ? '-' + fmtTL(k.cikis) : '-'}</td>
+                      <td style="width:68px;text-align:right;white-space:nowrap;padding:4px 10px;">
+                        ${renderRowActions('kasa', k.id)}
+                      </td>
                     </tr>
                   `).join('')}
                 </tbody>
@@ -2184,26 +2642,43 @@
       `;
     }
 
-    // 8. ÇEK & SENET
+    // 8. ÇEK VE SENET
     function renderInstrumentsView(mod) {
+      const q = state.tableFilter.trim().toLocaleLowerCase('tr-TR');
+      const rows = state.ceksenet.filter(c => !q || `${c.no} ${c.borclu} ${c.banka}`.toLocaleLowerCase('tr-TR').includes(q));
+
       return `
         <div class="module-view">
-          ${renderModuleHeader(mod, 'Portföydeki müşteri çekleri ve vadeli müstahsil borç senetleri',
-            '<button type="button" class="btn-primary" data-action="modal-new-ceksenet">+ Yeni Çek / Senet</button>')}
+          ${renderModuleHeader(mod, 'Vadeli müşteri çekleri, borç senetleri ve banka tahsil portföyü',
+            '<button type="button" class="btn-primary" data-action="modal-new-ceksenet">+ Yeni Çek / Senet Kaydet</button>')}
+
+          ${renderPageGuide('Çek & Senet Portföyü ve Vade Takibi', [
+            { bold: '1. Evrak Girişi', text: 'Müşterilerden alınan vadeli çekleri veya tedarikçiye verilen borç senetlerini portföye kaydedin.' },
+            { bold: '2. Vade Alarmı', text: 'Vadesi yaklaşan çekleri renkli rozetlerle takip edin, tahsilat gecikmelerini önleyin.' },
+            { bold: '3. Tahsil / Ciro', text: 'Bankaya takasa verilen veya tahsil edilen evrakların durumunu tek tıkla güncelleyin.' }
+          ])}
+
           <div class="panel-card">
+            <div class="panel-toolbar">
+              <strong>Çek / Senet Portföy Listesi</strong>
+              <input type="text" class="inline-filter-input" id="moduleSearchInput" value="${esc(state.tableFilter)}" placeholder="Evrak no veya borçlu ara..." />
+            </div>
             <div class="table-scroll">
               <table class="erp-table">
-                <thead><tr><th>Evrak No</th><th>Tür</th><th>Vade Tarihi</th><th>Keşideci / Muhatap</th><th>Banka / Şube</th><th class="num-col">Tutar</th><th>Durum</th></tr></thead>
+                <thead><tr><th>Portföy No</th><th>Tür</th><th>Borçlu / Keşideci</th><th>Vade Tarihi</th><th class="num-col">Tutar</th><th>Banka / Şube</th><th>Durum</th><th style="width:68px;text-align:right;">İşlem</th></tr></thead>
                 <tbody>
-                  ${state.cekSenetler.map(c => `
+                  ${rows.map(c => `
                     <tr>
                       <td><strong>${esc(c.no)}</strong></td>
-                      <td><span class="badge badge-agro">${esc(c.tur)}</span></td>
-                      <td><strong>${esc(c.vade)}</strong></td>
-                      <td>${esc(c.kesideci)}</td>
+                      <td><span class="badge ${c.tur === 'Müşteri Çeki' ? 'badge-green' : 'badge-amber'}">${esc(c.tur)}</span></td>
+                      <td><strong>${esc(c.borclu)}</strong></td>
+                      <td><span style="font-weight:700;color:#0b261e;">${esc(c.vade)}</span></td>
+                      <td class="num-col" style="font-weight:800;color:var(--agro-green);">${fmtTL(c.tutar)}</td>
                       <td>${esc(c.banka)}</td>
-                      <td class="num-col" style="font-weight:800;">${fmtTL(c.tutar)}</td>
-                      <td><span class="badge ${c.durum === 'Ödenecek' ? 'badge-amber' : 'badge-green'}">${esc(c.durum)}</span></td>
+                      <td><span class="badge badge-slate">${esc(c.durum)}</span></td>
+                      <td style="width:68px;text-align:right;white-space:nowrap;padding:4px 10px;">
+                        ${renderRowActions('ceksenet', c.no)}
+                      </td>
                     </tr>
                   `).join('')}
                 </tbody>
@@ -2214,25 +2689,42 @@
       `;
     }
 
-    // 9. MASRAF & GİDER
+    // 9. MASRAF VE GİDER FİŞLERİ
     function renderExpensesView(mod) {
-      const expenses = state.kasaHareketleri.filter(k => k.kanal === 'Masraf');
+      const q = state.tableFilter.trim().toLocaleLowerCase('tr-TR');
+      const rows = state.kasaHareketleri.filter(k => k.kanal === 'Masraf' && (!q || `${k.id} ${k.aciklama} ${k.cari}`.toLocaleLowerCase('tr-TR').includes(q)));
+
       return `
         <div class="module-view">
-          ${renderModuleHeader(mod, 'Kantar kalibrasyonu, elektrik, kurutma, nakliye ve saha masrafları',
-            '<button type="button" class="btn-primary" data-action="modal-new-gider">+ Gider Fişi İşle</button>')}
+          ${renderModuleHeader(mod, 'İşletme giderleri, kurutma, elektrik, kantar mazot ve analiz masrafları',
+            '<button type="button" class="btn-primary" data-action="modal-new-gider">+ Yeni Masraf Fişi İşle</button>')}
+
+          ${renderPageGuide('İşletme Giderleri & Masraf Takip Akışı', [
+            { bold: '1. Gider Tanımı', text: 'Silo kurutma enerjisi, kantar elektriği, nakliye veya analiz masraf fişini işleyin.' },
+            { bold: '2. Ödeme Kanalı', text: 'Masrafın nakit kasadan mı yoksa banka hesabından mı ödendiğini seçin.' },
+            { bold: '3. Faaliyet Raporu', text: 'Masraflar kârlılık ve mizan ekranında faaliyet gideri (SMM) olarak brüt kârdan düşülür.' }
+          ])}
+
           <div class="panel-card">
+            <div class="panel-toolbar">
+              <strong>İşletme Masraf Kayıtları</strong>
+              <input type="text" class="inline-filter-input" id="moduleSearchInput" value="${esc(state.tableFilter)}" placeholder="Masraf açıklaması ara..." />
+            </div>
             <div class="table-scroll">
               <table class="erp-table">
-                <thead><tr><th>Gider Fişi</th><th>Tarih</th><th>Açıklama</th><th>Muhatap</th><th class="num-col">Tutar</th></tr></thead>
+                <thead><tr><th>Fiş No</th><th>Tarih</th><th>Kanal</th><th>Açıklama</th><th>Muhatap</th><th class="num-col">Gider Tutarı</th><th style="width:68px;text-align:right;">İşlem</th></tr></thead>
                 <tbody>
-                  ${expenses.map(e => `
+                  ${rows.map(g => `
                     <tr>
-                      <td><strong>${esc(e.id)}</strong></td>
-                      <td>${esc(e.tarih)}</td>
-                      <td>${esc(e.aciklama)}</td>
-                      <td>${esc(e.cari || 'Muhtelif Gider')}</td>
-                      <td class="num-col" style="color:var(--agro-red);font-weight:800;">${fmtTL(e.cikis)}</td>
+                      <td><strong>${esc(g.id)}</strong></td>
+                      <td>${esc(g.tarih)}</td>
+                      <td><span class="badge badge-amber">${esc(g.kanal)}</span></td>
+                      <td><strong>${esc(g.aciklama)}</strong></td>
+                      <td>${esc(g.cari)}</td>
+                      <td class="num-col" style="color:#b45309;font-weight:800;">${fmtTL(g.cikis)}</td>
+                      <td style="width:68px;text-align:right;white-space:nowrap;padding:4px 10px;">
+                        ${renderRowActions('gider', g.id)}
+                      </td>
                     </tr>
                   `).join('')}
                 </tbody>
@@ -2243,29 +2735,39 @@
       `;
     }
 
-    // 10. VADE & YAŞLANDIRMA
+    // 10. VADE VE YAŞLANDIRMA
     function renderDueView(mod) {
       return `
         <div class="module-view">
-          ${renderModuleHeader(mod, 'Vadeli açık hesap bakiye ve tahsilat yaşlandırma raporu',
-            '<button type="button" class="btn-secondary" data-action="print-page">Yazdır</button>')}
+          ${renderModuleHeader(mod, 'Açık hesap çiftçi ve un fabrikaları vade yaşlandırma risk matrisi',
+            '<button type="button" class="btn-secondary" data-action="print-page">Yaşlandırma Raporu Yazdır</button>')}
+
+          ${renderPageGuide('Açık Hesap Vade Yaşlandırma & Risk Matrisi', [
+            { bold: '1. Vade Dilimleri', text: 'Fabrika ve tüccarların borçlarını 0-30, 31-60, 61-90 ve 90+ gün vadelerine göre sınıflandırın.' },
+            { bold: '2. Risk Analizi', text: 'Vadesi 60 günü aşan yüksek riskli alacakları kırmızı alarm rozetiyle tespit edin.' },
+            { bold: '3. Ekstre & İhtar', text: 'Riskli carilere satır içi butonla anında hesap ekstresi ve bakiye hatırlatması çıkarın.' }
+          ])}
+
           <div class="panel-card">
-            <div class="panel-toolbar"><strong>Vadesi Gelen ve Yaklaşan Cari Hesaplar</strong></div>
+            <div class="panel-toolbar"><strong>Ticari Alacak / Borç Yaşlandırma Çizelgesi</strong></div>
             <div class="table-scroll">
               <table class="erp-table">
-                <thead><tr><th>Cari Kodu</th><th>Ünvan</th><th>Vade Durumu</th><th class="num-col">Vadesi Geçen</th><th class="num-col">0-30 Gün</th><th class="num-col">31-60 Gün</th><th class="num-col">Toplam Bakiye</th></tr></thead>
+                <thead><tr><th>Cari Ünvan</th><th class="num-col">Toplam Bakiye</th><th class="num-col">0-30 Gün</th><th class="num-col">31-60 Gün</th><th class="num-col">61-90 Gün</th><th class="num-col">90+ Gün</th><th>Risk Durumu</th><th style="width:115px;text-align:right;">İşlem</th></tr></thead>
                 <tbody>
-                  ${state.cariler.map(c => {
-                    const net = c.borc - c.alacak;
+                  ${state.vadeYaslandirma.map(v => {
+                    const c = state.cariler.find(x => x.unvan === v.cari) || { kod: 'CR-0001' };
                     return `
                       <tr>
-                        <td><strong>${esc(c.kod)}</strong></td>
-                        <td>${esc(c.unvan)}</td>
-                        <td><span class="badge ${net > 0 ? 'badge-green' : 'badge-amber'}">${net > 0 ? 'Alacak' : 'Borç'}</span></td>
-                        <td class="num-col" style="color:#dc2626;">0,00 ₺</td>
-                        <td class="num-col">${fmtTL(Math.abs(net) * 0.7)}</td>
-                        <td class="num-col">${fmtTL(Math.abs(net) * 0.3)}</td>
-                        <td class="num-col" style="font-weight:800;">${fmtTL(Math.abs(net))}</td>
+                        <td><strong>${esc(v.cari)}</strong></td>
+                        <td class="num-col" style="font-weight:800;">${fmtTL(v.toplam)}</td>
+                        <td class="num-col">${fmtTL(v.v0_30)}</td>
+                        <td class="num-col">${fmtTL(v.v31_60)}</td>
+                        <td class="num-col" style="color:#b45309;">${fmtTL(v.v61_90)}</td>
+                        <td class="num-col" style="color:#dc2626;font-weight:800;">${fmtTL(v.v90_plus)}</td>
+                        <td><span class="badge ${v.risk === 'Normal' ? 'badge-green' : v.risk === 'Orta' ? 'badge-amber' : 'badge-red'}">${esc(v.risk)}</span></td>
+                        <td style="width:115px;text-align:right;white-space:nowrap;padding:4px 10px;">
+                          ${renderRowActions('cari', c.kod, `<button type="button" class="btn-secondary" style="height:25px;padding:0 8px;font-size:11px;" data-action="cari-ekstre" data-kod="${c.kod}">Ekstre</button>`)}
+                        </td>
                       </tr>
                     `;
                   }).join('')}
@@ -2277,7 +2779,7 @@
       `;
     }
 
-    // 11. KÂRLILIK & MİZAN ANALİZİ
+    // 11. KÂRLILIK ANALİZİ (ALT KIRILIMLI)
     function renderAnalyticsView(mod) {
       let topMaliyet = 0;
       let topSatis = 0;
@@ -2296,6 +2798,12 @@
         <div class="module-view">
           ${renderModuleHeader(mod, 'Hububat ürünleri ve alt kırılımları bazında brüt kârlılık, satış marjları ve dönem sonuçları',
             '<button type="button" class="btn-secondary" data-action="print-page">Yazdır (PDF)</button>')}
+
+          ${renderPageGuide('Alt Kırılımlar Bazında Hububat Kârlılık Matrisi', [
+            { bold: '1. Birim Kâr (₺/Kg)', text: 'Her hububat alt kırılımının alış maliyeti ile liste satış fiyatı arasındaki net farkı görün.' },
+            { bold: '2. Kâr Marjı (%)', text: 'Ürünün satış fiyatına göre yüzde kaç brüt kâr sağladığını renkli rozetlerle izleyin.' },
+            { bold: '3. Potansiyel Hasılat', text: 'Silodaki mevcut tonaj ile birim kâr çarpılarak toplam potansiyel faaliyet kârı raporlanır.' }
+          ])}
 
           <!-- KÂRLILIK ÖZET KARTLARI -->
           <div class="netsis-kpi-row" style="margin-bottom:14px;">
@@ -2393,47 +2901,331 @@
         <div class="module-view">
           ${renderModuleHeader(mod, 'Ticaret borsası hububat kapanış fiyatları ve TMO müdahale alımları',
             '<button type="button" class="btn-secondary" data-action="print-page">Yazdır</button>')}
+
+          ${renderPageGuide('Ticaret Borsası Hububat Fiyatları & TCMB Kurlar', [
+            { bold: '1. Borsa Kapanışları', text: 'Konya ve Polatlı Ticaret Borsaları günlük kapanış ortalamaları ve TMO fiyatlarını kıyaslayın.' },
+            { bold: '2. TCMB Serbest Kur', text: 'Dolar ve Euro canlı alış/satış kurlarını takip ederek dövizli hububat alım/satımı yapın.' },
+            { bold: '3. Döviz Çevirici', text: 'İhracat ve ithalat sevkiyatları için spot kur üzerinden anında Türk Lirası karşılığını hesaplayın.' }
+          ])}
+
           <div class="netsis-charts-grid">
             <div class="panel-card" style="padding:16px;display:flex;flex-direction:column;gap:12px;">
               <strong>Konya & Polatlı Ticaret Borsası Referans Fiyatları</strong>
               <table class="erp-table" style="min-width:100%;">
-                <thead><tr><th>Hububat</th><th class="num-col">TMO Alış</th><th class="num-col">Borsa Ort.</th><th>Değişim</th></tr></thead>
+                <thead><tr><th>Hububat</th><th class="num-col">TMO Alış</th><th class="num-col">Borsa Ortalama</th><th class="num-col">Günlük Değişim</th></tr></thead>
                 <tbody>
-                  ${state.borsaFiyatlari.map(b => `
-                    <tr>
-                      <td><strong>${esc(b.urun)}</strong></td>
-                      <td class="num-col">${fmtTL(b.tmoAlis)}</td>
-                      <td class="num-col" style="color:var(--agro-green);font-weight:800;">${fmtTL(b.borsaOrt)}</td>
-                      <td><span class="badge badge-green">${esc(b.degisim)}</span></td>
-                    </tr>
-                  `).join('')}
+                  <tr><td><strong>Ekmeklik Buğday</strong></td><td class="num-col">9,25 ₺</td><td class="num-col" style="font-weight:700;">10,80 ₺</td><td class="num-col" style="color:var(--agro-green);font-weight:700;">+ %1,4</td></tr>
+                  <tr><td><strong>Makarnalık Buğday</strong></td><td class="num-col">10,00 ₺</td><td class="num-col" style="font-weight:700;">11,90 ₺</td><td class="num-col" style="color:var(--agro-green);font-weight:700;">+ %0,8</td></tr>
+                  <tr><td><strong>Mısır (1. Sınıf)</strong></td><td class="num-col">7,80 ₺</td><td class="num-col" style="font-weight:700;">8,95 ₺</td><td class="num-col" style="color:#b45309;font-weight:700;">- %0,5</td></tr>
+                  <tr><td><strong>Arpa (Yemlik)</strong></td><td class="num-col">7,25 ₺</td><td class="num-col" style="font-weight:700;">7,90 ₺</td><td class="num-col" style="color:var(--agro-green);font-weight:700;">+ %1,1</td></tr>
                 </tbody>
               </table>
             </div>
 
-            <div class="panel-card" style="padding:16px;display:flex;flex-direction:column;gap:12px;">
-              <strong>TCMB Döviz Kurları & Çevirici</strong>
-              <div style="display:flex;gap:8px;align-items:flex-end;flex-wrap:wrap;">
-                <div class="form-field"><label>Tutar</label><input type="number" id="fxAmountInput" value="${esc(state.fxAmount)}" style="width:120px;" /></div>
-                <div class="form-field"><label>Döviz</label><select id="fxCurrencySelect">${state.kurlar.map(k => `<option value="${k.kod}" ${k.kod === state.fxCurrency ? 'selected' : ''}>${k.kod}</option>`).join('')}</select></div>
-                <div style="padding:7px 12px;background:var(--agro-green-soft);border-radius:8px;font-weight:800;color:var(--agro-green-dark);">${fmtTL(converted)}</div>
+            <div class="panel-card" style="padding:16px;display:flex;flex-direction:column;gap:14px;">
+              <strong>TCMB Döviz Çevirici (Tahsilat Hesabı)</strong>
+              <div class="form-grid">
+                <div class="form-field">
+                  <label>Döviz Tutarı</label>
+                  <input type="number" id="fxAmountInput" value="${state.fxAmount}" />
+                </div>
+                <div class="form-field">
+                  <label>Para Birimi</label>
+                  <select id="fxCurrencySelect">
+                    <option value="USD" ${state.fxCurrency === 'USD' ? 'selected' : ''}>USD ($) — 34,42 ₺</option>
+                    <option value="EUR" ${state.fxCurrency === 'EUR' ? 'selected' : ''}>EUR (€) — 36,55 ₺</option>
+                  </select>
+                </div>
               </div>
-              <table class="erp-table" style="min-width:100%;">
-                <thead><tr><th>Para Birimi</th><th class="num-col">Alış</th><th class="num-col">Satış</th></tr></thead>
-                <tbody>
-                  ${state.kurlar.map(k => `<tr><td><strong>${esc(k.kod)}</strong> (${esc(k.ad)})</td><td class="num-col">${fmtTL(k.alis)}</td><td class="num-col">${fmtTL(k.satis)}</td></tr>`).join('')}
-                </tbody>
-              </table>
+              <div style="background:#f6faf8;border:1px solid #b5cebe;border-radius:8px;padding:12px;text-align:center;">
+                <span style="font-size:11px;color:var(--text-muted);">Türk Lirası Karşılığı:</span>
+                <div style="font-size:22px;font-weight:900;color:var(--agro-green);margin-top:4px;">${fmtTL(converted)}</div>
+              </div>
             </div>
           </div>
         </div>
       `;
     }
 
+    // 13. İŞ AKIŞI & KULLANIM KILAVUZU (DESTEK MERKEZİ)
+    function renderGuideView(mod) {
+      return `
+        <div class="module-view">
+          ${renderModuleHeader(mod, 'Köklü Agro Pro+ Zahire & Tarım ERP Uçtan Uca Operasyonel Kılavuz ve Destek Portalı',
+            '<button type="button" class="btn-secondary" data-action="print-page">Kılavuzu Yazdır (PDF)</button>')}
+
+          ${renderPageGuide('İş Akış & Kullanım Merkezi Nasıl Kullanılır?', [
+            { bold: '1. Görsel Akışa Tıklayın', text: 'Aşağıdaki 7 adımlı canlı pipeline diyagramında herhangi bir aşamaya tıklayarak ilgili işlem modülünü açabilirsiniz.' },
+            { bold: '2. Rol ve Yetkileri İnceleyin', text: 'Kantar, saha, muhasebe ve satış personeli için belirlenen görev tanımlarını ve sorumluluk alanlarını okuyun.' },
+            { bold: '3. SSS ve Kısayollardan Yararlanın', text: 'En sık karşılaşılan ticari senaryolar ve F10 hızlı erişim kısayolları ile işlemlerinizi 5 saniyede bitirin.' }
+          ])}
+
+          <!-- 1. GÖRSEL UÇTAN UCA ZAHİRE İŞ AKIŞI (PIPELINE) -->
+          <div class="panel-card" style="margin-bottom:14px;padding:16px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+              <strong style="font-size:13px;color:#0b261e;display:flex;align-items:center;gap:6px;">
+                ${ICONS.guide} 7 Aşamalı Canlı Hububat & Zahire İş Akış Pipeline'ı (Tıklayarak Açabilirsiniz)
+              </strong>
+              <span style="font-size:11px;color:var(--text-muted);">Herhangi bir aşamaya tıklayarak doğrudan o ekrana geçin</span>
+            </div>
+
+            <div class="workflow-pipeline">
+              <div class="workflow-node" data-action="open-module" data-id="kantar">
+                <span class="node-step-tag">1. ADIM</span>
+                <span class="node-title">${ICONS.kantar} Kantar Tartımı</span>
+                <span class="node-desc">Kamyon girişi, brüt ve dara tartımı ile net tonaj fişi kesilir.</span>
+              </div>
+              <div class="workflow-node" data-action="open-module" data-id="mustahsil-alis">
+                <span class="node-step-tag">2. ADIM</span>
+                <span class="node-title">${ICONS.alis} Müstahsil Alışı</span>
+                <span class="node-desc">Çiftçiye alım makbuzu, %2 stopaj ve borsa fonu kesilerek cari alacağına işlenir.</span>
+              </div>
+              <div class="workflow-node" data-action="open-module" data-id="depo-silo">
+                <span class="node-step-tag">3. ADIM</span>
+                <span class="node-title">${ICONS.silo} Silo & Stok</span>
+                <span class="node-desc">Hububat alt kırılımı, alış maliyeti ve liste satış fiyatıyla siloya kaydedilir.</span>
+              </div>
+              <div class="workflow-node" data-action="open-module" data-id="cariler">
+                <span class="node-step-tag">4. ADIM</span>
+                <span class="node-title">${ICONS.cari} Müşteri & Fabrika</span>
+                <span class="node-desc">Un ve yem fabrikası alıcı cari kartları açılır, ekstre ve bakiye takip edilir.</span>
+              </div>
+              <div class="workflow-node" data-action="open-module" data-id="mal-satis">
+                <span class="node-step-tag">5. ADIM</span>
+                <span class="node-title">${ICONS.satis} Satış Faturası</span>
+                <span class="node-desc">Belirlenen satış fiyatından toptan fatura kesilir, stok depodan otomatik düşer.</span>
+              </div>
+              <div class="workflow-node" data-action="open-module" data-id="kasa-banka">
+                <span class="node-step-tag">6. ADIM</span>
+                <span class="node-title">${ICONS.kasa} Kasa & Tahsilat</span>
+                <span class="node-desc">Banka havalesi, nakit tahsilat ve çiftçi tediye ödemeleri konsolide edilir.</span>
+              </div>
+              <div class="workflow-node" data-action="open-module" data-id="karlilik-analiz">
+                <span class="node-step-tag">7. ADIM</span>
+                <span class="node-title">${ICONS.analiz} Kârlılık Analizi</span>
+                <span class="node-desc">Alt kırılım bazında birim kâr (₺/Kg), marj ve toplam brüt kâr raporlanır.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. ROL VE SORUMLULUK REHBERİ -->
+          <div class="panel-card" style="margin-bottom:14px;padding:16px;">
+            <strong style="font-size:13px;color:#0b261e;display:block;margin-bottom:12px;">
+              👥 İşletme Rolleri ve Operasyonel Sorumluluk Alanları
+            </strong>
+            <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;">
+              <div style="background:#f8fafc;border:1px solid var(--border-soft);border-radius:8px;padding:12px;">
+                <strong style="color:#0b261e;display:block;margin-bottom:4px;">1. Kantar & Saha Görevlisi</strong>
+                <p style="font-size:11.5px;color:var(--text-muted);line-height:1.4;margin:0 0 8px 0;">Kantar tartımları, plaka/şoför kaydı, nem ve fire tespiti, ilk kabul fişi kesimi.</p>
+                <span class="badge badge-blue">Kantar · Alış · Silo</span>
+              </div>
+              <div style="background:#f8fafc;border:1px solid var(--border-soft);border-radius:8px;padding:12px;">
+                <strong style="color:#0b261e;display:block;margin-bottom:4px;">2. Ön Muhasebe & Finans</strong>
+                <p style="font-size:11.5px;color:var(--text-muted);line-height:1.4;margin:0 0 8px 0;">Müstahsil stopaj hesapları, satış faturaları, cari ekstreleri, banka havale ve kasa fişleri.</p>
+                <span class="badge badge-green">Cariler · Satış · Finans</span>
+              </div>
+              <div style="background:#f8fafc;border:1px solid var(--border-soft);border-radius:8px;padding:12px;">
+                <strong style="color:#0b261e;display:block;margin-bottom:4px;">3. Satış & Sevkiyat Sorumlusu</strong>
+                <p style="font-size:11.5px;color:var(--text-muted);line-height:1.4;margin:0 0 8px 0;">Un ve yem fabrikası siparişleri, sevk irsaliyeleri, borsa referans fiyatları takibi.</p>
+                <span class="badge badge-amber">Satış · Silo · Borsa</span>
+              </div>
+              <div style="background:#f8fafc;border:1px solid var(--border-soft);border-radius:8px;padding:12px;">
+                <strong style="color:#0b261e;display:block;margin-bottom:4px;">4. Ana Yönetici (Patron/Müdür)</strong>
+                <p style="font-size:11.5px;color:var(--text-muted);line-height:1.4;margin:0 0 8px 0;">Tüm sistem yetkileri, kullanıcı oluşturma, şifre belirleme, kârlılık matrisi ve finansal konsolidasyon.</p>
+                <span class="badge badge-agro">Tam Yetkili · Yönetici</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. SIKÇA SORULAN SORULAR (SSS) -->
+          <div class="panel-card" style="margin-bottom:14px;padding:16px;">
+            <strong style="font-size:13px;color:#0b261e;display:block;margin-bottom:12px;">
+              ❓ Sıkça Sorulan Sorular & Pratik Çözümler
+            </strong>
+            <div class="faq-grid">
+              <div class="faq-card">
+                <div class="faq-q"><span>Q1.</span> Müstahsil alımında stopaj ve borsa fonu nasıl kesilir?</div>
+                <div class="faq-a">Müstahsil makbuzu kesilirken sistem otomatik olarak %2 zirai stopaj ve %0.10 Ticaret Borsası tescil fonunu hesaplayıp brüt tutardan düşer. Net ödeme çiftçi carisine alacak yazılır.</div>
+              </div>
+              <div class="faq-card">
+                <div class="faq-q"><span>Q2.</span> Satış faturası kesildiğinde stok hangi depodan düşer?</div>
+                <div class="faq-a">Satış faturası modalında seçtiğiniz hububat alt kırılımı hangi siloda (örn. Çelik Silo 1) kayıtlıysa, satılan net miktar o silodan otomatik olarak düşürülür.</div>
+              </div>
+              <div class="faq-card">
+                <div class="faq-q"><span>Q3.</span> Alt kullanıcılara şifre ve yetki kısıtlaması nasıl verilir?</div>
+                <div class="faq-a">Ana Yönetici hesabıyla "Sistem & Kullanıcı Yetkileri" modülüne girin. "+ Yeni Alt Kullanıcı Tanımla" butonuna tıklayarak kullanıcı adı, şifre ve erişebileceği modülleri checkbox ile belirleyin.</div>
+              </div>
+              <div class="faq-card">
+                <div class="faq-q"><span>Q4.</span> Açık fatura ile kapalı fatura arasındaki fark nedir?</div>
+                <div class="faq-a">Açık fatura müşterinin cari hesabına vadeli borç olarak işlenir; kapalı fatura ise aynı anda banka/kasa tahsilat fişi oluşturarak cari bakiyesini anında dengeler.</div>
+              </div>
+              <div class="faq-card">
+                <div class="faq-q"><span>Q5.</span> Tablodaki kayıtları nasıl düzenleyebilir veya silebilirim?</div>
+                <div class="faq-a">Tüm tablolarda her satırın en sağında yer alan yeşil kalem (Düzenle) butonuyla kaydı güncelleyebilir, kırmızı çöp kutusu (Sil) butonuyla onay vererek kalıcı olarak kaldırabilirsiniz.</div>
+              </div>
+              <div class="faq-card">
+                <div class="faq-q"><span>Q6.</span> Kârlılık analizi mizanı nasıl hesaplanır?</div>
+                <div class="faq-a">Her hububat alt kırılımının tonajı, ortalama alış maliyeti ile güncel liste satış fiyatı farkı üzerinden hesaplanır. Gerçekleşen ve potansiyel brüt kâr canlı olarak konsolide edilir.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. KISAYOLLAR & DESTEK İLETİŞİM BİLGİSİ -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+            <div class="panel-card" style="padding:16px;">
+              <strong style="font-size:12.5px;color:#0b261e;display:block;margin-bottom:8px;">⚡ Hızlı Klavye Kısayolları</strong>
+              <table class="erp-table" style="min-width:100%;">
+                <tbody>
+                  <tr><td><kbd style="padding:2px 6px;background:#e2ece6;border-radius:4px;font-weight:700;">F10</kbd></td><td>Hızlı modül ve işlem arama penceresini açar</td></tr>
+                  <tr><td><kbd style="padding:2px 6px;background:#e2ece6;border-radius:4px;font-weight:700;">Alt + M</kbd></td><td>Sol açılır kapanır modül menüsünü açar / kapatır</td></tr>
+                  <tr><td><kbd style="padding:2px 6px;background:#e2ece6;border-radius:4px;font-weight:700;">Esc</kbd></td><td>Açık olan tüm işlem modallarını kapatır</td></tr>
+                  <tr><td><kbd style="padding:2px 6px;background:#e2ece6;border-radius:4px;font-weight:700;">Enter</kbd></td><td>Arama kutusundaki ilk bulunan modülü başlatır</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="panel-card" style="padding:16px;background:linear-gradient(135deg,#f6faf8,#ffffff);">
+              <strong style="font-size:12.5px;color:#0b261e;display:block;margin-bottom:8px;">📞 Köklü Agro Kurumsal Destek & Sistem Hattı</strong>
+              <p style="font-size:12px;color:var(--text-secondary);line-height:1.5;margin:0 0 10px 0;">
+                Sistem kurulumu, kantar COM-port entegrasyonu, veri tabanı yedekleri veya yetkilendirme talepleriniz için kurumsal destek ekibimizle 7/24 iletişime geçebilirsiniz.
+              </p>
+              <div style="display:flex;flex-direction:column;gap:5px;font-size:12px;">
+                <div><strong>Destek Masası:</strong> +90 (332) 444 0 555 · dahili 104</div>
+                <div><strong>Teknik İletişim:</strong> destek@koklu-agro.com.tr</div>
+                <div><strong>Konum:</strong> Karatay Zahireciler Sitesi No: 42, Konya</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // 14. SİSTEM AYARLARI & KULLANICI YÖNETİMİ
+    function renderSettingsView(mod) {
+      const users = state.users || [];
+      const activeCount = users.filter(u => u.status === 'Aktif').length;
+      const adminCount = users.filter(u => u.isAdmin).length;
+
+      return `
+        <div class="module-view">
+          ${renderModuleHeader(mod, 'Sistem parametreleri, çoklu kullanıcı oluşturma, şifre belirleme ve modül erişim yetkilendirme matrisi',
+            '<button type="button" class="btn-primary" data-action="modal-new-user">+ Yeni Alt Kullanıcı Tanımla</button>')}
+
+          ${renderPageGuide('Kullanıcı ve İzin Yönetimi Nasıl Yapılır?', [
+            { bold: '1. Alt Kullanıcı Oluşturun', text: 'Sağ üstteki butona tıklayarak kantar sorumlusu, muhasebeci veya satış temsilcisi için yeni kullanıcı kartı açın.' },
+            { bold: '2. Şifre ve Rol Belirleyin', text: 'Kullanıcının sisteme giriş yapacağı kullanıcı adını ve şifresini yazın; görev rolünü seçin.' },
+            { bold: '3. Erişim Alanlarını Kısıtlayın', text: 'Kullanıcının sadece yetkili olduğu modülleri (Kantar, Alış, Silo vb.) işaretleyin. Diğer tüm modüller gizlenir.' }
+          ])}
+
+          <!-- KPI METRICS -->
+          <div class="netsis-kpi-row" style="margin-bottom:14px;">
+            <div class="netsis-kpi-card kpi-emerald">
+              <span class="kpi-title">Toplam Tanımlı Kullanıcı</span>
+              <span class="kpi-value">${users.length} Kullanıcı</span>
+              <span class="kpi-desc">${activeCount} aktif personel hesabı tanımlı</span>
+            </div>
+            <div class="netsis-kpi-card kpi-blue">
+              <span class="kpi-title">Yönetici Hesapları</span>
+              <span class="kpi-value">${adminCount} Ana Yönetici</span>
+              <span class="kpi-desc">Sistem ayarları ve tam yetkiye sahip yöneticiler</span>
+            </div>
+            <div class="netsis-kpi-card kpi-amber">
+              <span class="kpi-title">Kısıtlı Operatörler</span>
+              <span class="kpi-value">${users.length - adminCount} Alt Kullanıcı</span>
+              <span class="kpi-desc">Sadece kendi çalışma modüllerine kısıtlanmış</span>
+            </div>
+            <div class="netsis-kpi-card kpi-emerald">
+              <span class="kpi-title">Güvenlik Durumu</span>
+              <span class="kpi-value" style="color:var(--agro-green);">Şifre Korumalı</span>
+              <span class="kpi-desc">Tüm hesaplar bağımsız PIN/Şifre ile doğrulanır</span>
+            </div>
+          </div>
+
+          <!-- KULLANICILAR TABLOSU -->
+          <div class="panel-card" style="margin-bottom:14px;">
+            <div class="panel-toolbar">
+              <strong>Tanımlı Kullanıcılar ve Erişim Yetkileri</strong>
+              <button type="button" class="btn-secondary" data-action="user-switch-modal">Aktif Kullanıcıyı Değiştir</button>
+            </div>
+            <div class="table-scroll">
+              <table class="erp-table">
+                <thead>
+                  <tr>
+                    <th>Kullanıcı Adı & Ünvan</th>
+                    <th>Kullanıcı Adı (Login)</th>
+                    <th>Rol / Görev</th>
+                    <th>Giriş Şifresi</th>
+                    <th>Erişebildiği Modüller</th>
+                    <th>Durum</th>
+                    <th style="width:115px;text-align:right;">İşlem</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${users.map(u => {
+                    const isAll = u.isAdmin || (u.modules && u.modules.includes('all'));
+                    const modBadges = isAll
+                      ? '<span class="badge badge-green">Tüm Modüllere Tam Yetkili</span>'
+                      : (u.modules || []).map(mId => {
+                          const m = MODULES.find(x => x.id === mId);
+                          return `<span class="badge badge-slate" style="font-size:10px;margin-right:2px;">${m ? m.label.split(' ')[0] : mId}</span>`;
+                        }).join('');
+
+                    return `
+                      <tr>
+                        <td>
+                          <div style="display:flex;align-items:center;gap:7px;">
+                            <span style="font-size:16px;">${u.isAdmin ? '👑' : '👤'}</span>
+                            <strong>${esc(u.fullName)}</strong>
+                          </div>
+                        </td>
+                        <td><span style="font-family:monospace;font-weight:700;color:#0b261e;">@${esc(u.username)}</span></td>
+                        <td><span class="badge ${u.isAdmin ? 'badge-agro' : 'badge-blue'}">${esc(u.role)}</span></td>
+                        <td>
+                          <span style="font-family:monospace;letter-spacing:2px;color:var(--text-muted);">••••••</span>
+                        </td>
+                        <td><div style="display:flex;flex-wrap:wrap;gap:2px;">${modBadges}</div></td>
+                        <td><span class="badge ${u.status === 'Aktif' ? 'badge-green' : 'badge-slate'}">${esc(u.status)}</span></td>
+                        <td style="width:115px;text-align:right;white-space:nowrap;padding:4px 10px;">
+                          <div class="row-actions">
+                            <button type="button" class="btn-row-action action-edit" data-action="edit-user" data-id="${esc(u.id)}" title="Kullanıcıyı ve Yetkileri Düzenle">${ICONS.edit}</button>
+                            <button type="button" class="btn-row-action action-delete" data-action="delete-user" data-id="${esc(u.id)}" title="Kullanıcıyı Sil">${ICONS.trash}</button>
+                            <button type="button" class="btn-secondary" style="height:25px;padding:0 7px;font-size:11px;" data-action="reset-user-password" data-id="${esc(u.id)}" title="Şifre Değiştir">Şifre</button>
+                          </div>
+                        </td>
+                      </tr>
+                    `;
+                  }).join('')}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- FİRMA PARAMETRELERİ -->
+          <div class="panel-card" style="padding:16px;">
+            <strong style="font-size:13px;color:#0b261e;display:block;margin-bottom:12px;">🏢 Firma Resmi Bilgileri & Zirai Vergi Parametreleri</strong>
+            <div class="form-grid">
+              <div class="form-field"><label>Ticari Ünvan</label><input value="Köklü Agro Zahire & Tarım Ürünleri San. Tic. Ltd. Şti." readonly /></div>
+              <div class="form-field"><label>Vergi Dairesi & Sicil No</label><input value="Karatay V.D. / 5810293847" readonly /></div>
+              <div class="form-field"><label>Ticaret Borsası Tescil No</label><input value="Konya Ticaret Borsası #42901" readonly /></div>
+              <div class="form-field"><label>Varsayılan Zirai Stopaj</label><input value="%2.00 (Müstahsil Kanunu)" readonly /></div>
+              <div class="form-field"><label>Borsa Tescil Fonu</label><input value="%0.10 (Maktu Kesinti)" readonly /></div>
+              <div class="form-field"><label>Elektronik Kantar COM Port</label><input value="COM3 / Baud 9600 8N1 (Aktif)" readonly /></div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    /* =========================================================================
+       STAGE VE MODAL YÖNETİMİ
+       ========================================================================= */
     function renderCenterStage() {
       const stage = document.getElementById('centerStage');
       if (state.activeTabId === 'ana-ekran') {
         stage.innerHTML = renderHomeStage();
+        return;
+      }
+      if (!isModuleAllowed(state.activeTabId)) {
+        stage.innerHTML = renderAccessDenied();
         return;
       }
       const mod = getModuleById(state.activeTabId);
@@ -2449,6 +3241,8 @@
         case 'expenses': stage.innerHTML = renderExpensesView(mod); break;
         case 'due': stage.innerHTML = renderDueView(mod); break;
         case 'tools': stage.innerHTML = renderToolsView(mod); break;
+        case 'guide': stage.innerHTML = renderGuideView(mod); break;
+        case 'settings': stage.innerHTML = renderSettingsView(mod); break;
         default: stage.innerHTML = renderAnalyticsView(mod); break;
       }
     }
@@ -2481,276 +3275,779 @@
             <input type="text" id="pickerFilterInput" placeholder="Köklü Agro modülü veya işlemi ara..." />
           </div>
           <div id="pickerList" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;">
-            ${MODULES.map(m => `
+            ${MODULES.filter(m => isModuleAllowed(m.id)).map(m => `
               <button type="button" class="btn-secondary" style="justify-content:flex-start;" data-action="pick-module" data-id="${m.id}">
-                <span style="color:var(--agro-green);display:inline-flex;">${ICONS[m.icon]}</span>
+                <span style="color:var(--agro-green);">${ICONS[m.icon]}</span>
                 <span>${esc(m.label)}</span>
               </button>
             `).join('')}
           </div>
         `,
-        '<button type="button" class="btn-secondary" data-action="close-modal">Kapat</button>'
+        `<button type="button" class="btn-secondary" data-action="close-modal">Kapat</button>`
       );
-      const inp = document.getElementById('pickerFilterInput');
-      if (inp) {
-        inp.focus();
-        inp.addEventListener('input', () => {
-          const val = inp.value.trim().toLocaleLowerCase('tr-TR');
-          document.getElementById('pickerList').innerHTML = MODULES
-            .filter(m => `${m.label} ${m.keywords}`.toLocaleLowerCase('tr-TR').includes(val))
-            .map(m => `
-              <button type="button" class="btn-secondary" style="justify-content:flex-start;" data-action="pick-module" data-id="${m.id}">
-                <span style="color:var(--agro-green);display:inline-flex;">${ICONS[m.icon]}</span>
-                <span>${esc(m.label)}</span>
-              </button>
-            `).join('');
-        });
-      }
+      setTimeout(() => {
+        const inp = document.getElementById('pickerFilterInput');
+        if (inp) {
+          inp.focus();
+          inp.oninput = (e) => {
+            const val = e.target.value.trim().toLocaleLowerCase('tr-TR');
+            document.getElementById('pickerList').innerHTML = MODULES
+              .filter(m => isModuleAllowed(m.id) && `${m.label} ${m.keywords}`.toLocaleLowerCase('tr-TR').includes(val))
+              .map(m => `
+                <button type="button" class="btn-secondary" style="justify-content:flex-start;" data-action="pick-module" data-id="${m.id}">
+                  <span style="color:var(--agro-green);">${ICONS[m.icon]}</span>
+                  <span>${esc(m.label)}</span>
+                </button>
+              `).join('');
+          };
+        }
+      }, 50);
     }
 
-    function showBackupModal() {
+    function showCloudBackupModal() {
       openModal(
-        'Bulut Yedekleme & Zahire Veri Yönetimi',
-        `<p style="color:var(--text-secondary);line-height:1.5;">Köklü Agro zahire veritabanı yedeğini JSON olarak indirebilir veya demo durumuna sıfırlayabilirsiniz.</p>`,
-        `<button type="button" class="btn-secondary" data-action="reset-demo">Verileri Sıfırla</button>
-         <button type="button" class="btn-primary" data-action="download-backup">JSON Yedek İndir</button>`
+        'Bulut Yedekleme & Kurumsal Veri Tabanı',
+        `
+          <p style="font-size:12.5px;color:var(--text-secondary);line-height:1.5;margin-bottom:12px;">
+            Köklü Agro ERP verileri yerel cihazınızda ve Firebase Cloud Store üzerinde şifreli olarak güvenle saklanmaktadır.
+          </p>
+          <div style="background:#f6faf8;border:1px solid #b5cebe;border-radius:8px;padding:12px;display:flex;flex-direction:column;gap:6px;font-size:12px;">
+            <div><strong>Son Senkronizasyon:</strong> ${state.currentDate} 16:45:12</div>
+            <div><strong>Toplam Veri Boyutu:</strong> ~${Math.round(JSON.stringify(state).length / 1024 * 10) / 10} KB</div>
+            <div><strong>Veri Güvenlik Durumu:</strong> <span style="color:var(--agro-green);font-weight:700;">● Şifreli & Senkronize</span></div>
+          </div>
+        `,
+        `
+          <button type="button" class="btn-secondary" data-action="close-modal">Kapat</button>
+          <button type="button" class="btn-primary" data-action="trigger-backup">Buluta Manuel Yedekle</button>
+        `
       );
     }
 
     /* =========================================================================
-       EVENT LISTENERS
+       EVENT DİNLENMESİ (CLICK & CHANGE)
        ========================================================================= */
-    document.getElementById('masterMenuBtn').addEventListener('click', toggleSidebar);
-    document.getElementById('sidebarCloseBtn').addEventListener('click', () => {
-      state.sidebarPinned = false;
-      state.sidebarOpen = false;
-      saveState();
-      syncSidebarDOM();
-    });
-    document.getElementById('sidebarPinBtn').addEventListener('click', () => {
-      state.sidebarPinned = !state.sidebarPinned;
-      state.sidebarOpen = state.sidebarPinned;
-      saveState();
-      syncSidebarDOM();
-      showToast(state.sidebarPinned ? 'Sol menü ekrana sabitlendi.' : 'Sol menü açılır/kapanır moda alındı.');
-    });
-    document.getElementById('sidebarOverlay').addEventListener('click', closeSidebarIfFloating);
-    document.getElementById('sidebarFilterInput').addEventListener('input', (e) => {
-      state.sidebarQuery = e.target.value;
-      renderSidebar();
-    });
-
-    document.getElementById('starActiveBtn').addEventListener('click', toggleFavoriteActiveScreen);
-    document.getElementById('cloudBackupBtn').addEventListener('click', showBackupModal);
-    document.getElementById('modalCloseBtn').addEventListener('click', closeModal);
-    document.getElementById('modalBackdrop').addEventListener('click', (e) => {
-      if (e.target.id === 'modalBackdrop') closeModal();
-    });
-
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'F10') {
-        e.preventDefault();
-        showShortcutPickerModal();
-      } else if (e.key === 'Escape') {
-        closeModal();
-        closeSidebarIfFloating();
-      } else if (e.key === 'Enter' && document.activeElement && document.activeElement.id === 'homeModuleSearch') {
-        const q = state.homeSearch.trim().toLocaleLowerCase('tr-TR');
-        if (q) {
-          const match = MODULES.find(m => `${m.label} ${m.keywords}`.toLocaleLowerCase('tr-TR').includes(q));
-          if (match) openModule(match.id);
-        }
-      }
-    });
-
-    document.getElementById('centerStage').addEventListener('input', (e) => {
-      if (e.target.id === 'homeModuleSearch') {
-        const pos = e.target.selectionStart;
-        state.homeSearch = e.target.value;
-        renderCenterStage();
-        const nextInp = document.getElementById('homeModuleSearch');
-        if (nextInp) { nextInp.focus(); nextInp.setSelectionRange(pos, pos); }
-      } else if (e.target.id === 'moduleSearchInput') {
-        const pos = e.target.selectionStart;
-        state.tableFilter = e.target.value;
-        renderCenterStage();
-        const nextInp = document.getElementById('moduleSearchInput');
-        if (nextInp) { nextInp.focus(); nextInp.setSelectionRange(pos, pos); }
-      } else if (e.target.id === 'fxAmountInput') {
-        state.fxAmount = e.target.value;
-        renderCenterStage();
-        const nextInp = document.getElementById('fxAmountInput');
-        if (nextInp) nextInp.focus();
-      }
-    });
-
-    document.getElementById('centerStage').addEventListener('change', (e) => {
-      if (e.target.id === 'fxCurrencySelect') {
-        state.fxCurrency = e.target.value;
-        saveState();
-        renderCenterStage();
-      }
-    });
-
     document.addEventListener('click', (e) => {
-      const closeChip = e.target.closest('[data-action="close-tab"]');
-      if (closeChip) {
-        e.stopPropagation();
-        closeTab(closeChip.dataset.id);
-        return;
-      }
-
       const target = e.target.closest('[data-action]');
       if (!target) return;
       const action = target.dataset.action;
 
-      if (action === 'toggle-group') {
+      if (action === 'toggle-sidebar') {
+        toggleSidebar();
+      } else if (action === 'close-sidebar') {
+        state.sidebarOpen = false;
+        saveState();
+        syncSidebarDOM();
+      } else if (action === 'pin-sidebar') {
+        state.sidebarPinned = !state.sidebarPinned;
+        if (state.sidebarPinned) state.sidebarOpen = true;
+        saveState();
+        syncSidebarDOM();
+      } else if (action === 'toggle-group') {
         toggleSidebarGroup(target.dataset.group);
       } else if (action === 'open-module') {
         openModule(target.dataset.id, target.dataset.sub);
-      } else if (action === 'open-report') {
-        openModule(target.dataset.id);
-        showToast('Rapor ekranı açıldı.');
       } else if (action === 'pick-module') {
         closeModal();
         openModule(target.dataset.id);
+      } else if (action === 'close-tab') {
+        e.stopPropagation();
+        closeTab(target.dataset.id);
       } else if (action === 'close-modal') {
         closeModal();
-      } else if (action === 'close-tab') {
-        closeTab(target.dataset.id);
+      } else if (action === 'toggle-favorite') {
+        toggleFavoriteActiveScreen();
       } else if (action === 'set-subfilter') {
         state.subFilter = target.dataset.val;
-        renderCenterStage();
-      } else if (action === 'silo-giris') {
-        const st = state.urunler.find(s => s.kod === target.dataset.sku);
-        if (!st) return;
-        st.miktar += 10000;
         saveState();
         renderCenterStage();
-        showToast('+10.000 Kg ' + st.ad + ' silo girişi yapıldı.');
-      } else if (action === 'cari-ekstre') {
-        const cari = state.cariler.find(c => c.kod === target.dataset.kod);
-        if (!cari) return;
-        const net = cari.borc - cari.alacak;
-        const trades = state.ticaretKayitlari.filter(t => t.cari === cari.unvan);
-        const payments = state.kasaHareketleri.filter(k => k.cari && k.cari.includes(cari.unvan.split(' ')[0]));
-        openModal(
-          `Cari Ekstre: ${esc(cari.unvan)}`,
-          `
-            <div style="background:#f6faf8;padding:12px;border-radius:8px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;">
-              <div><strong>${esc(cari.kod)}</strong> · ${esc(cari.rol)} · ${esc(cari.sehir)}<br><small style="color:var(--text-muted);">${esc(cari.cksNo)} · ${esc(cari.banka)}</small></div>
-              <div style="text-align:right;"><span style="font-size:11px;color:var(--text-muted);">Net Bakiye</span><br><strong style="font-size:16px;color:${net > 0 ? '#166534' : net < 0 ? '#92400e' : '#334155'};">${fmtTL(Math.abs(net))}</strong> <small>${net > 0 ? '(Alacaklıyız)' : net < 0 ? '(Çiftçi Alacağı)' : '(Kapalı)'}</small></div>
-            </div>
-            <strong>Ticaret ve Ödeme Hareketleri</strong>
-            <table class="erp-table" style="min-width:100%;margin-top:6px;">
-              <thead><tr><th>Evrak No</th><th>Tarih</th><th>İşlem</th><th class="num-col">Tutar</th></tr></thead>
-              <tbody>
-                ${trades.map(t => `<tr><td>${esc(t.no)}</td><td>${esc(t.tarih)}</td><td>${esc(t.tur)} (${esc(t.urun)})</td><td class="num-col">${fmtTL(t.netTutar)}</td></tr>`).join('')}
-                ${payments.map(p => `<tr><td>${esc(p.id)}</td><td>${esc(p.tarih)}</td><td>${esc(p.islem)}</td><td class="num-col" style="color:#059669;">${fmtTL(p.giris || p.cikis)}</td></tr>`).join('')}
-                ${(trades.length === 0 && payments.length === 0) ? '<tr><td colspan="4" style="text-align:center;padding:16px;color:var(--text-muted);">Henüz hareket kaydedilmedi.</td></tr>' : ''}
-              </tbody>
-            </table>
-          `,
-          `<button type="button" class="btn-secondary" data-action="close-modal">Kapat</button>
-           <button type="button" class="btn-primary" data-action="print-page">Ekstre Yazdır</button>`
-        );
+      } else if (action === 'silo-giris') {
+        const sku = target.dataset.sku;
+        const item = state.urunler.find(u => u.kod === sku);
+        if (item) {
+          item.miktar += 10000;
+          saveState();
+          renderCenterStage();
+          showToast(item.ad + ' stoğuna 10.000 Kg alım işlendi.');
+        }
       } else if (action === 'kantar-detay') {
-        const k = state.kantarFisleri.find(x => x.no === target.dataset.no);
-        if (!k) return;
+        const fiş = state.kantarFisleri.find(k => k.no === target.dataset.no);
+        if (!fiş) return;
         openModal(
-          `Kantar Fişi Detayı: ${esc(k.no)}`,
+          'Elektronik Kantar Fişi Detayı (' + fiş.no + ')',
           `
-            <div style="border:2px solid var(--border-soft);padding:16px;border-radius:10px;background:#fcfdfc;font-family:sans-serif;">
-              <div style="text-align:center;border-bottom:2px dashed #9cb1a7;padding-bottom:10px;margin-bottom:12px;">
-                <h2 style="font-size:16px;font-weight:900;color:var(--agro-green-dark);margin-bottom:2px;">KÖKLÜ AGRO LİDAŞ & KANTAR</h2>
-                <div style="font-size:11px;color:var(--text-muted);">Resmi Tartım ve Sevk Makbuzu</div>
+            <div style="font-family:monospace;background:#fbfdfc;border:1px solid #dce5e0;border-radius:8px;padding:16px;display:flex;flex-direction:column;gap:8px;font-size:12px;">
+              <div style="text-align:center;font-weight:900;font-size:15px;color:#0b261e;border-bottom:1.5px dashed #b5cebe;padding-bottom:8px;">
+                KÖKLÜ AGRO — ELEKTRONİK TARTIM FİŞİ
               </div>
-              <div class="form-grid" style="font-size:12px;">
-                <div><span style="color:var(--text-muted);">Fiş No:</span> <strong>${esc(k.no)}</strong></div>
-                <div><span style="color:var(--text-muted);">Tarih:</span> <strong>${esc(k.tarih)}</strong></div>
-                <div><span style="color:var(--text-muted);">Plaka:</span> <strong style="font-family:monospace;font-size:13px;">${esc(k.plaka)}</strong></div>
-                <div><span style="color:var(--text-muted);">Şoför:</span> <strong>${esc(k.sofor)}</strong></div>
-                <div class="full"><span style="color:var(--text-muted);">Muhatap:</span> <strong>${esc(k.cari)}</strong></div>
-                <div class="full"><span style="color:var(--text-muted);">Ürün:</span> <strong>${esc(k.urun)}</strong></div>
-              </div>
-              <div style="background:#e5f6ef;border:1px solid var(--agro-green-border);border-radius:8px;padding:12px;margin-top:14px;display:flex;justify-content:space-around;text-align:center;">
-                <div><div style="font-size:11px;color:var(--text-muted);">BRÜT</div><strong style="font-size:15px;">${fmtInt(k.brut)} Kg</strong></div>
-                <div><div style="font-size:11px;color:var(--text-muted);">DARA</div><strong style="font-size:15px;color:#dc2626;">-${fmtInt(k.dara)} Kg</strong></div>
-                <div><div style="font-size:11px;color:var(--text-muted);">NET TARTIM</div><strong style="font-size:17px;color:var(--agro-green-dark);">${fmtInt(k.net)} Kg</strong></div>
+              <div style="display:flex;justify-content:space-between;"><span>Fiş No:</span><strong>${esc(fiş.no)}</strong></div>
+              <div style="display:flex;justify-content:space-between;"><span>Tarih / Saat:</span><strong>${esc(fiş.tarih)}</strong></div>
+              <div style="display:flex;justify-content:space-between;"><span>Araç Plakası:</span><strong>${esc(fiş.plaka)}</strong></div>
+              <div style="display:flex;justify-content:space-between;"><span>Şoför / Taşıyıcı:</span><strong>${esc(fiş.sofor)}</strong></div>
+              <div style="display:flex;justify-content:space-between;"><span>Hububat Cinsi:</span><strong>${esc(fiş.urun)}</strong></div>
+              <div style="display:flex;justify-content:space-between;"><span>Müstahsil / Cari:</span><strong>${esc(fiş.cari)}</strong></div>
+              <div style="border-top:1.5px dashed #b5cebe;padding-top:8px;display:flex;flex-direction:column;gap:4px;">
+                <div style="display:flex;justify-content:space-between;"><span>1. Tartım (Brüt):</span><strong>${fmtInt(fiş.brut)} Kg</strong></div>
+                <div style="display:flex;justify-content:space-between;"><span>2. Tartım (Dara):</span><strong>${fmtInt(fiş.dara)} Kg</strong></div>
+                <div style="display:flex;justify-content:space-between;font-size:15px;color:var(--agro-green-dark);border-top:1px solid #dce5e0;padding-top:4px;"><span>NET TONAJ:</span><strong>${fmtInt(fiş.net)} Kg</strong></div>
               </div>
             </div>
           `,
           `<button type="button" class="btn-secondary" data-action="close-modal">Kapat</button>
            <button type="button" class="btn-primary" data-action="print-page">Yazdır</button>`
         );
+      } else if (action === 'cari-ekstre') {
+        const cari = state.cariler.find(c => c.kod === target.dataset.kod);
+        if (!cari) return;
+        const islemler = state.ticaretKayitlari.filter(t => t.cari === cari.unvan);
+        const hareketHtml = islemler.length > 0
+          ? islemler.map(i => `
+              <tr>
+                <td>${esc(i.no)}</td>
+                <td>${esc(i.tarih)}</td>
+                <td><span class="badge ${i.tur === 'Müstahsil Alışı' ? 'badge-amber' : 'badge-green'}">${esc(i.tur)}</span></td>
+                <td>${esc(i.urun)} (${fmtKg(i.miktarKg)})</td>
+                <td class="num-col">${fmtTL(i.netTutar)}</td>
+              </tr>
+            `).join('')
+          : '<tr><td colspan="5" style="text-align:center;color:var(--text-muted);padding:14px;">Kayıtlı hareket bulunamadı.</td></tr>';
+
+        openModal(
+          cari.unvan + ' — Cari Hesap Ekstresi',
+          `
+            <div style="display:flex;flex-direction:column;gap:12px;">
+              <div style="display:flex;justify-content:space-between;background:#f6faf8;padding:10px 14px;border-radius:8px;border:1px solid var(--border-soft);font-size:12px;">
+                <div><span>Cari Kodu:</span> <strong>${esc(cari.kod)}</strong></div>
+                <div><span>Rol:</span> <strong>${esc(cari.rol)}</strong></div>
+                <div><span>Bölge:</span> <strong>${esc(cari.sehir)}</strong></div>
+                <div><span>Güncel Bakiye:</span> <strong style="color:var(--agro-green);">${fmtTL(Math.abs(cari.borc - cari.alacak))}</strong></div>
+              </div>
+              <div class="table-scroll">
+                <table class="erp-table" style="min-width:100%;">
+                  <thead><tr><th>Evrak No</th><th>Tarih</th><th>İşlem</th><th>Açıklama</th><th class="num-col">Tutar</th></tr></thead>
+                  <tbody>${hareketHtml}</tbody>
+                </table>
+              </div>
+            </div>
+          `,
+          `<button type="button" class="btn-secondary" data-action="close-modal">Kapat</button>
+           <button type="button" class="btn-primary" data-action="print-page">Ekstre Yazdır (PDF)</button>`
+        );
       } else if (action === 'cari-tahsilat') {
         const cari = state.cariler.find(c => c.kod === target.dataset.kod);
         if (!cari) return;
-        if (cari.rol === 'Müstahsil') {
-          cari.alacak = Math.max(0, cari.alacak - 25000);
-          state.kasaHareketleri.unshift({
-            id: 'ÖD-' + Math.floor(100 + Math.random() * 900),
-            tarih: state.currentDate + ' 15:20',
-            kanal: 'Banka',
-            islem: 'Müstahsil Ödemesi',
-            cari: cari.unvan,
-            aciklama: cari.unvan + ' hasat ödemesi',
-            giris: 0,
-            cikis: 25000
-          });
-          showToast('25.000,00 ₺ çiftçi hasat ödemesi yapıldı.');
-        } else {
-          cari.borc = Math.max(0, cari.borc - 50000);
-          state.kasaHareketleri.unshift({
-            id: 'TH-' + Math.floor(100 + Math.random() * 900),
-            tarih: state.currentDate + ' 15:25',
-            kanal: 'Banka',
-            islem: 'Tahsilat',
-            cari: cari.unvan,
-            aciklama: cari.unvan + ' tahsilatı',
-            giris: 50000,
-            cikis: 0
-          });
-          showToast('50.000,00 ₺ müşteri tahsilatı işlendi.');
-        }
-        saveState();
-        renderCenterStage();
-      } else if (action === 'modal-new-kantar') {
         openModal(
-          'Yeni Kantar Fişi Kes',
+          'Cari Tahsilat / Tediye İşlemi — ' + cari.unvan,
+          `
+            <div class="form-grid">
+              <div class="form-field full"><label>Muhatap Cari</label><input value="${esc(cari.unvan)}" readonly /></div>
+              <div class="form-field"><label>İşlem Türü</label>
+                <select id="ctIslemTur">
+                  <option value="tediye">Çiftçiye / Müstahsile Ödeme (Tediye)</option>
+                  <option value="tahsilat">Müşteriden / Fabrikadan Tahsilat</option>
+                </select>
+              </div>
+              <div class="form-field"><label>Ödeme Kanalı</label>
+                <select id="ctKanal">
+                  <option>Banka (Ziraat Karatay)</option>
+                  <option>Banka (İş Bankası Ticari)</option>
+                  <option>Nakit Merkez Kasa</option>
+                </select>
+              </div>
+              <div class="form-field"><label>İşlem Tutarı (₺)</label><input type="number" id="ctTutar" value="50000" /></div>
+              <div class="form-field"><label>Açıklama / Dekont No</label><input id="ctAciklama" value="Cari hesap mutabakat ödemesi" /></div>
+            </div>
+          `,
+          `
+            <button type="button" class="btn-secondary" data-action="close-modal">Vazgeç</button>
+            <button type="button" class="btn-primary" data-action="save-cari-tahsilat" data-kod="${cari.kod}">İşlemi Kaydet</button>
+          `
+        );
+      } else if (action === 'save-cari-tahsilat') {
+        const cari = state.cariler.find(c => c.kod === target.dataset.kod);
+        if (!cari) return;
+        const tur = document.getElementById('ctIslemTur').value;
+        const kanal = document.getElementById('ctKanal').value;
+        const tutar = Number(document.getElementById('ctTutar').value) || 0;
+        const aciklama = document.getElementById('ctAciklama').value || 'Cari ödeme';
+
+        state.kasaHareketleri.unshift({
+          id: 'TR-' + Math.floor(100 + Math.random() * 900),
+          tarih: state.currentDate + ' 16:30',
+          kanal: kanal.includes('Nakit') ? 'Kasa' : 'Banka',
+          islem: tur === 'tediye' ? 'Çiftçi Ödemesi' : 'Fabrika Tahsilatı',
+          cari: cari.unvan,
+          aciklama,
+          giris: tur === 'tahsilat' ? tutar : 0,
+          cikis: tur === 'tediye' ? tutar : 0
+        });
+
+        if (tur === 'tediye') cari.alacak = Math.max(0, cari.alacak - tutar);
+        else cari.borc = Math.max(0, cari.borc - tutar);
+
+        saveState();
+        closeModal();
+        renderCenterStage();
+        showToast('Tahsilat/Tediye kaydedildi ve bakiye güncellendi.');
+      }
+
+      /* =========================================================================
+         EDIT & DELETE GENERIC ACTIONS
+         ========================================================================= */
+      // 1. KANTAR
+      else if (action === 'edit-kantar') {
+        const r = state.kantarFisleri.find(k => k.no === target.dataset.id);
+        if (!r) return;
+        openModal(
+          'Kantar Fişini Düzenle (' + r.no + ')',
+          `
+            <div class="form-grid">
+              <div class="form-field"><label>Fiş No</label><input id="ekNo" value="${esc(r.no)}" readonly /></div>
+              <div class="form-field"><label>Tarih</label><input id="ekTarih" value="${esc(r.tarih)}" /></div>
+              <div class="form-field"><label>Plaka</label><input id="ekPlaka" value="${esc(r.plaka)}" /></div>
+              <div class="form-field"><label>Şoför</label><input id="ekSofor" value="${esc(r.sofor)}" /></div>
+              <div class="form-field"><label>Hububat</label><input id="ekUrun" value="${esc(r.urun)}" /></div>
+              <div class="form-field"><label>Muhatap</label><input id="ekCari" value="${esc(r.cari)}" /></div>
+              <div class="form-field"><label>Brüt (Kg)</label><input type="number" id="ekBrut" value="${r.brut}" /></div>
+              <div class="form-field"><label>Dara (Kg)</label><input type="number" id="ekDara" value="${r.dara}" /></div>
+              <div class="form-field full"><label>Durum</label><input id="ekDurum" value="${esc(r.durum)}" /></div>
+            </div>
+          `,
+          `<button type="button" class="btn-secondary" data-action="close-modal">Vazgeç</button>
+           <button type="button" class="btn-primary" data-action="save-edit-kantar">Değişiklikleri Kaydet</button>`
+        );
+      } else if (action === 'save-edit-kantar') {
+        const no = document.getElementById('ekNo').value;
+        const r = state.kantarFisleri.find(k => k.no === no);
+        if (r) {
+          r.tarih = document.getElementById('ekTarih').value;
+          r.plaka = document.getElementById('ekPlaka').value;
+          r.sofor = document.getElementById('ekSofor').value;
+          r.urun = document.getElementById('ekUrun').value;
+          r.cari = document.getElementById('ekCari').value;
+          r.brut = Number(document.getElementById('ekBrut').value) || 0;
+          r.dara = Number(document.getElementById('ekDara').value) || 0;
+          r.net = Math.max(0, r.brut - r.dara);
+          r.durum = document.getElementById('ekDurum').value;
+          saveState(); closeModal(); renderCenterStage(); showToast('Kantar fişi güncellendi.');
+        }
+      } else if (action === 'delete-kantar') {
+        const id = target.dataset.id;
+        openConfirmModal('Kantar Fişini Sil', id + ' nolu tartım fişi silinecektir.', 'Evet, Sil', () => {
+          state.kantarFisleri = state.kantarFisleri.filter(k => k.no !== id);
+          saveState(); renderCenterStage(); showToast('Kantar fişi silindi.');
+        });
+      }
+
+      // 2. MÜSTAHSİL
+      else if (action === 'edit-mustahsil') {
+        const r = state.ticaretKayitlari.find(t => t.no === target.dataset.id);
+        if (!r) return;
+        openModal(
+          'Müstahsil Makbuzunu Düzenle (' + r.no + ')',
+          `
+            <div class="form-grid">
+              <div class="form-field"><label>Belge No</label><input id="emNo" value="${esc(r.no)}" readonly /></div>
+              <div class="form-field"><label>Tarih</label><input id="emTarih" value="${esc(r.tarih)}" /></div>
+              <div class="form-field full"><label>Çiftçi / Müstahsil</label><input id="emCari" value="${esc(r.cari)}" /></div>
+              <div class="form-field"><label>Hububat</label><input id="emUrun" value="${esc(r.urun)}" /></div>
+              <div class="form-field"><label>Miktar (Kg)</label><input type="number" id="emMiktar" value="${r.miktarKg}" /></div>
+              <div class="form-field"><label>Alış Birim Fiyatı (₺)</label><input type="number" step="0.10" id="emFiyat" value="${r.birimFiyat}" /></div>
+              <div class="form-field"><label>Stopaj Kesintisi (₺)</label><input type="number" id="emKesinti" value="${r.kesinti}" /></div>
+            </div>
+          `,
+          `<button type="button" class="btn-secondary" data-action="close-modal">Vazgeç</button>
+           <button type="button" class="btn-primary" data-action="save-edit-mustahsil">Güncelle</button>`
+        );
+      } else if (action === 'save-edit-mustahsil') {
+        const no = document.getElementById('emNo').value;
+        const r = state.ticaretKayitlari.find(t => t.no === no);
+        if (r) {
+          r.tarih = document.getElementById('emTarih').value;
+          r.cari = document.getElementById('emCari').value;
+          r.urun = document.getElementById('emUrun').value;
+          r.miktarKg = Number(document.getElementById('emMiktar').value) || 0;
+          r.birimFiyat = Number(document.getElementById('emFiyat').value) || 0;
+          r.kesinti = Number(document.getElementById('emKesinti').value) || 0;
+          r.tutar = r.miktarKg * r.birimFiyat;
+          r.netTutar = r.tutar - r.kesinti;
+          saveState(); closeModal(); renderCenterStage(); showToast('Müstahsil makbuzu güncellendi.');
+        }
+      } else if (action === 'delete-mustahsil') {
+        const id = target.dataset.id;
+        openConfirmModal('Müstahsil Makbuzunu Sil', id + ' nolu alım kaydı silinecektir.', 'Evet, Sil', () => {
+          state.ticaretKayitlari = state.ticaretKayitlari.filter(t => t.no !== id);
+          saveState(); renderCenterStage(); showToast('Müstahsil alım kaydı silindi.');
+        });
+      }
+
+      // 3. ÜRÜN & SİLO
+      else if (action === 'edit-urun') {
+        const s = state.urunler.find(u => u.kod === target.dataset.id);
+        if (!s) return;
+        openModal(
+          'Hububat & Alt Kırılım Düzenle (' + s.kod + ')',
+          `
+            <div class="form-grid">
+              <div class="form-field"><label>Ürün Kodu</label><input id="euKod" value="${esc(s.kod)}" readonly /></div>
+              <div class="form-field"><label>Ana Kategori</label><input id="euKategori" value="${esc(s.kategori || 'Hububat')}" /></div>
+              <div class="form-field full"><label>Hububat Cinsi & Adı</label><input id="euAd" value="${esc(s.ad)}" /></div>
+              <div class="form-field full"><label>Alt Kırılım / Spesifikasyon</label><input id="euAltKirilim" value="${esc(s.altKirilim || s.ad)}" /></div>
+              <div class="form-field"><label>Depolama Silosu</label><select id="euSilo"><option ${s.silo==='Çelik Silo 1'?'selected':''}>Çelik Silo 1</option><option ${s.silo==='Merkez Depo'?'selected':''}>Merkez Depo</option><option ${s.silo==='Emanet Silo'?'selected':''}>Emanet Silo</option></select></div>
+              <div class="form-field"><label>Mevcut Stok (Kg)</label><input type="number" id="euMiktar" value="${s.miktar}" /></div>
+              <div class="form-field"><label>Alış Maliyeti (₺/Kg)</label><input type="number" step="0.10" id="euAlis" value="${s.alis}" /></div>
+              <div class="form-field"><label>Belirlenen Satış Fiyatı (₺/Kg)</label><input type="number" step="0.10" id="euSatis" value="${s.satis}" /></div>
+              <div class="form-field"><label>Standart Fire Oranı</label><input id="euFire" value="${esc(s.fire)}" /></div>
+            </div>
+          `,
+          `<button type="button" class="btn-secondary" data-action="close-modal">Vazgeç</button>
+           <button type="button" class="btn-primary" data-action="save-edit-urun">Güncelle</button>`
+        );
+      } else if (action === 'save-edit-urun') {
+        const kod = document.getElementById('euKod').value;
+        const s = state.urunler.find(u => u.kod === kod);
+        if (s) {
+          s.kategori = document.getElementById('euKategori').value;
+          s.ad = document.getElementById('euAd').value;
+          s.altKirilim = document.getElementById('euAltKirilim').value;
+          s.silo = document.getElementById('euSilo').value;
+          s.miktar = Number(document.getElementById('euMiktar').value) || 0;
+          s.alis = Number(document.getElementById('euAlis').value) || 0;
+          s.satis = Number(document.getElementById('euSatis').value) || 0;
+          s.fire = document.getElementById('euFire').value;
+          saveState(); closeModal(); renderCenterStage(); showToast('Hububat tanımı güncellendi.');
+        }
+      } else if (action === 'delete-urun') {
+        const id = target.dataset.id;
+        openConfirmModal('Hububat Ürününü Sil', id + ' kodlu ürün depodan ve sistemden kaldırılacaktır.', 'Evet, Sil', () => {
+          state.urunler = state.urunler.filter(u => u.kod !== id);
+          saveState(); renderCenterStage(); showToast('Ürün silindi.');
+        });
+      }
+
+      // 4. CARİLER
+      else if (action === 'edit-cari') {
+        const c = state.cariler.find(x => x.kod === target.dataset.id);
+        if (!c) return;
+        openModal(
+          'Cari Kartı Düzenle (' + c.kod + ')',
+          `
+            <div class="form-grid">
+              <div class="form-field"><label>Cari Kodu</label><input id="ecKod" value="${esc(c.kod)}" readonly /></div>
+              <div class="form-field"><label>Cari Rolü</label><select id="ecRol"><option ${c.rol==='Müşteri'?'selected':''}>Müşteri</option><option ${c.rol==='Müstahsil'?'selected':''}>Müstahsil</option><option ${c.rol==='Tedarikçi'?'selected':''}>Tedarikçi</option></select></div>
+              <div class="form-field full"><label>Firma / Şahıs Ünvanı</label><input id="ecUnvan" value="${esc(c.unvan)}" /></div>
+              <div class="form-field"><label>Şehir / Bölge</label><input id="ecSehir" value="${esc(c.sehir)}" /></div>
+              <div class="form-field"><label>ÇKS / VKN No</label><input id="ecCks" value="${esc(c.cksNo)}" /></div>
+              <div class="form-field"><label>Borç Tutarı (₺)</label><input type="number" id="ecBorc" value="${c.borc}" /></div>
+              <div class="form-field"><label>Alacak Tutarı (₺)</label><input type="number" id="ecAlacak" value="${c.alacak}" /></div>
+            </div>
+          `,
+          `<button type="button" class="btn-secondary" data-action="close-modal">Vazgeç</button>
+           <button type="button" class="btn-primary" data-action="save-edit-cari">Güncelle</button>`
+        );
+      } else if (action === 'save-edit-cari') {
+        const kod = document.getElementById('ecKod').value;
+        const c = state.cariler.find(x => x.kod === kod);
+        if (c) {
+          c.unvan = document.getElementById('ecUnvan').value;
+          c.rol = document.getElementById('ecRol').value;
+          c.sehir = document.getElementById('ecSehir').value;
+          c.cksNo = document.getElementById('ecCks').value;
+          c.borc = Number(document.getElementById('ecBorc').value) || 0;
+          c.alacak = Number(document.getElementById('ecAlacak').value) || 0;
+          saveState(); closeModal(); renderCenterStage(); showToast('Cari kartı güncellendi.');
+        }
+      } else if (action === 'delete-cari') {
+        const id = target.dataset.id;
+        openConfirmModal('Cari Kartını Sil', id + ' kodlu cari kartı sistemden kaldırılacaktır.', 'Evet, Sil', () => {
+          state.cariler = state.cariler.filter(c => c.kod !== id);
+          saveState(); renderCenterStage(); showToast('Cari kartı silindi.');
+        });
+      }
+
+      // 5. SATIŞ
+      else if (action === 'edit-satis') {
+        const r = state.ticaretKayitlari.find(t => t.no === target.dataset.id);
+        if (!r) return;
+        openModal(
+          'Satış Faturasını Düzenle (' + r.no + ')',
+          `
+            <div class="form-grid">
+              <div class="form-field"><label>Fatura No</label><input id="esNo" value="${esc(r.no)}" readonly /></div>
+              <div class="form-field"><label>Tarih</label><input id="esTarih" value="${esc(r.tarih)}" /></div>
+              <div class="form-field full"><label>Müşteri / Fabrika</label><input id="esCari" value="${esc(r.cari)}" /></div>
+              <div class="form-field"><label>Hububat</label><input id="esUrun" value="${esc(r.urun)}" /></div>
+              <div class="form-field"><label>Miktar (Kg)</label><input type="number" id="esMiktar" value="${r.miktarKg}" /></div>
+              <div class="form-field"><label>Satış Fiyatı (₺)</label><input type="number" step="0.10" id="esFiyat" value="${r.birimFiyat}" /></div>
+              <div class="form-field"><label>Durum</label><input id="esDurum" value="${esc(r.durum)}" /></div>
+            </div>
+          `,
+          `<button type="button" class="btn-secondary" data-action="close-modal">Vazgeç</button>
+           <button type="button" class="btn-primary" data-action="save-edit-satis">Güncelle</button>`
+        );
+      } else if (action === 'save-edit-satis') {
+        const no = document.getElementById('esNo').value;
+        const r = state.ticaretKayitlari.find(t => t.no === no);
+        if (r) {
+          r.tarih = document.getElementById('esTarih').value;
+          r.cari = document.getElementById('esCari').value;
+          r.urun = document.getElementById('esUrun').value;
+          r.miktarKg = Number(document.getElementById('esMiktar').value) || 0;
+          r.birimFiyat = Number(document.getElementById('esFiyat').value) || 0;
+          r.tutar = r.miktarKg * r.birimFiyat;
+          r.netTutar = r.tutar;
+          r.durum = document.getElementById('esDurum').value;
+          saveState(); closeModal(); renderCenterStage(); showToast('Satış faturası güncellendi.');
+        }
+      } else if (action === 'delete-satis') {
+        const id = target.dataset.id;
+        openConfirmModal('Satış Faturasını Sil', id + ' nolu satış faturası silinecektir.', 'Evet, Sil', () => {
+          state.ticaretKayitlari = state.ticaretKayitlari.filter(t => t.no !== id);
+          saveState(); renderCenterStage(); showToast('Satış faturası silindi.');
+        });
+      }
+
+      // 6. TİCARET DEFTERİ
+      else if (action === 'edit-ticaret') {
+        const r = state.ticaretKayitlari.find(t => t.no === target.dataset.id);
+        if (!r) return;
+        if (r.tur === 'Müstahsil Alışı') {
+          target.dataset.action = 'edit-mustahsil';
+          target.click();
+        } else {
+          target.dataset.action = 'edit-satis';
+          target.click();
+        }
+      } else if (action === 'delete-ticaret') {
+        const id = target.dataset.id;
+        openConfirmModal('Ticaret Defteri Kaydını Sil', id + ' nolu kayıt silinecektir.', 'Evet, Sil', () => {
+          state.ticaretKayitlari = state.ticaretKayitlari.filter(t => t.no !== id);
+          saveState(); renderCenterStage(); showToast('Ticaret kaydı silindi.');
+        });
+      }
+
+      // 7. KASA & GİDER
+      else if (action === 'edit-kasa' || action === 'edit-gider') {
+        const k = state.kasaHareketleri.find(x => x.id === target.dataset.id);
+        if (!k) return;
+        openModal(
+          'Kasa / Banka Fişini Düzenle (' + k.id + ')',
+          `
+            <div class="form-grid">
+              <div class="form-field"><label>Fiş No</label><input id="ekhId" value="${esc(k.id)}" readonly /></div>
+              <div class="form-field"><label>Tarih</label><input id="ekhTarih" value="${esc(k.tarih)}" /></div>
+              <div class="form-field"><label>Kanal</label><select id="ekhKanal"><option ${k.kanal==='Kasa'?'selected':''}>Kasa</option><option ${k.kanal==='Banka'?'selected':''}>Banka</option><option ${k.kanal==='Masraf'?'selected':''}>Masraf</option></select></div>
+              <div class="form-field"><label>İşlem Türü</label><input id="ekhIslem" value="${esc(k.islem)}" /></div>
+              <div class="form-field full"><label>Muhatap</label><input id="ekhCari" value="${esc(k.cari)}" /></div>
+              <div class="form-field full"><label>Açıklama</label><input id="ekhAciklama" value="${esc(k.aciklama)}" /></div>
+              <div class="form-field"><label>Giriş (₺)</label><input type="number" id="ekhGiris" value="${k.giris || 0}" /></div>
+              <div class="form-field"><label>Çıkış (₺)</label><input type="number" id="ekhCikis" value="${k.cikis || 0}" /></div>
+            </div>
+          `,
+          `<button type="button" class="btn-secondary" data-action="close-modal">Vazgeç</button>
+           <button type="button" class="btn-primary" data-action="save-edit-kasa">Güncelle</button>`
+        );
+      } else if (action === 'save-edit-kasa') {
+        const id = document.getElementById('ekhId').value;
+        const k = state.kasaHareketleri.find(x => x.id === id);
+        if (k) {
+          k.tarih = document.getElementById('ekhTarih').value;
+          k.kanal = document.getElementById('ekhKanal').value;
+          k.islem = document.getElementById('ekhIslem').value;
+          k.cari = document.getElementById('ekhCari').value;
+          k.aciklama = document.getElementById('ekhAciklama').value;
+          k.giris = Number(document.getElementById('ekhGiris').value) || 0;
+          k.cikis = Number(document.getElementById('ekhCikis').value) || 0;
+          saveState(); closeModal(); renderCenterStage(); showToast('Fiş güncellendi.');
+        }
+      } else if (action === 'delete-kasa' || action === 'delete-gider') {
+        const id = target.dataset.id;
+        openConfirmModal('Fişi Sil', id + ' nolu işlem kaydı silinecektir.', 'Evet, Sil', () => {
+          state.kasaHareketleri = state.kasaHareketleri.filter(k => k.id !== id);
+          saveState(); renderCenterStage(); showToast('Fiş silindi.');
+        });
+      }
+
+      // 8. ÇEK VE SENET
+      else if (action === 'edit-ceksenet') {
+        const c = state.ceksenet.find(x => x.no === target.dataset.id);
+        if (!c) return;
+        openModal(
+          'Çek / Senet Evrakını Düzenle (' + c.no + ')',
+          `
+            <div class="form-grid">
+              <div class="form-field"><label>Portföy No</label><input id="ecsNo" value="${esc(c.no)}" readonly /></div>
+              <div class="form-field"><label>Tür</label><select id="ecsTur"><option ${c.tur==='Müşteri Çeki'?'selected':''}>Müşteri Çeki</option><option ${c.tur==='Borç Senedi'?'selected':''}>Borç Senedi</option></select></div>
+              <div class="form-field full"><label>Borçlu / Keşideci</label><input id="ecsBorclu" value="${esc(c.borclu)}" /></div>
+              <div class="form-field"><label>Vade Tarihi</label><input id="ecsVade" value="${esc(c.vade)}" /></div>
+              <div class="form-field"><label>Tutar (₺)</label><input type="number" id="ecsTutar" value="${c.tutar}" /></div>
+              <div class="form-field"><label>Banka / Şube</label><input id="ecsBanka" value="${esc(c.banka)}" /></div>
+              <div class="form-field"><label>Durum</label><input id="ecsDurum" value="${esc(c.durum)}" /></div>
+            </div>
+          `,
+          `<button type="button" class="btn-secondary" data-action="close-modal">Vazgeç</button>
+           <button type="button" class="btn-primary" data-action="save-edit-ceksenet">Güncelle</button>`
+        );
+      } else if (action === 'save-edit-ceksenet') {
+        const no = document.getElementById('ecsNo').value;
+        const c = state.ceksenet.find(x => x.no === no);
+        if (c) {
+          c.tur = document.getElementById('ecsTur').value;
+          c.borclu = document.getElementById('ecsBorclu').value;
+          c.vade = document.getElementById('ecsVade').value;
+          c.tutar = Number(document.getElementById('ecsTutar').value) || 0;
+          c.banka = document.getElementById('ecsBanka').value;
+          c.durum = document.getElementById('ecsDurum').value;
+          saveState(); closeModal(); renderCenterStage(); showToast('Evrak güncellendi.');
+        }
+      } else if (action === 'delete-ceksenet') {
+        const id = target.dataset.id;
+        openConfirmModal('Evrakı Sil', id + ' nolu çek/senet kaydı silinecektir.', 'Evet, Sil', () => {
+          state.ceksenet = state.ceksenet.filter(c => c.no !== id);
+          saveState(); renderCenterStage(); showToast('Evrak silindi.');
+        });
+      }
+
+      /* =========================================================================
+         MULTI-USER & RBAC ACTIONS
+         ========================================================================= */
+      else if (action === 'user-switch-modal') {
+        const users = state.users || [];
+        openModal(
+          'Kullanıcı Değiştir & Oturum Aç',
+          `
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <p style="font-size:12.5px;color:var(--text-secondary);margin:0 0 6px 0;">
+                Çalışmak istediğiniz kullanıcı hesabını seçiniz. Her kullanıcının yetki ve erişim alanı bağımsızdır:
+              </p>
+              <div style="display:grid;grid-template-columns:1fr;gap:8px;">
+                ${users.map(u => `
+                  <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border:1.5px solid ${u.id === state.currentUserId ? 'var(--agro-green)' : 'var(--border-soft)'};border-radius:9px;background:${u.id === state.currentUserId ? '#f6faf8' : '#ffffff'};">
+                    <div style="display:flex;align-items:center;gap:10px;">
+                      <span style="font-size:18px;">${u.isAdmin ? '👑' : '👤'}</span>
+                      <div>
+                        <strong style="color:#0b261e;font-size:13px;">${esc(u.fullName)}</strong>
+                        <div style="font-size:11px;color:var(--text-muted);">@${esc(u.username)} · ${esc(u.role)}</div>
+                      </div>
+                    </div>
+                    <div>
+                      ${u.id === state.currentUserId
+                        ? '<span class="badge badge-green">Aktif Oturum</span>'
+                        : `<button type="button" class="btn-primary" style="height:28px;padding:0 12px;font-size:11.5px;" data-action="switch-user-confirm" data-id="${u.id}">Giriş Yap</button>`}
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          `,
+          `<button type="button" class="btn-secondary" data-action="close-modal">Kapat</button>`
+        );
+      } else if (action === 'switch-user-confirm') {
+        const uId = target.dataset.id;
+        const u = (state.users || []).find(x => x.id === uId);
+        if (!u) return;
+        state.currentUserId = uId;
+        saveState();
+        closeModal();
+        renderAll();
+        showToast(u.fullName + ' olarak oturum açıldı.');
+      } else if (action === 'modal-new-user') {
+        openModal(
+          'Yeni Alt Kullanıcı Tanımla & Yetkilendir',
+          `
+            <div class="form-grid">
+              <div class="form-field"><label>Kullanıcı Adı (Login)</label><input id="nuUsername" placeholder="Örn: sevkiyat_ali" /></div>
+              <div class="form-field"><label>Giriş Şifresi</label><input type="password" id="nuPassword" value="123" /></div>
+              <div class="form-field full"><label>Ad Soyad / Görev Ünvanı</label><input id="nuFullName" placeholder="Örn: Ali Vural (Sevkiyat Sorumlusu)" /></div>
+              <div class="form-field"><label>Rol / Görev Alanı</label>
+                <select id="nuRole">
+                  <option>Kantar Sorumlusu</option>
+                  <option>Ön Muhasebe & Finans</option>
+                  <option>Satış & Sevkiyat</option>
+                  <option>Saha Sorumlusu</option>
+                  <option>Yönetici</option>
+                </select>
+              </div>
+              <div class="form-field"><label>Durum</label>
+                <select id="nuStatus"><option>Aktif</option><option>Pasif</option></select>
+              </div>
+              <div class="form-field full">
+                <label style="margin-bottom:6px;display:block;">Erişebileceği Modüller (Yetki Kısıtlama Matrisi)</label>
+                <div class="perm-grid">
+                  <label class="perm-item"><input type="checkbox" name="nuMods" value="kantar" checked /> Kantar & Tartım</label>
+                  <label class="perm-item"><input type="checkbox" name="nuMods" value="mustahsil-alis" checked /> Müstahsil Alışı</label>
+                  <label class="perm-item"><input type="checkbox" name="nuMods" value="depo-silo" checked /> Silo & Stok</label>
+                  <label class="perm-item"><input type="checkbox" name="nuMods" value="cariler" /> Cariler & Çiftçiler</label>
+                  <label class="perm-item"><input type="checkbox" name="nuMods" value="mal-satis" /> Satış Faturası</label>
+                  <label class="perm-item"><input type="checkbox" name="nuMods" value="tum-ticaret" /> Ticaret Defteri</label>
+                  <label class="perm-item"><input type="checkbox" name="nuMods" value="kasa-banka" /> Kasa & Bankalar</label>
+                  <label class="perm-item"><input type="checkbox" name="nuMods" value="cek-senet" /> Çek & Senet</label>
+                  <label class="perm-item"><input type="checkbox" name="nuMods" value="masraf-gider" /> Masraf Fişleri</label>
+                  <label class="perm-item"><input type="checkbox" name="nuMods" value="vade-yaslandirma" /> Vade Yaşlandırma</label>
+                  <label class="perm-item"><input type="checkbox" name="nuMods" value="karlilik-analiz" /> Kârlılık Analizi</label>
+                  <label class="perm-item"><input type="checkbox" name="nuMods" value="kurlar-etiket" /> Borsa Fiyatları</label>
+                  <label class="perm-item"><input type="checkbox" name="nuMods" value="destek-rehber" checked /> İş Akış Kılavuzu</label>
+                </div>
+              </div>
+            </div>
+          `,
+          `<button type="button" class="btn-secondary" data-action="close-modal">Vazgeç</button>
+           <button type="button" class="btn-primary" data-action="save-new-user">Kullanıcıyı Oluştur</button>`
+        );
+      } else if (action === 'save-new-user') {
+        const username = (document.getElementById('nuUsername').value || '').trim();
+        const fullName = (document.getElementById('nuFullName').value || '').trim();
+        const password = document.getElementById('nuPassword').value || '123';
+        const role = document.getElementById('nuRole').value;
+        const status = document.getElementById('nuStatus').value;
+        if (!username || !fullName) { showToast('Kullanıcı adı ve Ad Soyad girin.'); return; }
+
+        const checkedMods = Array.from(document.querySelectorAll('input[name="nuMods"]:checked')).map(cb => cb.value);
+        if (checkedMods.length === 0) checkedMods.push('destek-rehber');
+
+        state.users.push({
+          id: 'u_' + Math.floor(1000 + Math.random() * 9000),
+          username,
+          fullName,
+          password,
+          role,
+          status,
+          isAdmin: role === 'Yönetici',
+          modules: role === 'Yönetici' ? ['all'] : checkedMods
+        });
+
+        saveState();
+        closeModal();
+        renderCenterStage();
+        showToast(fullName + ' kullanıcısı oluşturuldu ve yetkilendirildi.');
+      } else if (action === 'edit-user') {
+        const u = (state.users || []).find(x => x.id === target.dataset.id);
+        if (!u) return;
+        const isAll = u.isAdmin || (u.modules && u.modules.includes('all'));
+        openModal(
+          'Kullanıcı Bilgilerini ve Yetkilerini Düzenle (' + u.username + ')',
+          `
+            <div class="form-grid">
+              <div class="form-field"><label>Kullanıcı ID</label><input id="euId" value="${esc(u.id)}" readonly /></div>
+              <div class="form-field"><label>Kullanıcı Adı (Login)</label><input id="euUsername" value="${esc(u.username)}" /></div>
+              <div class="form-field full"><label>Ad Soyad / Görev</label><input id="euFullName" value="${esc(u.fullName)}" /></div>
+              <div class="form-field"><label>Rol</label><input id="euRole" value="${esc(u.role)}" /></div>
+              <div class="form-field"><label>Durum</label><select id="euStatus"><option ${u.status==='Aktif'?'selected':''}>Aktif</option><option ${u.status==='Pasif'?'selected':''}>Pasif</option></select></div>
+              <div class="form-field full">
+                <label style="margin-bottom:6px;display:block;">Yetkili Olduğu Modüller</label>
+                <div class="perm-grid">
+                  ${MODULES.filter(m => m.id !== 'ayarlar').map(m => {
+                    const checked = isAll || (u.modules && u.modules.includes(m.id));
+                    return `<label class="perm-item"><input type="checkbox" name="euMods" value="${m.id}" ${checked ? 'checked' : ''} /> ${esc(m.label)}</label>`;
+                  }).join('')}
+                </div>
+              </div>
+            </div>
+          `,
+          `<button type="button" class="btn-secondary" data-action="close-modal">Vazgeç</button>
+           <button type="button" class="btn-primary" data-action="save-edit-user">Değişiklikleri Kaydet</button>`
+        );
+      } else if (action === 'save-edit-user') {
+        const id = document.getElementById('euId').value;
+        const u = (state.users || []).find(x => x.id === id);
+        if (u) {
+          u.username = document.getElementById('euUsername').value;
+          u.fullName = document.getElementById('euFullName').value;
+          u.role = document.getElementById('euRole').value;
+          u.status = document.getElementById('euStatus').value;
+          const checked = Array.from(document.querySelectorAll('input[name="euMods"]:checked')).map(cb => cb.value);
+          if (u.isAdmin) {
+            u.modules = ['all'];
+          } else {
+            u.modules = checked.length > 0 ? checked : ['destek-rehber'];
+          }
+          saveState();
+          closeModal();
+          renderAll();
+          showToast('Kullanıcı yetkileri güncellendi.');
+        }
+      } else if (action === 'delete-user') {
+        const id = target.dataset.id;
+        const u = (state.users || []).find(x => x.id === id);
+        if (!u) return;
+        if (u.isAdmin) {
+          showToast('Ana yönetici hesabı silinemez!');
+          return;
+        }
+        openConfirmModal('Kullanıcıyı Sil', u.fullName + ' (@' + u.username + ') hesabı silinecektir.', 'Evet, Sil', () => {
+          state.users = state.users.filter(x => x.id !== id);
+          if (state.currentUserId === id) state.currentUserId = 'u_admin';
+          saveState();
+          renderAll();
+          showToast('Kullanıcı silindi.');
+        });
+      } else if (action === 'reset-user-password') {
+        const id = target.dataset.id;
+        const u = (state.users || []).find(x => x.id === id);
+        if (!u) return;
+        openModal(
+          'Giriş Şifresi Belirle — ' + u.fullName,
+          `
+            <div class="form-grid">
+              <div class="form-field full"><label>Kullanıcı</label><input value="${esc(u.fullName)} (@${esc(u.username)})" readonly /></div>
+              <div class="form-field full"><label>Yeni Şifre</label><input type="password" id="newPassInput" value="${esc(u.password || '123')}" /></div>
+            </div>
+          `,
+          `<button type="button" class="btn-secondary" data-action="close-modal">Vazgeç</button>
+           <button type="button" class="btn-primary" data-action="save-user-password" data-id="${u.id}">Şifreyi Güncelle</button>`
+        );
+      } else if (action === 'save-user-password') {
+        const id = target.dataset.id;
+        const u = (state.users || []).find(x => x.id === id);
+        if (u) {
+          u.password = document.getElementById('newPassInput').value || '123';
+          saveState();
+          closeModal();
+          showToast(u.fullName + ' kullanıcısının şifresi başarıyla güncellendi.');
+        }
+      }
+
+      /* =========================================================================
+         STANDART MODAL AÇILIŞLARI (KANTAR, MÜSTAHSİL, ÜRÜN, CARİ VB.)
+         ========================================================================= */
+      else if (action === 'modal-new-kantar') {
+        openModal(
+          'Yeni Elektronik Kantar Fişi',
           `<div class="form-grid">
-             <div class="form-field"><label>Araç Plakası</label><input id="nkPlaka" placeholder="42 KNT 101" /></div>
-             <div class="form-field"><label>Şoför Adı</label><input id="nkSofor" placeholder="Şoför adı" /></div>
+             <div class="form-field"><label>Araç Plakası</label><input id="nkPlaka" placeholder="Örn: 42 KKL 90" /></div>
+             <div class="form-field"><label>Şoför Ad Soyad</label><input id="nkSofor" value="Hüseyin Kaya" /></div>
              <div class="form-field"><label>Hububat Cinsi</label><select id="nkUrun">${state.urunler.map(u => `<option>${esc(u.ad)}</option>`).join('')}</select></div>
              <div class="form-field"><label>Muhatap Cari</label><select id="nkCari">${state.cariler.map(c => `<option>${esc(c.unvan)}</option>`).join('')}</select></div>
-             <div class="form-field"><label>Brüt Tartım (Kg)</label><input type="number" id="nkBrut" value="36500" /></div>
-             <div class="form-field"><label>Dara (Kg)</label><input type="number" id="nkDara" value="12500" /></div>
+             <div class="form-field"><label>1. Tartım (Brüt Kg)</label><input type="number" id="nkBrut" value="34200" /></div>
+             <div class="form-field"><label>2. Tartım (Dara Kg)</label><input type="number" id="nkDara" value="12200" /></div>
            </div>`,
           `<button type="button" class="btn-secondary" data-action="close-modal">Vazgeç</button>
-           <button type="button" class="btn-primary" data-action="save-new-kantar">Fişi Kaydet & Tartımı Onayla</button>`
+           <button type="button" class="btn-primary" data-action="save-new-kantar">Tartımı Kaydet</button>`
         );
       } else if (action === 'save-new-kantar') {
-        const plaka = (document.getElementById('nkPlaka').value || '').trim();
-        if (!plaka) { showToast('Plaka girin.'); return; }
+        const plaka = (document.getElementById('nkPlaka').value || '').trim() || '42 KKL 01';
+        const sofor = document.getElementById('nkSofor').value || 'Şoför';
+        const urun = document.getElementById('nkUrun').value;
+        const cari = document.getElementById('nkCari').value;
         const brut = Number(document.getElementById('nkBrut').value) || 0;
         const dara = Number(document.getElementById('nkDara').value) || 0;
         const net = Math.max(0, brut - dara);
-        const urun = document.getElementById('nkUrun').value;
+
         state.kantarFisleri.unshift({
-          no: 'KNT-2026-0' + (state.kantarFisleri.length + 5),
+          no: 'KNT-2026-0' + (state.kantarFisleri.length + 10),
           plaka,
-          sofor: document.getElementById('nkSofor').value || 'Saha Şoförü',
+          sofor,
           urun,
-          cari: document.getElementById('nkCari').value,
+          cari,
           brut,
           dara,
           net,
-          tarih: state.currentDate + ' 16:00',
+          tarih: state.currentDate + ' 11:15',
           durum: 'Boşaltıldı'
         });
         const st = state.urunler.find(u => u.ad === urun);
         if (st) st.miktar += net;
-        saveState(); closeModal(); renderCenterStage(); showToast('Kantar fişi kesildi, +' + fmtKg(net) + ' stoğa eklendi.');
+        saveState(); closeModal(); renderCenterStage(); showToast('Kantar fişi kaydedildi ve ' + fmtKg(net) + ' stoğa eklendi.');
       } else if (action === 'modal-new-mustahsil') {
         const firstProd = state.urunler[0] || { alis: 8.20 };
         openModal(
@@ -2970,28 +4267,32 @@
         openModal(
           'Yeni Kasa / Banka Fişi',
           `<div class="form-grid">
-             <div class="form-field"><label>Hesap / Kanal</label><select id="nkKanal"><option>Banka</option><option>Kasa</option></select></div>
-             <div class="form-field"><label>İşlem Yönü</label><select id="nkYon"><option value="giris">Tahsilat (+ Giriş)</option><option value="cikis">Ödeme (- Çıkış)</option></select></div>
-             <div class="form-field full"><label>Muhatap</label><select id="nkCari">${state.cariler.map(c => `<option>${esc(c.unvan)}</option>`).join('')}</select></div>
-             <div class="form-field full"><label>Tutar (₺)</label><input type="number" id="nkTutar" value="45000" /></div>
-             <div class="form-field full"><label>Açıklama</label><input id="nkAciklama" placeholder="Hububat tahsilat veya tediye fişi" /></div>
+             <div class="form-field"><label>İşlem Kanalı</label><select id="nkKanal"><option>Banka</option><option>Kasa</option></select></div>
+             <div class="form-field"><label>İşlem Türü</label><select id="nkIslem"><option>Tahsilat</option><option>Tediye (Ödeme)</option><option>Banka Virman</option></select></div>
+             <div class="form-field"><label>Tutar (₺)</label><input type="number" id="nkTutar" value="45000" /></div>
+             <div class="form-field"><label>Muhatap</label><input id="nkCari" value="Merkez Çiftçi Ödemesi" /></div>
+             <div class="form-field full"><label>Açıklama</label><input id="nkAciklama" value="Nakit müstahsil avans ödemesi" /></div>
            </div>`,
           `<button type="button" class="btn-secondary" data-action="close-modal">Vazgeç</button>
            <button type="button" class="btn-primary" data-action="save-new-kasa">Fişi Kaydet</button>`
         );
       } else if (action === 'save-new-kasa') {
         const kanal = document.getElementById('nkKanal').value;
-        const yon = document.getElementById('nkYon').value;
+        const islem = document.getElementById('nkIslem').value;
         const tutar = Number(document.getElementById('nkTutar').value) || 0;
+        const cari = document.getElementById('nkCari').value;
+        const aciklama = document.getElementById('nkAciklama').value;
+        const isTahsilat = islem.includes('Tahsilat');
+
         state.kasaHareketleri.unshift({
-          id: (yon === 'giris' ? 'TH-' : 'ÖD-') + Math.floor(100 + Math.random() * 900),
-          tarih: state.currentDate + ' 16:15',
+          id: 'TR-' + Math.floor(100 + Math.random() * 900),
+          tarih: state.currentDate + ' 14:20',
           kanal,
-          islem: yon === 'giris' ? 'Tahsilat' : 'Tediye',
-          cari: document.getElementById('nkCari').value,
-          aciklama: (document.getElementById('nkAciklama').value || '').trim() || (kanal + ' işlemi'),
-          giris: yon === 'giris' ? tutar : 0,
-          cikis: yon === 'cikis' ? tutar : 0
+          islem,
+          cari,
+          aciklama,
+          giris: isTahsilat ? tutar : 0,
+          cikis: isTahsilat ? 0 : tutar
         });
         saveState(); closeModal(); renderCenterStage(); showToast('Fiş kaydedildi.');
       } else if (action === 'modal-new-gider') {
@@ -3025,55 +4326,42 @@
           'Yeni Çek / Senet Kaydı',
           `<div class="form-grid">
              <div class="form-field"><label>Evrak Türü</label><select id="ncsTur"><option>Müşteri Çeki</option><option>Borç Senedi</option></select></div>
+             <div class="form-field"><label>Portföy No</label><input id="ncsNo" value="ÇK-${Math.floor(1000 + Math.random() * 9000)}" /></div>
+             <div class="form-field full"><label>Borçlu / Keşideci</label><input id="ncsBorclu" placeholder="Örn: Selçuklu Un Sanayi Ltd." /></div>
              <div class="form-field"><label>Vade Tarihi</label><input id="ncsVade" value="28.12.2026" /></div>
-             <div class="form-field full"><label>Keşideci / Muhatap</label><input id="ncsKesideci" value="Bereket Un A.Ş." /></div>
-             <div class="form-field full"><label>Tutar (₺)</label><input type="number" id="ncsTutar" value="75000" /></div>
+             <div class="form-field"><label>Tutar (₺)</label><input type="number" id="ncsTutar" value="125000" /></div>
+             <div class="form-field full"><label>Banka & Şube</label><input id="ncsBanka" value="Vakıfbank Konya Sanayi Şubesi" /></div>
            </div>`,
           `<button type="button" class="btn-secondary" data-action="close-modal">Vazgeç</button>
-           <button type="button" class="btn-primary" data-action="save-new-ceksenet">Kaydet</button>`
+           <button type="button" class="btn-primary" data-action="save-new-ceksenet">Evrakı Portföye Kaydet</button>`
         );
       } else if (action === 'save-new-ceksenet') {
-        const tur = document.getElementById('ncsTur').value;
-        state.cekSenetler.unshift({
-          no: (tur.includes('Çek') ? 'ÇK-' : 'SN-') + Math.floor(4000 + Math.random() * 5000),
-          tur,
-          vade: document.getElementById('ncsVade').value || '30.12.2026',
-          kesideci: document.getElementById('ncsKesideci').value || 'Muhatap',
-          banka: 'Ticari Portföy',
+        const borclu = (document.getElementById('ncsBorclu').value || '').trim();
+        if (!borclu) { showToast('Borçlu ünvanı girin.'); return; }
+        state.ceksenet.unshift({
+          no: document.getElementById('ncsNo').value || 'ÇK-9999',
+          tur: document.getElementById('ncsTur').value,
+          borclu,
+          vade: document.getElementById('ncsVade').value,
           tutar: Number(document.getElementById('ncsTutar').value) || 0,
-          durum: tur.includes('Borç') ? 'Ödenecek' : 'Portföyde'
+          banka: document.getElementById('ncsBanka').value,
+          durum: 'Portföyde'
         });
-        saveState(); closeModal(); renderCenterStage(); showToast(`${tur} kaydedildi.`);
+        saveState(); closeModal(); renderCenterStage(); showToast('Çek/Senet portföye kaydedildi.');
+      } else if (action === 'trigger-backup') {
+        state.lastBackup = 'Bugün ' + new Date().toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' });
+        saveState();
+        document.getElementById('lastBackupText').textContent = state.lastBackup;
+        closeModal();
+        showToast('Veriler bulut veri tabanına başarıyla yedeklendi.');
       } else if (action === 'print-page') {
         window.print();
-      } else if (action === 'download-backup') {
-        state.lastBackup = 'Yedek İndirildi';
-        saveState();
-        const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'koklu_agro_erp_yedek.json';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-        closeModal();
-        renderTopBar();
-        showToast('JSON yedeği indirildi.');
-      } else if (action === 'reset-demo') {
-        try { localStorage.removeItem(STORAGE_KEY); } catch (err) {}
-        state = createInitialState();
-        closeModal();
-        renderAll();
-        showToast('Tüm Köklü Agro demo verileri sıfırlandı.');
       }
     });
 
-    renderAll();
-  </script>
-</body>
-</html>
+    /* =========================================================================
+       DEĞİŞİKLİK VE OTOMATİK FİYAT SEÇİMLERİ
+       ========================================================================= */
     document.addEventListener('change', (e) => {
       if (e.target.id === 'nsUrun') {
         const opt = e.target.selectedOptions[0];
@@ -3090,4 +4378,92 @@
       }
     });
 
-    
+    /* =========================================================================
+       INPUT VE ARAMA DİNLENMESİ
+       ========================================================================= */
+    document.addEventListener('input', (e) => {
+      if (e.target.id === 'homeModuleSearch') {
+        state.homeSearch = e.target.value;
+        const grid = document.querySelector('.modules-grid');
+        if (grid) {
+          const q = state.homeSearch.trim().toLocaleLowerCase('tr-TR');
+          const filtered = MODULES.filter(m => isModuleAllowed(m.id) && (!q || `${m.label} ${m.keywords}`.toLocaleLowerCase('tr-TR').includes(q)));
+          grid.innerHTML = filtered.length > 0
+            ? filtered.map(m => `
+                <button type="button" class="module-tile" data-action="open-module" data-id="${m.id}">
+                  <div class="netsis-app-icon ${m.id === 'mustahsil-alis' ? 'icon-amber' : m.id === 'kantar' ? 'icon-blue' : ''}">
+                    ${ICONS[m.icon]}
+                    <span class="netsis-tile-badge ${m.badgeOk ? 'badge-ok' : ''}">${esc(m.badge)}</span>
+                  </div>
+                  <div class="module-tile-title">${esc(m.label)}</div>
+                </button>
+              `).join('')
+            : `<div style="grid-column:1/-1;text-align:center;padding:24px;color:#64748b;font-weight:600;">Eşleşen modül bulunamadı.</div>`;
+        }
+      } else if (e.target.id === 'sidebarFilterInput') {
+        state.sidebarQuery = e.target.value;
+        renderSidebar();
+      } else if (e.target.id === 'moduleSearchInput') {
+        state.tableFilter = e.target.value;
+        renderCenterStage();
+      } else if (e.target.id === 'fxAmountInput') {
+        state.fxAmount = Number(e.target.value) || 0;
+        renderCenterStage();
+      } else if (e.target.id === 'fxCurrencySelect') {
+        state.fxCurrency = e.target.value;
+        renderCenterStage();
+      }
+    });
+
+    /* =========================================================================
+       BAŞLATMA VE KLAVYE KISAYOLLARI
+       ========================================================================= */
+    document.getElementById('masterMenuBtn').addEventListener('click', toggleSidebar);
+    document.getElementById('sidebarCloseBtn').addEventListener('click', () => {
+      state.sidebarOpen = false;
+      saveState();
+      syncSidebarDOM();
+    });
+    document.getElementById('sidebarPinBtn').addEventListener('click', () => {
+      state.sidebarPinned = !state.sidebarPinned;
+      if (state.sidebarPinned) state.sidebarOpen = true;
+      saveState();
+      syncSidebarDOM();
+    });
+    document.getElementById('sidebarOverlay').addEventListener('click', closeSidebarIfFloating);
+    document.getElementById('starActiveBtn').addEventListener('click', toggleFavoriteActiveScreen);
+    document.getElementById('cloudBackupBtn').addEventListener('click', showCloudBackupModal);
+    document.getElementById('userSwitchBtn').addEventListener('click', () => {
+      document.querySelector('[data-action="user-switch-modal"]') || document.body.dispatchEvent(new CustomEvent('open-user-modal'));
+      const trigger = document.createElement('button');
+      trigger.dataset.action = 'user-switch-modal';
+      document.body.appendChild(trigger);
+      trigger.click();
+      trigger.remove();
+    });
+    document.getElementById('modalCloseBtn').addEventListener('click', closeModal);
+    document.getElementById('modalBackdrop').addEventListener('click', (e) => {
+      if (e.target.id === 'modalBackdrop') closeModal();
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'F10') {
+        e.preventDefault();
+        showShortcutPickerModal();
+      } else if (e.key === 'Escape') {
+        closeModal();
+      } else if (e.key === 'Enter' && document.activeElement && document.activeElement.id === 'homeModuleSearch') {
+        const q = state.homeSearch.trim().toLocaleLowerCase('tr-TR');
+        if (q) {
+          const match = MODULES.find(m => isModuleAllowed(m.id) && `${m.label} ${m.keywords}`.toLocaleLowerCase('tr-TR').includes(q));
+          if (match) openModule(match.id);
+        }
+      }
+    });
+
+    // UYGULAMAYI BAŞLAT
+    state = loadState();
+    renderAll();
+  </script>
+</body>
+</html>
