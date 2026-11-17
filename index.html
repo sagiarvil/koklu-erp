@@ -276,7 +276,8 @@
       backdrop-filter: blur(2px);
       transition: opacity 0.2s ease;
     }
-    .sidebar-overlay.open {
+    .sidebar-overlay.open,
+    .sidebar-overlay.active {
       display: block;
     }
 
@@ -299,15 +300,33 @@
     .left-sidebar.open {
       transform: translateX(0);
     }
-    .erp-body.sidebar-pinned .left-sidebar {
-      position: relative;
-      transform: translateX(0);
-      box-shadow: none;
-      border-right: 1px solid #143226;
-      flex-shrink: 0;
+    .erp-body.sidebar-pinned .left-sidebar,
+    .left-sidebar.pinned {
+      position: relative !important;
+      top: auto !important;
+      bottom: auto !important;
+      left: auto !important;
+      height: 100% !important;
+      transform: translateX(0) !important;
+      box-shadow: none !important;
+      border-right: 1px solid #143226 !important;
+      flex-shrink: 0 !important;
+      z-index: 20 !important;
     }
-    .erp-body.sidebar-pinned .sidebar-overlay {
+
+    .erp-body.sidebar-pinned .left-sidebar:not(.open) {
       display: none !important;
+    }
+
+    .erp-body.sidebar-pinned .sidebar-overlay,
+    .sidebar-overlay.pinned,
+    .erp-body.sidebar-pinned #sidebarOverlay {
+      display: none !important;
+    }
+
+    .sidebar-icon-btn.active {
+      background: rgba(255, 255, 255, 0.25) !important;
+      color: #4ade80 !important;
     }
 
     .sidebar-head {
@@ -2126,9 +2145,19 @@
       const sb = document.getElementById('leftSidebar');
       const ov = document.getElementById('sidebarOverlay');
       const pinBtn = document.getElementById('sidebarPinBtn');
+      const erpBody = document.getElementById('erpBody') || document.body;
+
+      const isPinned = state.sidebarPinned && window.innerWidth > 900;
+
       sb.classList.toggle('open', state.sidebarOpen);
-      sb.classList.toggle('pinned', state.sidebarPinned);
-      ov.classList.toggle('active', state.sidebarOpen && !state.sidebarPinned);
+      sb.classList.toggle('pinned', isPinned);
+      erpBody.classList.toggle('sidebar-pinned', isPinned);
+      document.body.classList.toggle('sidebar-pinned', isPinned);
+
+      const showOverlay = state.sidebarOpen && !isPinned;
+      ov.classList.toggle('open', showOverlay);
+      ov.classList.toggle('active', showOverlay);
+
       if (pinBtn) pinBtn.classList.toggle('active', state.sidebarPinned);
     }
 
@@ -5014,6 +5043,10 @@
           if (match) openModule(match.id);
         }
       }
+    });
+
+        window.addEventListener('resize', () => {
+      syncSidebarDOM();
     });
 
     // UYGULAMAYI BAŞLAT
