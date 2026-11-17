@@ -1832,37 +1832,34 @@
        12 KÖKLÜ AGRO MODÜLLERİ (Kutular aynı index.htm yapısında)
        ========================================================================= */
     const MODULES = [
-      // 1. GİRİŞ & ALIŞ OPERASYONU (Tartım & Mal Alışı)
-      { id: 'kantar', label: 'Kantar Fişleri & Tartım', group: '1. GİRİŞ & ALIŞ OPERASYONU', icon: 'kantar', badge: '1. Tartım', viewType: 'scale', keywords: 'kantar tartım plaka brüt dara net şoför fiş tonaj mal kabul' },
-      { id: 'mustahsil-alis', label: 'Müstahsil & Mal Alışı', group: '1. GİRİŞ & ALIŞ OPERASYONU', icon: 'alis', badge: '2. Mal Alımı', viewType: 'purchases', keywords: 'müstahsil makbuzu alış çiftçi stopaj borsa tevkifat buğday mısır arpa alım' },
+      // 1. MAL ALIMI & STOK GİRİŞLERİ
+      { id: 'mustahsil-alis', label: 'Müstahsil & Mal Alışı', group: '1. MAL ALIMI & STOK GİRİŞLERİ', icon: 'alis', viewType: 'purchases', keywords: 'müstahsil makbuzu alış çiftçi stopaj borsa tevkifat buğday mısır arpa alım alışı' },
+      { id: 'depo-silo', label: 'Silo & Stok Girişleri', group: '1. MAL ALIMI & STOK GİRİŞLERİ', icon: 'silo', viewType: 'inventory', keywords: 'çelik silo merkez depo emanet mısır buğday arpa tonaj fire alt kırılım alış satış fiyatı stok girişi kabul envanter' },
+      { id: 'kantar', label: 'Kantar Fişleri & Tartım', group: '1. MAL ALIMI & STOK GİRİŞLERİ', icon: 'kantar', viewType: 'scale', keywords: 'kantar tartım plaka brüt dara net şoför fiş tonaj mal kabul tartım fişi ton' },
 
-      // 2. STOK, SİLO & FİYAT LİSTESİ (Alt Kırılımlar, Alış ve Satış Fiyatları)
-      { id: 'depo-silo', label: 'Silo & Stok Envanteri', group: '2. STOK & FİYAT LİSTESİ', icon: 'silo', badge: '3. Alt Kırılımlar', viewType: 'inventory', keywords: 'çelik silo merkez depo emanet mısır buğday arpa tonaj fire alt kırılım alış satış fiyatı' },
+      // 2. CARİLER & ÇIKIŞLAR (SATIŞ)
+      { id: 'cariler', label: 'Cariler & Çiftçiler', group: '2. CARİLER & ÇIKIŞLAR (SATIŞ)', icon: 'cari', viewType: 'parties', keywords: 'çiftçi müstahsil tüccar fabrika ekstre bakiye borç alacak çks un fabrikası cari hesap müşteri' },
+      { id: 'mal-satis', label: 'Mal Satış Faturası & İrsaliye', group: '2. CARİLER & ÇIKIŞLAR (SATIŞ)', icon: 'satis', viewType: 'sales', keywords: 'toptan satış fatura un fabrikası yem tüccar sevk irsaliye açık kapalı fatura mal çıkışı çıkışlar' },
+      { id: 'tum-ticaret', label: 'Tüm Alış & Satış Defteri', group: '2. CARİLER & ÇIKIŞLAR (SATIŞ)', icon: 'ticaret', viewType: 'trades', keywords: 'ticaret defteri icmal faturalar storno iptal hareket defteri tüm hareketler' },
 
-      // 3. CARİLER & SATIŞ FATURALAMA (Açılmış Cariye Satış Fiyatından Fatura)
-      { id: 'cariler', label: 'Cariler & Çiftçiler', group: '3. CARİLER & SATIŞ FATURALAMA', icon: 'cari', badge: '4. Açılmış Cari', viewType: 'parties', keywords: 'çiftçi müstahsil tüccar fabrika ekstre bakiye borç alacak çks un fabrikası' },
-      { id: 'mal-satis', label: 'Mal Satış Faturası & İrsaliye', group: '3. CARİLER & SATIŞ FATURALAMA', icon: 'satis', badge: '5. Satış Faturası', viewType: 'sales', keywords: 'toptan satış fatura un fabrikası yem tüccar sevk irsaliye açık kapalı fatura' },
-      { id: 'tum-ticaret', label: 'Tüm Alış & Satış Defteri', group: '3. CARİLER & SATIŞ FATURALAMA', icon: 'ticaret', badge: '6. Ticaret Defteri', viewType: 'trades', keywords: 'ticaret defteri icmal faturalar storno iptal hareket defteri' },
+      // 3. FİNANS, KASA & ÖDEMELER
+      { id: 'kasa-banka', label: 'Kasa & Bankalar', group: '3. FİNANS, KASA & ÖDEMELER', icon: 'kasa', viewType: 'cash', keywords: 'nakit kasa ziraat iş garanti banka havale eft çiftçi tediye tahsilat finans' },
+      { id: 'cek-senet', label: 'Çek & Senet Portföyü', group: '3. FİNANS, KASA & ÖDEMELER', icon: 'ceksenet', viewType: 'instruments', keywords: 'portföy müşteri çeki borç senedi ciro tahsil takas vadeli evrak' },
+      { id: 'masraf-gider', label: 'Masraf & Gider Fişleri', group: '3. FİNANS, KASA & ÖDEMELER', icon: 'masraf', viewType: 'expenses', keywords: 'kantar elektrik kurutma mazot nakliye analiz tahlil masraf amortisman işletme gider' },
+      { id: 'vade-yaslandirma', label: 'Vade & Yaşlandırma', group: '3. FİNANS, KASA & ÖDEMELER', icon: 'vade', viewType: 'due', keywords: 'vade yaşlandırma açık hesap alacak borç faiz gün risk matrisi' },
 
-      // 4. FİNANS & ÖDEMELER
-      { id: 'kasa-banka', label: 'Kasa & Bankalar', group: '4. FİNANS & ÖDEMELER', icon: 'kasa', badge: '7. Tahsilat/Ödeme', badgeOk: true, viewType: 'cash', keywords: 'nakit kasa ziraat iş garanti banka havale eft çiftçi tediye tahsilat' },
-      { id: 'cek-senet', label: 'Çek & Senet Portföyü', group: '4. FİNANS & ÖDEMELER', icon: 'ceksenet', badge: '8. Vadeli Evrak', viewType: 'instruments', keywords: 'portföy müşteri çeki borç senedi ciro tahsil takas vadeli' },
-      { id: 'masraf-gider', label: 'Masraf & Gider Fişleri', group: '4. FİNANS & ÖDEMELER', icon: 'masraf', badge: '9. Giderler', viewType: 'expenses', keywords: 'kantar elektrik kurutma mazot nakliye analiz tahlil masraf amortisman' },
-      { id: 'vade-yaslandirma', label: 'Vade & Yaşlandırma', group: '4. FİNANS & ÖDEMELER', icon: 'vade', badge: '10. Yaşlandırma', viewType: 'due', keywords: 'vade yaşlandırma açık hesap alacak borç faiz gün risk' },
-
-      // 5. RAPORLAR, REHBER & YÖNETİM
-      { id: 'karlilik-analiz', label: 'Kârlılık Analizi (Alt Kırılımlı)', group: '5. RAPORLAR, REHBER & YÖNETİM', icon: 'analiz', badge: '11. Kâr Marjı', badgeOk: true, viewType: 'analytics', keywords: 'brüt kar ürün marj ton kar alt kırılım smm faaliyet sonucu fifo grafik' },
-      { id: 'kurlar-etiket', label: 'Borsa Fiyatları & Kurlar', group: '5. RAPORLAR, REHBER & YÖNETİM', icon: 'borsa', badge: '12. Borsa/TCMB', viewType: 'tools', keywords: 'tmo konya ticaret borsası hububat fiyat tcmb kur usd eur polatlı edirne' },
-      { id: 'destek-rehber', label: 'İş Akışı & Kullanım Kılavuzu', group: '5. RAPORLAR, REHBER & YÖNETİM', icon: 'help', badge: 'Rehber', viewType: 'guide', keywords: 'iş akışı nasıl kullanılır rehber yardım sss destek kısayollar kılavuz' },
-      { id: 'ayarlar', label: 'Sistem & Kullanıcı Yetkileri', group: '5. RAPORLAR, REHBER & YÖNETİM', icon: 'settings', badge: 'Yönetici', viewType: 'settings', adminOnly: true, keywords: 'ayarlar kullanıcılar şifre yetkilendirme erişim rolleri parametreler' }
+      // 4. RAPORLAR, PİYASA & YÖNETİM
+      { id: 'karlilik-analiz', label: 'Kârlılık Analizi (Alt Kırılımlı)', group: '4. RAPORLAR, PİYASA & YÖNETİM', icon: 'analiz', viewType: 'analytics', keywords: 'brüt kar ürün marj ton kar alt kırılım smm faaliyet sonucu fifo grafik kârlılık raporu' },
+      { id: 'kurlar-etiket', label: 'Borsa Fiyatları & Kurlar', group: '4. RAPORLAR, PİYASA & YÖNETİM', icon: 'borsa', viewType: 'tools', keywords: 'tmo konya ticaret borsası hububat fiyat tcmb kur usd eur polatlı edirne borsa' },
+      { id: 'destek-rehber', label: 'İş Akışı & Kullanım Kılavuzu', group: '4. RAPORLAR, PİYASA & YÖNETİM', icon: 'help', viewType: 'guide', keywords: 'iş akışı nasıl kullanılır rehber yardım sss destek kısayollar kılavuz' },
+      { id: 'ayarlar', label: 'Sistem & Kullanıcı Yetkileri', group: '4. RAPORLAR, PİYASA & YÖNETİM', icon: 'settings', viewType: 'settings', adminOnly: true, keywords: 'ayarlar kullanıcılar şifre yetkilendirme erişim rolleri parametreler rbac' }
     ];
 
     const SIDEBAR_GROUPS = [
-      '1. GİRİŞ & ALIŞ OPERASYONU',
-      '2. STOK & FİYAT LİSTESİ',
-      '3. CARİLER & SATIŞ FATURALAMA',
-      '4. FİNANS & ÖDEMELER',
-      '5. RAPORLAR, REHBER & YÖNETİM'
+      '1. MAL ALIMI & STOK GİRİŞLERİ',
+      '2. CARİLER & ÇIKIŞLAR (SATIŞ)',
+      '3. FİNANS, KASA & ÖDEMELER',
+      '4. RAPORLAR, PİYASA & YÖNETİM'
     ];
 
     /* =========================================================================
@@ -1893,13 +1890,14 @@
         fxAmount: 5000,
         fxCurrency: 'USD',
         favoriteScreens: [
-          { id: 'kantar', sub: 'Tümü', label: '1. Kantar tartımları ve canlı fişler' },
-          { id: 'mustahsil-alis', sub: 'Müstahsil Alışı', label: '2. Çiftçi müstahsil alım makbuzları' },
-          { id: 'depo-silo', sub: 'Tümü', label: '3. Silo stok & alt kırılım fiyatları' },
+          { id: 'mustahsil-alis', sub: 'Müstahsil Alışı', label: '1. Çiftçi müstahsil alım makbuzları (Mal Alımı)' },
+          { id: 'depo-silo', sub: 'Tümü', label: '2. Silo stok & alt kırılım fiyatları (Stok Girişi)' },
+          { id: 'kantar', sub: 'Tümü', label: '3. Kantar tartımları ve canlı fişler (Tartım)' },
           { id: 'cariler', sub: 'Müşteri', label: '4. Açılmış müşteri ve fabrika carileri' },
-          { id: 'mal-satis', sub: 'Mal Satışı', label: '5. Satış fiyatından toptan faturalama' },
+          { id: 'mal-satis', sub: 'Mal Satışı', label: '5. Satış fiyatından toptan faturalama (Çıkışlar)' },
           { id: 'karlilik-analiz', sub: 'Tümü', label: '6. Alt kırılımlar kârlılık & marj raporu' }
         ],
+        kategoriler: ['Mısır Grubu', 'Buğday Grubu', 'Arpa Grubu', 'Yağlı Tohumlar', 'Bakliyat Grubu', 'Yem & Yan Ürün'],
         favoriteReports: [
           { id: 'karlilik-analiz', reportKey: 'urun-kar', label: 'Hububat ürün bazlı brüt kârlılık' },
           { id: 'karlilik-analiz', reportKey: 'faaliyet-ozeti', label: 'Dönem faaliyet kârı ve SMM' },
@@ -2009,6 +2007,16 @@
       if (!cu) return true;
       if (cu.isAdmin || (cu.modules && cu.modules.includes('all'))) return true;
       return Array.isArray(cu.modules) && cu.modules.includes(modId);
+    }
+
+    function getCategories() {
+      if (!Array.isArray(state.kategoriler) || state.kategoriler.length === 0) {
+        state.kategoriler = Array.from(new Set(state.urunler.map(u => u.kategori).filter(Boolean)));
+        if (!state.kategoriler.length) {
+          state.kategoriler = ['Mısır Grubu', 'Buğday Grubu', 'Arpa Grubu', 'Yağlı Tohumlar', 'Bakliyat Grubu', 'Yem & Yan Ürün'];
+        }
+      }
+      return state.kategoriler;
     }
 
     function getModuleById(id) {
@@ -2235,7 +2243,6 @@
             ${ICONS.home}
             <span>Masaüstü (Genel Bakış)</span>
           </span>
-          <span class="nav-item-badge">Ana Ekran</span>
         </button>
       ` : '';
 
@@ -2255,7 +2262,6 @@
                   ${ICONS[m.icon]}
                   <span>${esc(m.label)}</span>
                 </span>
-                <span class="nav-item-badge ${m.badgeOk ? 'badge-ok' : ''}">${esc(m.badge)}</span>
               </button>
             `).join('')}
           </div>
@@ -2385,7 +2391,7 @@
             <button type="button" class="module-tile" data-action="open-module" data-id="${m.id}">
               <div class="netsis-app-icon ${m.id === 'mustahsil-alis' ? 'icon-amber' : m.id === 'kantar' ? 'icon-blue' : ''}">
                 ${ICONS[m.icon]}
-                <span class="netsis-tile-badge ${m.badgeOk ? 'badge-ok' : ''}">${esc(m.badge)}</span>
+                ${m.badge ? `<span class="netsis-tile-badge ${m.badgeOk ? 'badge-ok' : ''}">${esc(m.badge)}</span>` : ''}
               </div>
               <div class="module-tile-title">${esc(m.label)}</div>
             </button>
@@ -2546,6 +2552,57 @@
     /* =========================================================================
        SUB-VIEW TEMPLATES
        ========================================================================= */
+    function renderCategoryManagerModal() {
+      const cats = getCategories();
+      const catCounts = {};
+      state.urunler.forEach(u => {
+        catCounts[u.kategori] = (catCounts[u.kategori] || 0) + 1;
+      });
+
+      openModal(
+        'Hububat Kategorileri Yönetimi (Ekle, Düzenle, Sil)',
+        `
+          <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:12px;margin-bottom:14px;">
+            <strong style="display:block;margin-bottom:6px;font-size:12.5px;color:#0f172a;">+ Yeni Hububat Kategorisi Ekle</strong>
+            <div style="display:flex;gap:8px;">
+              <input type="text" id="newCategoryNameInput" placeholder="Örn: Yağlık Tohumlar, Çeltik & Pirinç, Bakliyat..." style="flex:1;height:36px;padding:0 10px;border-radius:8px;border:1px solid #cbd5e1;font-size:12.5px;" />
+              <button type="button" class="btn-primary" data-action="save-new-kategori" style="height:36px;padding:0 14px;white-space:nowrap;">+ Kategori Ekle</button>
+            </div>
+          </div>
+
+          <div style="margin-bottom:8px;font-size:12px;font-weight:700;color:var(--text-muted);display:flex;justify-content:space-between;">
+            <span>Tanımlı Hububat Grupları (${cats.length})</span>
+            <span>Kategori Düzenle veya Sil</span>
+          </div>
+
+          <div class="table-scroll" style="max-height:340px;">
+            <table class="erp-table">
+              <thead>
+                <tr>
+                  <th>Kategori Adı</th>
+                  <th>Bağlı Ürün Sayısı</th>
+                  <th style="width:160px;text-align:right;">İşlem</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${cats.map(c => `
+                  <tr>
+                    <td><strong>${esc(c)}</strong></td>
+                    <td><span class="badge badge-slate">${catCounts[c] || 0} Kalem Ürün</span></td>
+                    <td style="text-align:right;white-space:nowrap;">
+                      <button type="button" class="btn-secondary" style="height:26px;padding:0 8px;font-size:11px;margin-right:4px;" data-action="edit-kategori-modal" data-cat="${esc(c)}" title="Kategori Adını Değiştir">✏️ Düzenle</button>
+                      <button type="button" class="btn-secondary" style="height:26px;padding:0 8px;font-size:11px;color:#dc2626;border-color:#fecaca;" data-action="delete-kategori" data-cat="${esc(c)}" title="Kategoriyi Sil">🗑️ Sil</button>
+                    </td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+          </div>
+        `,
+        '<button type="button" class="btn-secondary" data-action="close-modal">Kapat</button>'
+      );
+    }
+
     function renderModuleHeader(mod, subtitle, actionBtns) {
       return `
         <div class="view-topbar">
@@ -2669,29 +2726,21 @@
 
     // 3. SİLO VE DEPO ENVANTERİ
     function renderInventoryView(mod) {
-      const filters = ['Tümü', 'Çelik Silo 1', 'Merkez Depo', 'Emanet Silo', 'Buğday Grubu', 'Mısır Grubu', 'Arpa Grubu'];
       const q = state.tableFilter.trim().toLocaleLowerCase('tr-TR');
-      const rows = state.urunler.filter(s => {
-        if (state.subFilter !== 'Tümü') {
-          if (['Çelik Silo 1', 'Merkez Depo', 'Emanet Silo'].includes(state.subFilter) && s.silo !== state.subFilter) return false;
-          if (['Buğday Grubu', 'Mısır Grubu', 'Arpa Grubu'].includes(state.subFilter) && s.kategori !== state.subFilter) return false;
-        }
-        return !q || `${s.kod} ${s.ad} ${s.altKirilim || ''} ${s.kategori || ''} ${s.silo}`.toLocaleLowerCase('tr-TR').includes(q);
-      });
-
-      const topKg = rows.reduce((acc, r) => acc + (r.miktar || 0), 0);
-      const topAlisDeger = rows.reduce((acc, r) => acc + (r.miktar * r.alis || 0), 0);
-      const topSatisDeger = rows.reduce((acc, r) => acc + (r.miktar * r.satis || 0), 0);
+      const categories = getCategories();
+      const filters = ['Tümü', 'Çelik Silo 1', 'Merkez Depo', 'Emanet Silo', ...categories];
 
       return `
         <div class="module-view">
-          ${renderModuleHeader(mod, 'Hububat ürünleri, alt kırılımları, silo depolama, alış ve belirlenen satış fiyatları',
-            '<button type="button" class="btn-primary" data-action="modal-new-urun">+ Yeni Hububat & Alt Kırılım Tanımla</button>')}
+          ${renderModuleHeader(mod, 'Hububat ürünleri, alt kırılımları, silo depolama, alış ve belirlenen satış fiyatları', `
+            <button type="button" class="btn-primary" data-action="modal-new-urun">+ Yeni Hububat & Alt Kırılım</button>
+            <button type="button" class="btn-secondary" data-action="modal-manage-kategoriler">🗂️ Kategorileri Yönet (Ekle/Düzenle/Sil)</button>
+          `)}
 
-          ${renderPageGuide('Silo Envanteri & Alt Kırılım Fiyat Yönetimi', [
-            { bold: '1. Alt Kırılım Tanımı', text: 'Hububatın cinsi, protein/rutubet kalitesi ve depolandığı çelik siloyu kaydedin.' },
-            { bold: '2. Alış & Satış Fiyatları', text: 'Her alt kırılıma ortalama alış maliyeti ve hedeflenen liste satış fiyatını belirleyin.' },
-            { bold: '3. Otomatik Stok Hareketi', text: 'Alışta stok siloya eklenir, satış faturası kesildiğinde depodan otomatik düşer.' }
+          ${renderPageGuide('Silo Envanteri & Hububat Kategori Yönetimi', [
+            { bold: '1. Kategori & Grup Yönetimi', text: 'Üstteki [Kategorileri Yönet] butonundan Mısır, Buğday vb. gruplarını ekleyebilir, adını düzenleyebilir veya silebilirsiniz.' },
+            { bold: '2. Kart Düzenleme & Silme', text: 'Her satırın sağındaki ✏️ (Düzenle) butonu ile ürünün kategorisini ve fiyatını güncelleyin, 🗑️ ile ürünü silin.' },
+            { bold: '3. Otomatik Stok Giriş/Çıkış', text: 'Mal alışında stok siloya eklenir, satış faturası kesildiğinde depodan otomatik düşer.' }
           ])}
 
           <div class="panel-card">
@@ -4000,7 +4049,88 @@
         });
       }
 
-      // 3. ÜRÜN & SİLO
+      // 3. ÜRÜN, KATEGORİ & SİLO YÖNETİMİ
+      else if (action === 'modal-manage-kategoriler') {
+        renderCategoryManagerModal();
+      } else if (action === 'save-new-kategori') {
+        const inp = document.getElementById('newCategoryNameInput');
+        const val = inp ? inp.value.trim() : '';
+        if (!val) {
+          showToast('Lütfen geçerli bir kategori adı girin.');
+          return;
+        }
+        const cats = getCategories();
+        if (cats.includes(val)) {
+          showToast('Bu kategori zaten tanımlı.');
+          return;
+        }
+        cats.push(val);
+        saveState();
+        renderCategoryManagerModal();
+        renderCenterStage();
+        showToast(`"${val}" kategorisi eklendi.`);
+      } else if (action === 'edit-kategori-modal') {
+        const oldCat = target.dataset.cat;
+        openModal(
+          `Kategori Adını Düzenle: ${oldCat}`,
+          `
+            <div class="form-grid">
+              <div class="form-field full">
+                <label>Mevcut Kategori Adı</label>
+                <input id="editCatOldName" value="${esc(oldCat)}" readonly />
+              </div>
+              <div class="form-field full">
+                <label>Yeni Kategori Adı</label>
+                <input id="editCatNewName" value="${esc(oldCat)}" autofocus />
+                <small style="color:var(--text-muted);margin-top:4px;display:block;">Bu kategoriye bağlı tüm hububat kartları otomatik yeni kategori adına güncellenecektir.</small>
+              </div>
+            </div>
+          `,
+          `
+            <button type="button" class="btn-secondary" data-action="modal-manage-kategoriler">Geri</button>
+            <button type="button" class="btn-primary" data-action="save-edit-kategori">Kaydet</button>
+          `
+        );
+      } else if (action === 'save-edit-kategori') {
+        const oldName = document.getElementById('editCatOldName').value;
+        const newName = document.getElementById('editCatNewName').value.trim();
+        if (!newName) {
+          showToast('Kategori adı boş bırakılamaz.');
+          return;
+        }
+        const cats = getCategories();
+        const idx = cats.indexOf(oldName);
+        if (idx !== -1) cats[idx] = newName;
+        let count = 0;
+        state.urunler.forEach(u => {
+          if (u.kategori === oldName) {
+            u.kategori = newName;
+            count++;
+          }
+        });
+        saveState();
+        renderCategoryManagerModal();
+        renderCenterStage();
+        showToast(`Kategori "${newName}" olarak güncellendi (${count} ürüne uygulandı).`);
+      } else if (action === 'delete-kategori') {
+        const catName = target.dataset.cat;
+        const count = state.urunler.filter(u => u.kategori === catName).length;
+        openConfirmModal(
+          `"${catName}" Kategorisini Sil`,
+          `Bu kategoriyi silmek istediğinizden emin misiniz? ${count > 0 ? `Bağlı ${count} ürün "Genel Hububat" kategorisine taşınacaktır.` : ''}`,
+          'Evet, Kategoriyi Sil',
+          () => {
+            state.kategoriler = getCategories().filter(c => c !== catName);
+            state.urunler.forEach(u => {
+              if (u.kategori === catName) u.kategori = 'Genel Hububat';
+            });
+            saveState();
+            renderCategoryManagerModal();
+            renderCenterStage();
+            showToast(`"${catName}" kategorisi silindi.`);
+          }
+        );
+      }
       else if (action === 'edit-urun') {
         const s = state.urunler.find(u => u.kod === target.dataset.id);
         if (!s) return;
@@ -4009,7 +4139,13 @@
           `
             <div class="form-grid">
               <div class="form-field"><label>Ürün Kodu</label><input id="euKod" value="${esc(s.kod)}" readonly /></div>
-              <div class="form-field"><label>Ana Kategori</label><input id="euKategori" value="${esc(s.kategori || 'Hububat')}" /></div>
+              <div class="form-field">
+  <label>Ana Kategori</label>
+  <input id="euKategori" list="catDatalist" value="${esc(s.kategori || 'Hububat')}" />
+  <datalist id="catDatalist">
+    ${getCategories().map(c => `<option value="${esc(c)}">`).join('')}
+  </datalist>
+</div>
               <div class="form-field full"><label>Hububat Cinsi & Adı</label><input id="euAd" value="${esc(s.ad)}" /></div>
               <div class="form-field full"><label>Alt Kırılım / Spesifikasyon</label><input id="euAltKirilim" value="${esc(s.altKirilim || s.ad)}" /></div>
               <div class="form-field"><label>Depolama Silosu</label><select id="euSilo"><option ${s.silo==='Çelik Silo 1'?'selected':''}>Çelik Silo 1</option><option ${s.silo==='Merkez Depo'?'selected':''}>Merkez Depo</option><option ${s.silo==='Emanet Silo'?'selected':''}>Emanet Silo</option></select></div>
@@ -4812,7 +4948,7 @@
                 <button type="button" class="module-tile" data-action="open-module" data-id="${m.id}">
                   <div class="netsis-app-icon ${m.id === 'mustahsil-alis' ? 'icon-amber' : m.id === 'kantar' ? 'icon-blue' : ''}">
                     ${ICONS[m.icon]}
-                    <span class="netsis-tile-badge ${m.badgeOk ? 'badge-ok' : ''}">${esc(m.badge)}</span>
+                    ${m.badge ? `<span class="netsis-tile-badge ${m.badgeOk ? 'badge-ok' : ''}">${esc(m.badge)}</span>` : ''}
                   </div>
                   <div class="module-tile-title">${esc(m.label)}</div>
                 </button>
