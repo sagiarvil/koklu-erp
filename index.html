@@ -1,0 +1,2779 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Köklü Agro Pro+ — Kurumsal Zahire & Tarım ERP</title>
+  <style>
+    :root {
+      --agro-green: #0b6e52;
+      --agro-green-dark: #074e3a;
+      --agro-green-soft: #e5f6ef;
+      --agro-green-border: #b5e4d2;
+      --agro-amber: #b86e0c;
+      --agro-amber-soft: #fef4e2;
+      --agro-amber-dark: #8c5104;
+      --agro-emerald: #059669;
+      --agro-red: #dc2626;
+      --agro-blue: #1e56c5;
+      --agro-charcoal: #0d1e18;
+      --agro-side: #0a1813;
+      --agro-side-elev: #122820;
+      --agro-tray-top: #c5d4ce;
+      --agro-tray-bot: #b4c6be;
+      --bg-canvas: #f2f6f4;
+      --bg-card: #ffffff;
+      --border-soft: #d8e4df;
+      --border-strong: #bfd3cb;
+      --text-primary: #10231c;
+      --text-secondary: #425950;
+      --text-muted: #60796f;
+      --navy-header: #0d211a;
+      --shadow-card: 0 2px 8px rgba(11, 38, 30, 0.05);
+      --shadow-icon: 0 4px 10px rgba(7, 78, 58, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+      --shadow-modal: 0 22px 54px rgba(10, 30, 24, 0.32);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Segoe UI', Inter, -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: var(--bg-canvas);
+      color: var(--text-primary);
+      font-size: 13px;
+      line-height: 1.4;
+      -webkit-font-smoothing: antialiased;
+      overflow: hidden;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: inherit;
+      color: inherit;
+    }
+
+    button {
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+
+    /* =======================================================================
+       APP SHELL — SINGLE UNIFIED TOP BAR
+       ======================================================================= */
+    .erp-app {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+    }
+
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      height: 46px;
+      padding: 0 16px;
+      background: #ffffff;
+      border-bottom: 1px solid var(--border-soft);
+      flex-shrink: 0;
+      z-index: 30;
+    }
+
+    .top-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .top-left::-webkit-scrollbar {
+      display: none;
+    }
+
+    .menu-toggle-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      height: 32px;
+      padding: 0 13px;
+      border-radius: 7px;
+      background: var(--agro-green);
+      color: #ffffff;
+      font-size: 12.5px;
+      font-weight: 700;
+      flex-shrink: 0;
+      transition: all 0.15s ease;
+      box-shadow: 0 1px 3px rgba(11, 110, 82, 0.25);
+    }
+    .menu-toggle-btn:hover {
+      background: var(--agro-green-dark);
+      transform: translateY(-1px);
+    }
+    .menu-toggle-btn.is-open {
+      background: var(--agro-green-dark);
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    .menu-toggle-btn svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    .bar-divider {
+      width: 1px;
+      height: 20px;
+      background: var(--border-soft);
+      flex-shrink: 0;
+    }
+
+    /* Workspace Tabs */
+    .tabs-strip {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .ws-tab {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      height: 31px;
+      padding: 0 11px;
+      border-radius: 7px;
+      background: #f0f5f2;
+      color: var(--text-secondary);
+      font-size: 12px;
+      font-weight: 600;
+      border: 1px solid transparent;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all 0.14s ease;
+    }
+    .ws-tab:hover {
+      background: #e2ede8;
+      color: var(--text-primary);
+    }
+    .ws-tab.active {
+      background: var(--agro-green-soft);
+      color: var(--agro-green-dark);
+      border-color: var(--agro-green-border);
+      font-weight: 700;
+    }
+    .ws-tab svg {
+      width: 13.5px;
+      height: 13.5px;
+      flex-shrink: 0;
+    }
+    .tab-close {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      font-size: 13px;
+      color: #60796f;
+    }
+    .tab-close:hover {
+      background: rgba(11, 110, 82, 0.15);
+      color: var(--agro-green-dark);
+    }
+
+    .top-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .icon-action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      height: 31px;
+      padding: 0 10px;
+      border-radius: 7px;
+      background: #f6faf8;
+      border: 1px solid var(--border-soft);
+      color: #2b3d35;
+      font-size: 12px;
+      font-weight: 600;
+      transition: all 0.14s ease;
+    }
+    .icon-action-btn:hover {
+      background: #e8f2ee;
+    }
+    .icon-action-btn.is-favorited {
+      color: #b45309;
+      border-color: #fcd34d;
+      background: #fffbeb;
+    }
+    .icon-action-btn svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #10b981;
+      flex-shrink: 0;
+    }
+
+    .company-pill {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-primary);
+      padding-left: 4px;
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .company-badge-tag {
+      background: var(--agro-green-soft);
+      color: var(--agro-green-dark);
+      border: 1px solid var(--agro-green-border);
+      border-radius: 4px;
+      padding: 1px 6px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.3px;
+    }
+    .company-pill span {
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* =======================================================================
+       COLLAPSIBLE / ACCORDION LEFT SIDEBAR (OPEN / CLOSED / PINNED)
+       ======================================================================= */
+    .erp-body {
+      display: flex;
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 30, 24, 0.45);
+      z-index: 45;
+      backdrop-filter: blur(2px);
+      transition: opacity 0.2s ease;
+    }
+    .sidebar-overlay.open {
+      display: block;
+    }
+
+    .left-sidebar {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 268px;
+      background: var(--agro-side);
+      color: #dcece5;
+      display: flex;
+      flex-direction: column;
+      z-index: 55;
+      transform: translateX(-100%);
+      transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1), width 0.2s ease;
+      box-shadow: 10px 0 32px rgba(6, 24, 18, 0.4);
+      user-select: none;
+    }
+    .left-sidebar.open {
+      transform: translateX(0);
+    }
+    .erp-body.sidebar-pinned .left-sidebar {
+      position: relative;
+      transform: translateX(0);
+      box-shadow: none;
+      border-right: 1px solid #143226;
+      flex-shrink: 0;
+    }
+    .erp-body.sidebar-pinned .sidebar-overlay {
+      display: none !important;
+    }
+
+    .sidebar-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 11px 14px;
+      background: linear-gradient(90deg, #074e3a 0%, #0b6e52 100%);
+      color: #ffffff;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+    .sidebar-head-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .sidebar-head-actions {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .sidebar-icon-btn {
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      color: rgba(255, 255, 255, 0.85);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      transition: background 0.12s ease;
+    }
+    .sidebar-icon-btn:hover, .sidebar-icon-btn.pinned {
+      background: rgba(255, 255, 255, 0.22);
+      color: #ffffff;
+    }
+
+    .sidebar-search-wrap {
+      padding: 10px 12px 6px;
+    }
+    .sidebar-search-input {
+      width: 100%;
+      height: 32px;
+      padding: 0 10px;
+      border-radius: 7px;
+      border: 1px solid #1c3e30;
+      background: #11261e;
+      color: #e8f5f0;
+      font-size: 12px;
+      outline: none;
+      transition: border-color 0.15s ease;
+    }
+    .sidebar-search-input::placeholder {
+      color: #729688;
+    }
+    .sidebar-search-input:focus {
+      border-color: #10b981;
+      background: #142e24;
+    }
+
+    .sidebar-nav {
+      flex: 1;
+      overflow-y: auto;
+      padding: 4px 10px 14px;
+      scrollbar-width: thin;
+      scrollbar-color: #1c3e30 transparent;
+    }
+    .sidebar-nav::-webkit-scrollbar {
+      width: 5px;
+    }
+    .sidebar-nav::-webkit-scrollbar-thumb {
+      background: #1c3e30;
+      border-radius: 4px;
+    }
+
+    /* Accordion groups in sidebar */
+    .sidebar-group-header {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 10.5px;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      color: #8cb3a3;
+      padding: 12px 8px 6px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: color 0.12s ease;
+    }
+    .sidebar-group-header:hover {
+      color: #dcece5;
+    }
+    .sidebar-group-header svg {
+      width: 12px;
+      height: 12px;
+      transition: transform 0.2s ease;
+      color: #608878;
+    }
+    .sidebar-group-header.collapsed svg {
+      transform: rotate(-90deg);
+    }
+    .sidebar-group-items {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .sidebar-group-items.collapsed {
+      display: none;
+    }
+
+    .nav-item {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 9px;
+      padding: 7px 10px;
+      border-radius: 7px;
+      color: #c9ded5;
+      font-size: 12.5px;
+      font-weight: 500;
+      text-align: left;
+      margin-bottom: 2px;
+      transition: all 0.12s ease;
+    }
+    .nav-item-left {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      min-width: 0;
+    }
+    .nav-item:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #ffffff;
+      transform: translateX(2px);
+    }
+    .nav-item.active {
+      background: var(--agro-green);
+      color: #ffffff;
+      font-weight: 700;
+    }
+    .nav-item svg {
+      width: 15px;
+      height: 15px;
+      color: #4ade80;
+      flex-shrink: 0;
+    }
+    .nav-item.active svg {
+      color: #ffffff;
+    }
+    .nav-item-badge {
+      font-size: 9.5px;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      color: #dcece5;
+    }
+    .nav-item.active .nav-item-badge {
+      background: rgba(0, 0, 0, 0.2);
+      color: #ffffff;
+    }
+
+    .sidebar-foot {
+      padding: 10px 12px;
+      border-top: 1px solid #143226;
+      background: #081510;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      color: #729688;
+    }
+    .sidebar-foot strong {
+      color: #c9ded5;
+      font-weight: 700;
+    }
+
+    /* =======================================================================
+       MAIN SCROLLABLE STAGE
+       ======================================================================= */
+    .center-stage {
+      flex: 1;
+      min-width: 0;
+      overflow-y: auto;
+      padding: 14px 20px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .center-stage > * {
+      flex-shrink: 0;
+    }
+
+    /* 1. TOP 4 KÖKLÜ AGRO KPI CARDS (Zahire, Alış, Satış, Stok, Borç) */
+    .netsis-kpi-row {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .netsis-kpi-card {
+      background: #ffffff;
+      border: 1px solid var(--border-soft);
+      border-left: 4px solid var(--agro-green);
+      border-radius: 11px;
+      padding: 12px 15px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+    }
+    .netsis-kpi-card:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(11, 38, 30, 0.08);
+    }
+    .netsis-kpi-card.kpi-emerald { border-left-color: var(--agro-emerald); }
+    .netsis-kpi-card.kpi-amber   { border-left-color: var(--agro-amber); }
+    .netsis-kpi-card.kpi-red     { border-left-color: var(--agro-red); }
+
+    .netsis-kpi-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 10.5px;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .netsis-kpi-mini-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--agro-green-soft);
+      color: var(--agro-green);
+    }
+    .netsis-kpi-card.kpi-emerald .netsis-kpi-mini-icon {
+      background: #dcfce7;
+      color: var(--agro-emerald);
+    }
+    .netsis-kpi-card.kpi-amber .netsis-kpi-mini-icon {
+      background: var(--agro-amber-soft);
+      color: var(--agro-amber);
+    }
+    .netsis-kpi-card.kpi-red .netsis-kpi-mini-icon {
+      background: #fee2e2;
+      color: var(--agro-red);
+    }
+    .netsis-kpi-mini-icon svg {
+      width: 13px;
+      height: 13px;
+    }
+    .netsis-kpi-value {
+      font-size: 20px;
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.3px;
+      color: #0d1e18;
+    }
+    .netsis-kpi-card.kpi-emerald .netsis-kpi-value { color: var(--agro-emerald); }
+    .netsis-kpi-card.kpi-amber .netsis-kpi-value   { color: var(--agro-amber-dark); }
+    .netsis-kpi-card.kpi-red .netsis-kpi-value     { color: var(--agro-red); }
+    .netsis-kpi-card.kpi-green-val .netsis-kpi-value { color: var(--agro-green); }
+    .netsis-kpi-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* 2. NETSİS SHORTCUT LAUNCHER TRAY (Index.htm Exact Box Grid Structure) */
+    .netsis-launcher-tray {
+      position: relative;
+      background: linear-gradient(155deg, var(--agro-tray-top) 0%, var(--agro-tray-bot) 100%);
+      border: 1px solid #9cb1a7;
+      border-radius: 15px;
+      padding: 16px 20px 20px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 4px 14px rgba(11, 38, 30, 0.06);
+      overflow: hidden;
+    }
+    .netsis-watermark {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 46px;
+      font-weight: 900;
+      letter-spacing: 7px;
+      color: rgba(11, 38, 30, 0.04);
+      transform: rotate(-8deg);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .netsis-search-wrap {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 18px;
+    }
+    .netsis-search-pill {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: min(540px, 100%);
+      height: 38px;
+      padding: 0 14px;
+      background: #ffffff;
+      border: 1px solid rgba(11, 38, 30, 0.15);
+      border-radius: 999px;
+      box-shadow: 0 2px 8px rgba(11, 38, 30, 0.08);
+      transition: all 0.15s ease;
+    }
+    .netsis-search-pill:focus-within {
+      border-color: var(--agro-green);
+      box-shadow: 0 0 0 3px rgba(11, 110, 82, 0.18);
+    }
+    .netsis-search-pill svg {
+      width: 15px;
+      height: 15px;
+      color: var(--agro-green);
+      flex-shrink: 0;
+    }
+    .netsis-search-pill input {
+      border: none;
+      outline: none;
+      background: transparent;
+      width: 100%;
+      font-size: 12.5px;
+      color: var(--text-primary);
+    }
+    .netsis-search-pill input::placeholder {
+      color: var(--text-muted);
+    }
+    .kbd-badge {
+      font-size: 10.5px;
+      font-weight: 800;
+      color: var(--agro-green-dark);
+      background: var(--agro-green-soft);
+      border: 1px solid var(--agro-green-border);
+      border-radius: 999px;
+      padding: 1px 7px;
+      flex-shrink: 0;
+    }
+
+    /* Symmetrical 6x2 Grid (12 Köklü Agro Modules) */
+    .modules-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 14px 12px;
+    }
+
+    .module-tile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 8px;
+      padding: 8px 4px 6px;
+      border-radius: 10px;
+      text-align: center;
+      transition: transform 0.14s ease, background 0.14s ease;
+      cursor: pointer;
+    }
+    .module-tile:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.38);
+    }
+
+    .netsis-app-icon {
+      position: relative;
+      width: 54px;
+      height: 54px;
+      border-radius: 13px;
+      background: linear-gradient(180deg, #0e8563 0%, #074e3a 100%);
+      box-shadow: var(--shadow-icon);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      flex-shrink: 0;
+      transition: transform 0.15s ease;
+    }
+    .module-tile:hover .netsis-app-icon {
+      transform: scale(1.04);
+    }
+    .netsis-app-icon svg {
+      width: 26px;
+      height: 26px;
+      color: #ffffff;
+    }
+    .netsis-app-icon.icon-amber {
+      background: linear-gradient(180deg, #d97706 0%, #92400e 100%);
+      box-shadow: 0 4px 10px rgba(184, 110, 12, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+    .netsis-app-icon.icon-blue {
+      background: linear-gradient(180deg, #2563eb 0%, #1e40af 100%);
+      box-shadow: 0 4px 10px rgba(30, 86, 197, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+
+    .tile-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: #0d1e18;
+      line-height: 1.24;
+    }
+
+    .netsis-tile-badge {
+      position: absolute;
+      top: -6px;
+      right: -10px;
+      background: #ffffff;
+      color: var(--agro-green-dark);
+      border: 1.5px solid var(--agro-green);
+      border-radius: 999px;
+      padding: 0.5px 6px;
+      font-size: 9.5px;
+      font-weight: 800;
+      line-height: 1.35;
+      white-space: nowrap;
+      box-shadow: 0 1px 3px rgba(11, 38, 30, 0.16);
+    }
+    .netsis-tile-badge.badge-ok {
+      color: #059669;
+      border-color: #059669;
+      background: #f0fdf4;
+    }
+    .netsis-tile-badge.badge-amber {
+      color: #b45309;
+      border-color: #f59e0b;
+      background: #fffbeb;
+    }
+
+    /* 3. CHARTS ROW (Agro Sales & Purchases Trend + Silo & Grain Distribution) */
+    .netsis-charts-grid {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: 14px;
+    }
+    .netsis-chart-card {
+      background: #ffffff;
+      border: 1px solid var(--border-soft);
+      border-top: 3px solid var(--agro-green);
+      border-radius: 11px;
+      padding: 13px 16px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .chart-card-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .chart-card-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .chart-legend {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+    .legend-dot {
+      display: inline-block;
+      width: 9px;
+      height: 9px;
+      border-radius: 2px;
+      margin-right: 4px;
+    }
+
+    .donut-wrap {
+      display: grid;
+      grid-template-columns: 128px 1fr;
+      gap: 14px;
+      align-items: center;
+    }
+    .aging-bars {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .aging-row-top {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11.5px;
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+    .aging-track {
+      height: 7px;
+      border-radius: 999px;
+      background: #eef2f0;
+      overflow: hidden;
+    }
+    .aging-fill {
+      height: 100%;
+      border-radius: 999px;
+    }
+
+    /* 4. PRESERVED FAVORİ EKRANLAR & FAVORİ RAPORLAR */
+    .favorites-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .fav-card {
+      background: #ffffff;
+      border: 1px solid var(--border-soft);
+      border-radius: 11px;
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+    }
+    .fav-card-header {
+      background: var(--navy-header);
+      border-bottom: 2px solid var(--agro-green);
+      color: #ffffff;
+      padding: 10px 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .fav-card-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .fav-card-title svg {
+      width: 14.5px;
+      height: 14.5px;
+      color: #34d399;
+    }
+    .fav-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 10px 15px;
+      border-bottom: 1px solid #edf3f0;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-primary);
+      text-align: left;
+      transition: background 0.12s ease;
+    }
+    .fav-row:last-child { border-bottom: none; }
+    .fav-row:hover {
+      background: var(--agro-green-soft);
+      color: var(--agro-green-dark);
+    }
+    .fav-row-hint {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--agro-green);
+      opacity: 0;
+      transition: opacity 0.12s ease;
+    }
+    .fav-row:hover .fav-row-hint { opacity: 1; }
+
+    /* =======================================================================
+       MODULE SUB-SCREENS (Zahire, Müstahsil, Kantar, Silo & Muhasebe)
+       ======================================================================= */
+    .module-view {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .view-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: #ffffff;
+      border: 1px solid var(--border-soft);
+      border-left: 4px solid var(--agro-green);
+      border-radius: 11px;
+      padding: 12px 16px;
+      flex-wrap: wrap;
+    }
+    .view-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .view-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .subfilter-pills {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .subfilter-pill {
+      height: 29px;
+      padding: 0 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      background: #f0f5f2;
+      color: var(--text-secondary);
+      border: 1px solid transparent;
+      transition: all 0.14s ease;
+    }
+    .subfilter-pill:hover {
+      background: #e2ece7;
+      color: var(--text-primary);
+    }
+    .subfilter-pill.active {
+      background: var(--agro-green);
+      color: #ffffff;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      height: 34px;
+      padding: 0 14px;
+      border-radius: 8px;
+      background: var(--agro-green);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 12.5px;
+      transition: background 0.14s ease;
+    }
+    .btn-primary:hover { background: var(--agro-green-dark); }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      height: 34px;
+      padding: 0 13px;
+      border-radius: 8px;
+      background: #f6faf8;
+      border: 1px solid var(--border-strong);
+      color: var(--text-primary);
+      font-weight: 600;
+      font-size: 12.5px;
+      transition: all 0.14s ease;
+    }
+    .btn-secondary:hover { background: #e8f2ee; }
+
+    .panel-card {
+      background: #ffffff;
+      border: 1px solid var(--border-soft);
+      border-radius: 11px;
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+    }
+    .panel-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 11px 15px;
+      border-bottom: 1px solid #edf3f0;
+      flex-wrap: wrap;
+    }
+    .inline-filter-input {
+      height: 33px;
+      padding: 0 11px;
+      border: 1px solid var(--border-strong);
+      border-radius: 8px;
+      width: min(270px, 100%);
+      background: #f8faf9;
+      outline: none;
+      transition: border-color 0.15s ease;
+    }
+    .inline-filter-input:focus {
+      background: #ffffff;
+      border-color: var(--agro-green);
+    }
+
+    .table-scroll {
+      width: 100%;
+      overflow-x: auto;
+    }
+    .erp-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 620px;
+    }
+    .erp-table th {
+      background: #f6faf8;
+      color: var(--text-secondary);
+      font-size: 11.5px;
+      font-weight: 700;
+      text-align: left;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border-soft);
+      white-space: nowrap;
+    }
+    .erp-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #f1f6f4;
+      font-size: 12.5px;
+      color: var(--text-primary);
+      vertical-align: middle;
+    }
+    .erp-table tr:hover td { background: #f3faf6; }
+    .num-col {
+      text-align: right !important;
+      font-variant-numeric: tabular-nums;
+      font-weight: 600;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .badge-green { background: #dcfce7; color: #166534; }
+    .badge-amber { background: #fef3c7; color: #92400e; }
+    .badge-red   { background: #fee2e2; color: #991b1b; }
+    .badge-blue  { background: #e0f2fe; color: #075985; }
+    .badge-agro  { background: var(--agro-green-soft); color: var(--agro-green-dark); }
+    .badge-slate { background: #e2e8f0; color: #334155; }
+
+    /* Kantar Fişi & Tartım Görünümü */
+    .scale-card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      padding: 14px;
+    }
+    .scale-ticket-box {
+      border: 1px solid var(--border-soft);
+      border-left: 4px solid var(--agro-green);
+      border-radius: 10px;
+      padding: 12px;
+      background: #fbfdfc;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .scale-ticket-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .scale-plate {
+      font-size: 14px;
+      font-weight: 800;
+      color: #0b261e;
+      letter-spacing: 0.5px;
+    }
+
+    /* MODAL & TOAST */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 30, 24, 0.48);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 90;
+      backdrop-filter: blur(2px);
+    }
+    .modal-backdrop.open { display: flex; }
+    .modal-box {
+      background: #ffffff;
+      width: min(540px, 100%);
+      max-height: 90vh;
+      overflow-y: auto;
+      border-radius: 13px;
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-modal);
+    }
+    .modal-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 13px 18px;
+      background: linear-gradient(90deg, #074e3a 0%, #0b6e52 100%);
+      color: #ffffff;
+    }
+    .modal-head h3 { font-size: 14px; font-weight: 700; }
+    .modal-close-btn {
+      color: #bbf7d0;
+      font-size: 18px;
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+    }
+    .modal-close-btn:hover { background: rgba(255, 255, 255, 0.18); color: #ffffff; }
+    .modal-body {
+      padding: 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .form-field.full { grid-column: 1 / -1; }
+    .form-field label {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+    .form-field input, .form-field select {
+      height: 35px;
+      padding: 0 10px;
+      border-radius: 8px;
+      border: 1px solid var(--border-strong);
+      background: #ffffff;
+      outline: none;
+    }
+    .form-field input:focus, .form-field select:focus { border-color: var(--agro-green); }
+    .modal-foot {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      padding: 12px 18px;
+      background: #f8faf9;
+      border-top: 1px solid #edf3f0;
+    }
+
+    .toast-stack {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      z-index: 110;
+      pointer-events: none;
+    }
+    .toast-item {
+      background: var(--agro-charcoal);
+      color: #ffffff;
+      padding: 10px 14px;
+      border-radius: 9px;
+      font-size: 12.5px;
+      font-weight: 500;
+      box-shadow: 0 8px 24px rgba(10, 30, 24, 0.32);
+      border-left: 4px solid var(--agro-green);
+    }
+
+    @media (max-width: 1040px) {
+      .modules-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .netsis-kpi-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .netsis-charts-grid, .scale-card-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 720px) {
+      .modules-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .netsis-kpi-row, .favorites-grid, .donut-wrap, .form-grid { grid-template-columns: 1fr; }
+      .company-pill { display: none; }
+    }
+
+    @media print {
+      .top-bar, .left-sidebar, .view-actions { display: none !important; }
+      html, body, .erp-app, .erp-body, .center-stage { height: auto; overflow: visible; background: #fff !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="erp-app">
+    <!-- SINGLE UNIFIED HEADER BAR -->
+    <header class="top-bar">
+      <div class="top-left">
+        <button type="button" class="menu-toggle-btn" id="masterMenuBtn" title="Sol Menüyü Aç / Kapat">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+          <span>Menü</span>
+        </button>
+        <div class="bar-divider"></div>
+        <div class="tabs-strip" id="workspaceTabs"></div>
+      </div>
+
+      <div class="top-right">
+        <button type="button" class="icon-action-btn" id="starActiveBtn" title="Aktif ekranı favorilere ekle/çıkar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <span>Favori</span>
+        </button>
+        <button type="button" class="icon-action-btn" id="cloudBackupBtn" title="Bulut Yedek & Veri Yönetimi">
+          <span class="status-dot"></span>
+          <span id="lastBackupText">Yedekli</span>
+        </button>
+        <div class="company-pill">
+          <span class="company-badge-tag">KÖKLÜ AGRO</span>
+          <span>Pro+ Zahire ERP · 17.11.2026</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN BODY + COLLAPSIBLE LEFT SIDEBAR -->
+    <div class="erp-body" id="erpBody">
+      <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+      <aside class="left-sidebar" id="leftSidebar">
+        <div class="sidebar-head">
+          <div class="sidebar-head-title">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z"/><path d="m12 12 8-4.5M12 12v9M12 12 4 7.5"/></svg>
+            <span>KÖKLÜ AGRO MODÜLLERİ</span>
+          </div>
+          <div class="sidebar-head-actions">
+            <button type="button" class="sidebar-icon-btn" id="sidebarPinBtn" title="Menüyü Ekrana Sabitle">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17v5"/><path d="M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16h14v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 1 1 0 0 0 1-1V4H7v1a1 1 0 0 0 1 1 1 1 0 0 1 1 1z"/></svg>
+            </button>
+            <button type="button" class="sidebar-icon-btn" id="sidebarCloseBtn" title="Menüyü Kapat">×</button>
+          </div>
+        </div>
+
+        <div class="sidebar-search-wrap">
+          <input type="text" class="sidebar-search-input" id="sidebarFilterInput" placeholder="Zahire menüsünde ara..." autocomplete="off" />
+        </div>
+
+        <nav class="sidebar-nav" id="sidebarNav"></nav>
+
+        <div class="sidebar-foot">
+          <span>Sürüm: <strong>KA-PRO+ v10.3</strong></span>
+          <span style="color:#10b981;">● Online</span>
+        </div>
+      </aside>
+
+      <main class="center-stage" id="centerStage"></main>
+    </div>
+  </div>
+
+  <!-- MODAL -->
+  <div class="modal-backdrop" id="modalBackdrop">
+    <div class="modal-box">
+      <div class="modal-head">
+        <h3 id="modalTitle">İşlem</h3>
+        <button type="button" class="modal-close-btn" id="modalCloseBtn" aria-label="Kapat">×</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+      <div class="modal-foot" id="modalFoot"></div>
+    </div>
+  </div>
+
+  <div class="toast-stack" id="toastStack"></div>
+
+  <script>
+    /* =========================================================================
+       PICTOGRAM ICONS (Köklü Agro & Netsis Entegrasyonu)
+       ========================================================================= */
+    const ICONS = {
+      home: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>',
+      alis: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14m-7-7 7 7 7-7"/><path d="M5 19h14"/></svg>',
+      satis: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5m7 7-7-7-7 7"/><path d="M5 5h14"/></svg>',
+      kantar: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 8 4-8 4-8-4 8-4Z"/><path d="M4 11v6a8 8 0 0 0 16 0v-6"/><circle cx="12" cy="17" r="2"/></svg>',
+      cari: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="5" height="16" rx="1"/><path d="M12 5h7a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-7V5Z"/><circle cx="15.5" cy="10.5" r="2"/><path d="M13.2 16c.5-1.4 1.3-2 2.3-2s1.8.6 2.3 2"/></svg>',
+      silo: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 7 4v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6l7-4Z"/><line x1="5" y1="10" x2="19" y2="10"/><line x1="5" y1="15" x2="19" y2="15"/></svg>',
+      ticaret: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16l-1.5 9.5a1.5 1.5 0 0 1-1.5 1.3H7a1.5 1.5 0 0 1-1.5-1.3L4 7Z"/><path d="M8 7 10 3h4l2 4"/><path d="M9 12h6M12 9.5v5"/></svg>',
+      kasa: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="11" cy="12" r="3.2"/><path d="M17.5 9.5v5"/></svg>',
+      ceksenet: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M7 10.5h4M7 14.2h10"/><path d="M14.5 9.5h3v2.5h-3z"/></svg>',
+      masraf: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3.5h12v17l-3-2-3 2-3-2-3 2v-17Z"/><path d="M12 7.5v7"/><path d="M9.8 9.5h4.4M9.8 12.5h4.4"/></svg>',
+      vade: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 6 12 12 16 14"/></svg>',
+      analiz: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16h16"/><rect x="7.5" y="13" width="2.2" height="4.5" fill="currentColor"/><rect x="12" y="10.5" width="2.2" height="7" fill="currentColor"/><rect x="16.5" y="8" width="2.2" height="9.5" fill="currentColor"/><path d="m7 10 4.5-3.5 3 2 4.5-4"/></svg>',
+      borsa: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.2"/><path d="M12 7.2v9.6"/><path d="M14.8 9.5c0-1.1-1.2-1.9-2.8-1.9s-2.8.8-2.8 1.9 1.1 1.6 2.8 2 2.8.9 2.8 2.1-1.2 1.9-2.8 1.9-2.8-.8-2.8-1.9"/></svg>',
+      alacak: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9" rx="1.5"/><path d="M8 15.5h8"/><path d="M12 9V4M9.2 6.5 12 4l2.8 2.5"/></svg>',
+      star: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>',
+      raporlar: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 16v-4M12 16V8M16 16v-6"/></svg>',
+      search: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>',
+      chevronDown: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>'
+    };
+
+    /* =========================================================================
+       12 KÖKLÜ AGRO MODÜLLERİ (Kutular aynı index.htm yapısında)
+       ========================================================================= */
+    const MODULES = [
+      // 1. TİCARİ OPERASYON & SAHA
+      { id: 'mustahsil-alis', label: 'Müstahsil & Mal Alışı', group: 'TİCARİ OPERASYON & SAHA', icon: 'alis', badge: 'Alım', viewType: 'purchases', keywords: 'müstahsil makbuzu alış çiftçi stopaj borsa tevkifat buğday mısır arpa' },
+      { id: 'mal-satis', label: 'Mal Satışları (Tüccar/Fabrika)', group: 'TİCARİ OPERASYON & SAHA', icon: 'satis', badge: 'Satış', viewType: 'sales', keywords: 'toptan satış fatura un fabrikası yem tüccar sevk irsaliye' },
+      { id: 'kantar', label: 'Kantar Fişleri & Tartım', group: 'TİCARİ OPERASYON & SAHA', icon: 'kantar', badge: 'Kantar', viewType: 'scale', keywords: 'kantar tartım plaka brüt dara net şoför fiş' },
+      { id: 'cariler', label: 'Cariler & Müstahsiller', group: 'TİCARİ OPERASYON & SAHA', icon: 'cari', badge: '6 Cari', viewType: 'parties', keywords: 'çiftçi müstahsil tüccar fabrika ekstre bakiye borç alacak çks' },
+      { id: 'depo-silo', label: 'Silo & Depo Stok', group: 'TİCARİ OPERASYON & SAHA', icon: 'silo', badge: '3 Silo', viewType: 'inventory', keywords: 'çelik silo merkez depo emanet mısır buğday arpa tonaj fire' },
+      { id: 'tum-ticaret', label: 'Tüm Alış & Satış Defteri', group: 'TİCARİ OPERASYON & SAHA', icon: 'ticaret', badge: 'Defter', viewType: 'trades', keywords: 'ticaret defteri icmal faturalar storno iptal' },
+
+      // 2. FİNANS & ÖDEMELER
+      { id: 'kasa-banka', label: 'Kasa & Bankalar', group: 'FİNANS & ÖDEMELER', icon: 'kasa', badge: 'Konsolide', badgeOk: true, viewType: 'cash', keywords: 'nakit kasa ziraat iş garanti banka havale eft çiftçi tediye' },
+      { id: 'cek-senet', label: 'Çek & Senet Portföyü', group: 'FİNANS & ÖDEMELER', icon: 'ceksenet', badge: '4 Evrak', viewType: 'instruments', keywords: 'portföy müşteri çeki borç senedi ciro tahsil takas' },
+      { id: 'masraf-gider', label: 'Masraf & Gider Fişleri', group: 'FİNANS & ÖDEMELER', icon: 'masraf', badge: 'Giderler', viewType: 'expenses', keywords: 'kantar elektrik kurutma mazot nakliye analiz tahlil masraf' },
+      { id: 'vade-yaslandirma', label: 'Vade & Yaşlandırma', group: 'FİNANS & ÖDEMELER', icon: 'vade', badge: 'Vade Takip', viewType: 'due', keywords: 'vade yaşlandırma açık hesap alacak borç faiz gün' },
+
+      // 3. ANALİZ & SİSTEM
+      { id: 'karlilik-analiz', label: 'Kârlılık & Mizan Analizi', group: 'ANALİZ & SİSTEM', icon: 'analiz', badge: 'BI Kokpit', viewType: 'analytics', keywords: 'brüt kar ürün marj ton kar smm faaliyet sonucu fifo grafik' },
+      { id: 'kurlar-etiket', label: 'Borsa Fiyatları & Kurlar', group: 'ANALİZ & SİSTEM', icon: 'borsa', badge: 'TCMB/Borsa', badgeOk: true, viewType: 'tools', keywords: 'tmo konya ticaret borsası hububat fiyat tcmb kur usd eur' }
+    ];
+
+    const SIDEBAR_GROUPS = ['TİCARİ OPERASYON & SAHA', 'FİNANS & ÖDEMELER', 'ANALİZ & SİSTEM'];
+
+    /* =========================================================================
+       STATE YÖNETİMİ
+       ========================================================================= */
+    const STORAGE_KEY = 'koklu_agro_erp_v10_state';
+
+    function createInitialState() {
+      return {
+        currentDate: '17.11.2026',
+        sidebarOpen: false,
+        sidebarPinned: false,
+        sidebarCollapsedGroups: {},
+        sidebarQuery: '',
+        activeTabId: 'ana-ekran',
+        openTabs: [{ id: 'ana-ekran', label: 'Masaüstü', icon: 'home' }],
+        homeSearch: '',
+        tableFilter: '',
+        subFilter: 'Tümü',
+        selectedProductSku: 'HB-001',
+        fxAmount: 5000,
+        fxCurrency: 'USD',
+        favoriteScreens: [
+          { id: 'kantar', sub: 'Tümü', label: 'Kantar fişleri & canlı tartım' },
+          { id: 'mustahsil-alis', sub: 'Müstahsil', label: 'Açık müstahsil alım makbuzları' },
+          { id: 'cariler', sub: 'Müstahsil', label: 'Çiftçi ekstreleri ve alacakları' },
+          { id: 'depo-silo', sub: 'Çelik Silo 1', label: 'Çelik Silo 1 mısır ve buğday stoğu' }
+        ],
+        favoriteReports: [
+          { id: 'karlilik-analiz', reportKey: 'urun-kar', label: 'Hububat ürün bazlı brüt kârlılık' },
+          { id: 'karlilik-analiz', reportKey: 'faaliyet-ozeti', label: 'Dönem faaliyet kârı ve SMM' },
+          { id: 'vade-yaslandirma', reportKey: 'vade-ozeti', label: 'Açık hesap ve çiftçi vade yaşlandırma' },
+          { id: 'depo-silo', reportKey: 'silo-deger', label: 'Silo envanter ve ortalama maliyet tablosu' }
+        ],
+        cariler: [
+          { kod: 'CR-0001', unvan: 'Ahmet Karadağ (Müstahsil Çiftçi)', rol: 'Müstahsil', sehir: 'Karatay / Konya', cksNo: 'ÇKS-2026-42901', banka: 'Ziraat Bankası Karatay', borc: 0, alacak: 312500, tel: '0532 111 22 33' },
+          { kod: 'CR-0002', unvan: 'Bereket Un & Yem Fabrikası A.Ş.', rol: 'Müşteri', sehir: 'Karaman Ticari', cksNo: 'VKN: 1620491823', banka: 'İş Bankası Karaman', borc: 580000, alacak: 0, tel: '0338 213 44 55' },
+          { kod: 'CR-0003', unvan: 'Çukurova Tohumculuk & Tarım Ltd.', rol: 'Tedarikçi', sehir: 'Seyhan / Adana', cksNo: 'VKN: 2540918204', banka: 'Garanti BBVA Sanayi', borc: 0, alacak: 145000, tel: '0322 458 90 00' },
+          { kod: 'CR-0004', unvan: 'Mehmet Aktaş (Müstahsil Çiftçi)', rol: 'Müstahsil', sehir: 'Çumra / Konya', cksNo: 'ÇKS-2026-42988', banka: 'Ziraat Bankası Çumra', borc: 0, alacak: 172700, tel: '0533 222 33 44' },
+          { kod: 'CR-0005', unvan: 'Ova Tarım Ürünleri Tic. A.Ş.', rol: 'Müşteri', sehir: 'Mersin Liman', cksNo: 'VKN: 6420198421', banka: 'Halkbank Mersin', borc: 410000, alacak: 0, tel: '0324 336 77 88' },
+          { kod: 'CR-0006', unvan: 'Selçuklu Lidaş Lisanslı Depoculuk', rol: 'Tedarikçi', sehir: 'Selçuklu / Konya', cksNo: 'VKN: 7800142890', banka: 'Vakıfbank Konya', borc: 12000, alacak: 48000, tel: '0332 248 11 22' }
+        ],
+        urunler: [
+          { kod: 'HB-001', ad: 'Mısır (1. Sınıf Tane)', silo: 'Çelik Silo 1', birim: 'Kg', miktar: 385000, kritik: 50000, alis: 8.20, satis: 9.40, fire: '%1.2' },
+          { kod: 'HB-002', ad: 'Arpa (Beyaz Yemlik)', silo: 'Merkez Depo', birim: 'Kg', miktar: 142000, kritik: 30000, alis: 7.10, satis: 8.15, fire: '%0.8' },
+          { kod: 'HB-003', ad: 'Ekmeklik Buğday (Protein %13)', silo: 'Çelik Silo 1', birim: 'Kg', miktar: 265000, kritik: 40000, alis: 9.50, satis: 11.20, fire: '%1.0' },
+          { kod: 'HB-004', ad: 'Makarnalık Buğday (Sert)', silo: 'Merkez Depo', birim: 'Kg', miktar: 98000, kritik: 25000, alis: 10.40, satis: 12.30, fire: '%0.9' },
+          { kod: 'HB-005', ad: 'Yağlık Ayçiçeği (%44 Yağ)', silo: 'Emanet Silo', birim: 'Kg', miktar: 115000, kritik: 20000, alis: 16.50, satis: 18.90, fire: '%1.5' },
+          { kod: 'BK-008', ad: 'Nohut (Koçbaşı 8mm)', silo: 'Merkez Depo', birim: 'Kg', miktar: 42000, kritik: 10000, alis: 38.00, satis: 46.50, fire: '%0.5' },
+          { kod: 'YM-013', ad: 'Ayçiçek Küspesi / Yem', silo: 'Merkez Depo', birim: 'Kg', miktar: 75000, kritik: 15000, alis: 6.80, satis: 8.10, fire: '%0.6' }
+        ],
+        kantarFisleri: [
+          { no: 'KNT-2026-001', plaka: '42 ABC 101', sofor: 'Mehmet Demir', urun: 'Mısır (1. Sınıf Tane)', cari: 'Ahmet Karadağ (Müstahsil Çiftçi)', brut: 38450, dara: 13450, net: 25000, tarih: '17.11.2026 09:30', durum: 'Boşaltıldı' },
+          { no: 'KNT-2026-002', plaka: '33 KRT 802', sofor: 'Ali Güven', urun: 'Ekmeklik Buğday (Protein %13)', cari: 'Bereket Un & Yem Fabrikası A.Ş.', brut: 42100, dara: 14200, net: 27900, tarih: '17.11.2026 11:15', durum: 'Sevk Edildi' },
+          { no: 'KNT-2026-003', plaka: '42 ZRT 415', sofor: 'Hüseyin Kaya', urun: 'Arpa (Beyaz Yemlik)', cari: 'Mehmet Aktaş (Müstahsil Çiftçi)', brut: 29800, dara: 11300, net: 18500, tarih: '17.11.2026 14:00', durum: 'Boşaltıldı' },
+          { no: 'KNT-2026-004', plaka: '06 TRM 990', sofor: 'Ramazan Çetin', urun: 'Yağlık Ayçiçeği (%44 Yağ)', cari: 'Çukurova Tohumculuk & Tarım Ltd.', brut: 35200, dara: 13700, net: 21500, tarih: '16.11.2026 16:45', durum: 'Boşaltıldı' }
+        ],
+        ticaretKayitlari: [
+          { no: 'MS-2026-001', tur: 'Müstahsil Alışı', cari: 'Ahmet Karadağ (Müstahsil Çiftçi)', urun: 'Mısır (1. Sınıf Tane)', miktarKg: 25000, birimFiyat: 8.20, tutar: 205000, kesinti: 6150, netTutar: 198850, tarih: '17.11.2026', durum: 'Onaylandı' },
+          { no: 'ST-2026-001', tur: 'Mal Satışı', cari: 'Bereket Un & Yem Fabrikası A.Ş.', urun: 'Ekmeklik Buğday (Protein %13)', miktarKg: 27900, birimFiyat: 11.20, tutar: 312480, kesinti: 0, netTutar: 315604.80, tarih: '17.11.2026', durum: 'Faturalandı' },
+          { no: 'MS-2026-002', tur: 'Müstahsil Alışı', cari: 'Mehmet Aktaş (Müstahsil Çiftçi)', urun: 'Arpa (Beyaz Yemlik)', miktarKg: 18500, birimFiyat: 7.10, tutar: 131350, kesinti: 3940.50, netTutar: 127409.50, tarih: '17.11.2026', durum: 'Onaylandı' },
+          { no: 'ST-2026-002', tur: 'Mal Satışı', cari: 'Ova Tarım Ürünleri Tic. A.Ş.', urun: 'Mısır (1. Sınıf Tane)', miktarKg: 20000, birimFiyat: 9.40, tutar: 188000, kesinti: 0, netTutar: 189880, tarih: '16.11.2026', durum: 'Faturalandı' }
+        ],
+        kasaHareketleri: [
+          { id: 'TH-901', tarih: '17.11.2026 10:15', kanal: 'Banka', islem: 'Tahsilat', cari: 'Bereket Un & Yem Fabrikası', aciklama: 'Garanti BBVA — Hububat satış tahsilatı', giris: 250000, cikis: 0 },
+          { id: 'TD-902', tarih: '17.11.2026 11:40', kanal: 'Banka', islem: 'Müstahsil Ödemesi', cari: 'Ahmet Karadağ', aciklama: 'Ziraat TR12 — Mısır hasat alım avansı', giris: 0, cikis: 120000 },
+          { id: 'MS-903', tarih: '17.11.2026 13:00', kanal: 'Masraf', islem: 'Gider Fişi', cari: 'Konya Kantar & Lidaş', aciklama: 'Kantar kalibrasyonu & kurutma yakıtı', giris: 0, cikis: 14500 },
+          { id: 'KS-904', tarih: '16.11.2026 16:30', kanal: 'Kasa', islem: 'Elden Tahsilat', cari: 'Ova Tarım', aciklama: 'Kasa nakit peşinat teslimi', giris: 45000, cikis: 0 }
+        ],
+        cekSenetler: [
+          { no: 'ÇK-9101', tur: 'Müşteri Çeki', vade: '25.12.2026', kesideci: 'Bereket Un & Yem A.Ş.', banka: 'İş Bankası Karaman', tutar: 180000, durum: 'Portföyde' },
+          { no: 'ÇK-9102', tur: 'Müşteri Çeki', vade: '15.01.2027', kesideci: 'Ova Tarım Tic. A.Ş.', banka: 'Halkbank Mersin', tutar: 150000, durum: 'Tahsilde' },
+          { no: 'SN-4001', tur: 'Borç Senedi', vade: '30.11.2026', kesideci: 'Köklü Agro (Ödenecek)', banka: 'Çukurova Tohumculuk', tutar: 95000, durum: 'Ödenecek' },
+          { no: 'ÇK-9103', tur: 'Müşteri Çeki', vade: '10.02.2027', kesideci: 'Selçuklu Lidaş Depo', banka: 'Vakıfbank Konya', tutar: 60000, durum: 'Portföyde' }
+        ],
+        borsaFiyatlari: [
+          { urun: 'Ekmeklik Buğday', tmoAlis: 9.25, borsaOrt: 10.85, degisim: '+1.4%' },
+          { urun: 'Makarnalık Buğday', tmoAlis: 10.00, borsaOrt: 11.95, degisim: '+0.8%' },
+          { urun: 'Mısır (Tane)', tmoAlis: 8.00, borsaOrt: 9.15, degisim: '+2.1%' },
+          { urun: 'Arpa (Beyaz)', tmoAlis: 7.25, borsaOrt: 8.05, degisim: '+0.5%' },
+          { urun: 'Yağlık Ayçiçeği', tmoAlis: 16.00, borsaOrt: 18.40, degisim: '+1.9%' }
+        ],
+        kurlar: [
+          { kod: 'USD', ad: 'ABD Doları', alis: 35.42, satis: 35.68 },
+          { kod: 'EUR', ad: 'Euro', alis: 38.15, satis: 38.46 }
+        ],
+        lastBackup: 'Yedekli'
+      };
+    }
+
+    let state = loadState();
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) return Object.assign(createInitialState(), JSON.parse(raw));
+      } catch (err) {}
+      return createInitialState();
+    }
+
+    function saveState() {
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (err) {}
+    }
+
+    function fmtTL(num) {
+      return (Number(num) || 0).toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' ₺';
+    }
+
+    function fmtKg(num) {
+      return (Number(num) || 0).toLocaleString('tr-TR') + ' Kg';
+    }
+
+    function fmtInt(num) {
+      return (Number(num) || 0).toLocaleString('tr-TR');
+    }
+
+    function esc(str) {
+      return String(str == null ? '' : str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function getModuleById(id) {
+      if (id === 'ana-ekran') return { id: 'ana-ekran', label: 'Masaüstü', icon: 'home', viewType: 'home' };
+      return MODULES.find(m => m.id === id) || MODULES[0];
+    }
+
+    function showToast(msg) {
+      const stack = document.getElementById('toastStack');
+      const el = document.createElement('div');
+      el.className = 'toast-item';
+      el.textContent = msg;
+      stack.appendChild(el);
+      setTimeout(() => { if (el.parentNode) el.parentNode.removeChild(el); }, 2600);
+    }
+
+    /* =========================================================================
+       SIDEBAR & TAB CONTROLLERS (Açılır / Kapanır Menü)
+       ========================================================================= */
+    function syncSidebarDOM() {
+      const sidebar = document.getElementById('leftSidebar');
+      const overlay = document.getElementById('sidebarOverlay');
+      const body = document.getElementById('erpBody');
+      const pinBtn = document.getElementById('sidebarPinBtn');
+      const menuBtn = document.getElementById('masterMenuBtn');
+
+      if (state.sidebarPinned && window.innerWidth > 900) {
+        body.classList.add('sidebar-pinned');
+        sidebar.classList.add('open');
+        overlay.classList.remove('open');
+        pinBtn.classList.add('pinned');
+        menuBtn.classList.add('is-open');
+      } else {
+        body.classList.remove('sidebar-pinned');
+        pinBtn.classList.remove('pinned');
+        sidebar.classList.toggle('open', !!state.sidebarOpen);
+        overlay.classList.toggle('open', !!state.sidebarOpen);
+        menuBtn.classList.toggle('is-open', !!state.sidebarOpen);
+      }
+    }
+
+    function toggleSidebar() {
+      if (state.sidebarPinned && window.innerWidth > 900) {
+        state.sidebarPinned = false;
+        state.sidebarOpen = false;
+      } else {
+        state.sidebarOpen = !state.sidebarOpen;
+      }
+      saveState();
+      syncSidebarDOM();
+    }
+
+    function closeSidebarIfFloating() {
+      if (!state.sidebarPinned || window.innerWidth <= 900) {
+        state.sidebarOpen = false;
+        saveState();
+        syncSidebarDOM();
+      }
+    }
+
+    function toggleSidebarGroup(groupName) {
+      state.sidebarCollapsedGroups = state.sidebarCollapsedGroups || {};
+      state.sidebarCollapsedGroups[groupName] = !state.sidebarCollapsedGroups[groupName];
+      saveState();
+      renderSidebar();
+    }
+
+    function openModule(moduleId) {
+      const mod = getModuleById(moduleId);
+      state.tableFilter = '';
+      state.subFilter = 'Tümü';
+      if (!state.openTabs.some(t => t.id === mod.id)) {
+        state.openTabs.push({ id: mod.id, label: mod.label, icon: mod.icon || 'home' });
+      }
+      state.activeTabId = mod.id;
+      closeSidebarIfFloating();
+      saveState();
+      renderAll();
+    }
+
+    function closeTab(tabId) {
+      if (tabId === 'ana-ekran') return;
+      const idx = state.openTabs.findIndex(t => t.id === tabId);
+      if (idx === -1) return;
+      state.openTabs.splice(idx, 1);
+      if (state.activeTabId === tabId) {
+        state.activeTabId = (state.openTabs[Math.max(0, idx - 1)] || state.openTabs[0]).id;
+      }
+      saveState();
+      renderAll();
+    }
+
+    function toggleFavoriteActiveScreen() {
+      const activeId = state.activeTabId;
+      if (activeId === 'ana-ekran') {
+        showToast('Favorilere eklemek için önce bir modül açın.');
+        return;
+      }
+      const mod = getModuleById(activeId);
+      const idx = state.favoriteScreens.findIndex(f => f.id === activeId);
+      if (idx >= 0) {
+        state.favoriteScreens.splice(idx, 1);
+        showToast(mod.label + ' favorilerden çıkarıldı.');
+      } else {
+        state.favoriteScreens.unshift({ id: mod.id, label: mod.label });
+        showToast(mod.label + ' favori ekranlara eklendi.');
+      }
+      saveState();
+      renderAll();
+    }
+
+    /* =========================================================================
+       SHELL RENDERERS
+       ========================================================================= */
+    function renderTopBar() {
+      const wrap = document.getElementById('workspaceTabs');
+      wrap.innerHTML = state.openTabs.map(tab => {
+        const active = tab.id === state.activeTabId ? 'active' : '';
+        const closeBtn = tab.id !== 'ana-ekran'
+          ? `<span class="tab-close" data-action="close-tab" data-id="${tab.id}" title="Kapat">×</span>`
+          : '';
+        return `
+          <div class="ws-tab ${active}" data-action="open-module" data-id="${tab.id}" role="tab" tabindex="0">
+            ${ICONS[tab.icon] || ICONS.home}
+            <span>${esc(tab.label)}</span>
+            ${closeBtn}
+          </div>
+        `;
+      }).join('');
+
+      const starBtn = document.getElementById('starActiveBtn');
+      starBtn.classList.toggle('is-favorited', state.favoriteScreens.some(f => f.id === state.activeTabId));
+      document.getElementById('lastBackupText').textContent = state.lastBackup;
+    }
+
+    function renderSidebar() {
+      const nav = document.getElementById('sidebarNav');
+      const sq = (state.sidebarQuery || '').trim().toLocaleLowerCase('tr-TR');
+
+      const homeBtn = (!sq || 'masaüstü ana ekran dashboard'.includes(sq)) ? `
+        <button type="button" class="nav-item ${state.activeTabId === 'ana-ekran' ? 'active' : ''}" data-action="open-module" data-id="ana-ekran">
+          <span class="nav-item-left">
+            ${ICONS.home}
+            <span>Masaüstü (Genel Bakış)</span>
+          </span>
+          <span class="nav-item-badge">Ana Ekran</span>
+        </button>
+      ` : '';
+
+      const groupsHtml = SIDEBAR_GROUPS.map(gName => {
+        const items = MODULES.filter(m => m.group === gName && (!sq || `${m.label} ${m.keywords}`.toLocaleLowerCase('tr-TR').includes(sq)));
+        if (items.length === 0) return '';
+        const isCollapsed = !sq && !!(state.sidebarCollapsedGroups && state.sidebarCollapsedGroups[gName]);
+        return `
+          <div class="sidebar-group-header ${isCollapsed ? 'collapsed' : ''}" data-action="toggle-group" data-group="${esc(gName)}">
+            <span>${esc(gName)}</span>
+            ${ICONS.chevronDown}
+          </div>
+          <div class="sidebar-group-items ${isCollapsed ? 'collapsed' : ''}">
+            ${items.map(m => `
+              <button type="button" class="nav-item ${state.activeTabId === m.id ? 'active' : ''}" data-action="open-module" data-id="${m.id}">
+                <span class="nav-item-left">
+                  ${ICONS[m.icon]}
+                  <span>${esc(m.label)}</span>
+                </span>
+                <span class="nav-item-badge">${esc(m.badge)}</span>
+              </button>
+            `).join('')}
+          </div>
+        `;
+      }).join('');
+
+      nav.innerHTML = homeBtn + groupsHtml;
+      syncSidebarDOM();
+    }
+
+    /* =========================================================================
+       KÖKLÜ AGRO CHARTS (Trend + Hububat Dağılımı)
+       ========================================================================= */
+    function buildAgroChartsSection() {
+      const monthly = [
+        { m: 'Haz', alis: 520, satis: 590 },
+        { m: 'Tem', alis: 860, satis: 940 },
+        { m: 'Ağu', alis: 1240, satis: 1380 },
+        { m: 'Eyl', alis: 1680, satis: 1910 },
+        { m: 'Eki', alis: 2150, satis: 2460 },
+        { m: 'Kas', alis: 2845, satis: 3420 }
+      ];
+      const maxVal = 3600;
+      const trendPts = [];
+      const barsSvg = monthly.map((d, idx) => {
+        const xBase = 46 + idx * 74;
+        const h1 = Math.round((d.alis / maxVal) * 110);
+        const h2 = Math.round((d.satis / maxVal) * 110);
+        const y1 = 136 - h1;
+        const y2 = 136 - h2;
+        trendPts.push(`${xBase + 28},${y2 - 4}`);
+        return `
+          <rect x="${xBase}" y="${y1}" width="14" height="${h1}" rx="3" fill="#b86e0c" />
+          <rect x="${xBase + 17}" y="${y2}" width="14" height="${h2}" rx="3" fill="#0b6e52" />
+          <text x="${xBase + 15}" y="153" text-anchor="middle" font-size="10.5" font-weight="600" fill="#425950">${d.m}</text>
+          <text x="${xBase + 24}" y="${y2 - 6}" text-anchor="middle" font-size="9.5" font-weight="800" fill="#0b6e52">${Math.round(d.satis / 1000 * 10) / 10}M</text>
+        `;
+      }).join('');
+
+      // Silo & Hububat dağılımı
+      const C = 289.03;
+      const p1 = 44, p2 = 28, p3 = 18, p4 = 10;
+      const s1 = (p1 / 100) * C, s2 = (p2 / 100) * C, s3 = (p3 / 100) * C, s4 = (p4 / 100) * C;
+
+      return `
+        <section class="netsis-charts-grid">
+          <div class="netsis-chart-card">
+            <div class="chart-card-head">
+              <div class="chart-card-title">
+                <span style="color:var(--agro-green);display:inline-flex;">${ICONS.analiz}</span>
+                <span>Aylık Zahire Alım & Sevk Seyri (Bin ₺)</span>
+              </div>
+              <div class="chart-legend">
+                <span><i class="legend-dot" style="background:#b86e0c;"></i>Müstahsil Alım</span>
+                <span><i class="legend-dot" style="background:#0b6e52;"></i>Fabrika Satış</span>
+              </div>
+            </div>
+            <svg viewBox="0 0 495 162" style="width:100%;height:154px;display:block;">
+              <line x1="36" y1="24" x2="482" y2="24" stroke="#e0ece6" stroke-dasharray="3 3"/>
+              <line x1="36" y1="62" x2="482" y2="62" stroke="#e0ece6" stroke-dasharray="3 3"/>
+              <line x1="36" y1="100" x2="482" y2="100" stroke="#e0ece6" stroke-dasharray="3 3"/>
+              <line x1="36" y1="136" x2="482" y2="136" stroke="#b5cebe" stroke-width="1.2"/>
+              <text x="30" y="28" text-anchor="end" font-size="9.5" fill="#60796f">3.6M</text>
+              <text x="30" y="65" text-anchor="end" font-size="9.5" fill="#60796f">2.4M</text>
+              <text x="30" y="103" text-anchor="end" font-size="9.5" fill="#60796f">1.2M</text>
+              ${barsSvg}
+              <polyline fill="none" stroke="#074e3a" stroke-width="2" stroke-dasharray="4 2" points="${trendPts.join(' ')}" />
+            </svg>
+          </div>
+
+          <div class="netsis-chart-card">
+            <div class="chart-card-head">
+              <div class="chart-card-title">
+                <span style="color:var(--agro-green);display:inline-flex;">${ICONS.silo}</span>
+                <span>Silo Envanteri & Hububat Dağılımı</span>
+              </div>
+              <span class="badge badge-agro">Kasım 2026 Hasat</span>
+            </div>
+            <div class="donut-wrap">
+              <svg viewBox="0 0 120 120" style="width:122px;height:122px;margin:0 auto;">
+                <circle cx="60" cy="60" r="46" fill="none" stroke="#edf3f0" stroke-width="12.5"/>
+                <circle cx="60" cy="60" r="46" fill="none" stroke="#0b6e52" stroke-width="12.5" stroke-dasharray="${s1} ${C}" transform="rotate(-90 60 60)"/>
+                <circle cx="60" cy="60" r="46" fill="none" stroke="#b86e0c" stroke-width="12.5" stroke-dasharray="${s2} ${C}" stroke-dashoffset="-${s1}" transform="rotate(-90 60 60)"/>
+                <circle cx="60" cy="60" r="46" fill="none" stroke="#087f63" stroke-width="12.5" stroke-dasharray="${s3} ${C}" stroke-dashoffset="-${s1 + s2}" transform="rotate(-90 60 60)"/>
+                <circle cx="60" cy="60" r="46" fill="none" stroke="#1e56c5" stroke-width="12.5" stroke-dasharray="${s4} ${C}" stroke-dashoffset="-${s1 + s2 + s3}" transform="rotate(-90 60 60)"/>
+                <text x="60" y="56" text-anchor="middle" font-size="8" font-weight="700" fill="#60796f">TOPLAM</text>
+                <text x="60" y="70" text-anchor="middle" font-size="11.5" font-weight="800" fill="#0d1e18">1.094 Ton</text>
+              </svg>
+
+              <div class="aging-bars">
+                <div>
+                  <div class="aging-row-top"><span>Tane Mısır (Çelik Silo 1)</span><span style="color:#0b6e52;font-weight:700;">%${p1}</span></div>
+                  <div class="aging-track"><div class="aging-fill" style="width:${p1}%;background:#0b6e52;"></div></div>
+                </div>
+                <div>
+                  <div class="aging-row-top"><span>Ekmeklik Buğday (%13 Prot.)</span><span style="color:#b86e0c;font-weight:700;">%${p2}</span></div>
+                  <div class="aging-track"><div class="aging-fill" style="width:${p2}%;background:#b86e0c;"></div></div>
+                </div>
+                <div>
+                  <div class="aging-row-top"><span>Beyaz Yemlik Arpa</span><span style="color:#087f63;font-weight:700;">%${p3}</span></div>
+                  <div class="aging-track"><div class="aging-fill" style="width:${p3}%;background:#087f63;"></div></div>
+                </div>
+                <div>
+                  <div class="aging-row-top"><span>Yağlık Ayçiçeği & Diğer</span><span style="color:#1e56c5;font-weight:700;">%${p4}</span></div>
+                  <div class="aging-track"><div class="aging-fill" style="width:${p4}%;background:#1e56c5;"></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    /* =========================================================================
+       HOME STAGE (Index.htm Kutu Mimarisi + Köklü Agro Zahire Verileri)
+       ========================================================================= */
+    function renderHomeStage() {
+      const q = state.homeSearch.trim().toLocaleLowerCase('tr-TR');
+      const filtered = MODULES.filter(m => !q || `${m.label} ${m.keywords}`.toLocaleLowerCase('tr-TR').includes(q));
+
+      const netKasa = state.kasaHareketleri.reduce((s, k) => s + k.giris - k.cikis, 0);
+      const musteriAlacak = state.cariler.reduce((s, c) => s + Math.max(0, c.borc - c.alacak), 0);
+      const mustahsilBorc = state.cariler.reduce((s, c) => s + Math.max(0, c.alacak - c.borc), 0);
+      const stokDeger = state.urunler.reduce((s, x) => s + x.miktar * x.alis, 0);
+      const toplamStokKg = state.urunler.reduce((s, x) => s + x.miktar, 0);
+
+      const tilesHtml = filtered.length > 0
+        ? filtered.map(m => `
+            <button type="button" class="module-tile" data-action="open-module" data-id="${m.id}">
+              <div class="netsis-app-icon ${m.id === 'mustahsil-alis' ? 'icon-amber' : m.id === 'kantar' ? 'icon-blue' : ''}">
+                ${ICONS[m.icon]}
+                <span class="netsis-tile-badge ${m.badgeOk ? 'badge-ok' : ''}">${esc(m.badge)}</span>
+              </div>
+              <span class="tile-label">${esc(m.label)}</span>
+            </button>
+          `).join('')
+        : `<div style="grid-column:1/-1;background:#fff;border-radius:11px;padding:22px;text-align:center;color:var(--text-muted);">
+             Aramanıza uygun Köklü Agro modülü bulunamadı.
+           </div>`;
+
+      return `
+        <!-- 1. ÜST 4 KÖKLÜ AGRO KPI KARTI -->
+        <section class="netsis-kpi-row">
+          <div class="netsis-kpi-card kpi-emerald">
+            <div class="netsis-kpi-head"><span>KASA & BANKA MEVCUDU</span><span class="netsis-kpi-mini-icon">${ICONS.kasa}</span></div>
+            <div class="netsis-kpi-value">${fmtTL(netKasa)}</div>
+            <div class="netsis-kpi-sub">Garanti, Ziraat & Merkez Kasa</div>
+          </div>
+
+          <div class="netsis-kpi-card kpi-green-val">
+            <div class="netsis-kpi-head"><span>TÜCCAR / FABRİKA ALACAKLARI</span><span class="netsis-kpi-mini-icon">${ICONS.alacak}</span></div>
+            <div class="netsis-kpi-value">${fmtTL(musteriAlacak)}</div>
+            <div class="netsis-kpi-sub">Bereket Un, Ova Tarım açık bakiye</div>
+          </div>
+
+          <div class="netsis-kpi-card kpi-amber">
+            <div class="netsis-kpi-head"><span>AÇIK MÜSTAHSİL BORCUMUZ</span><span class="netsis-kpi-mini-icon">${ICONS.cari}</span></div>
+            <div class="netsis-kpi-value">${fmtTL(mustahsilBorc)}</div>
+            <div class="netsis-kpi-sub">Hasat teslim eden çiftçi alacakları</div>
+          </div>
+
+          <div class="netsis-kpi-card">
+            <div class="netsis-kpi-head"><span>SİLO & DEPO STOK DEĞERİ</span><span class="netsis-kpi-mini-icon">${ICONS.silo}</span></div>
+            <div class="netsis-kpi-value">${fmtTL(stokDeger)}</div>
+            <div class="netsis-kpi-sub">${fmtKg(toplamStokKg)} Hububat · 3 Aktif Silo</div>
+          </div>
+        </section>
+
+        <!-- 2. KÖKLÜ AGRO LAUNCHER TRAY (Index.htm Kutu Mimarisi) -->
+        <section class="netsis-launcher-tray">
+          <div class="netsis-watermark">KÖKLÜ AGRO</div>
+
+          <div class="netsis-search-wrap">
+            <div class="netsis-search-pill">
+              ${ICONS.search}
+              <input
+                type="text"
+                id="homeModuleSearch"
+                value="${esc(state.homeSearch)}"
+                placeholder="Modül veya işlem aramak için yazın (örn: kantar, buğday, müstahsil)..."
+                autocomplete="off"
+              />
+              <span class="kbd-badge">F10</span>
+            </div>
+          </div>
+
+          <div class="modules-grid">
+            ${tilesHtml}
+          </div>
+        </section>
+
+        <!-- 3. GRAFİKLER & ENVANTER DÖNGÜSÜ -->
+        ${buildAgroChartsSection()}
+
+        <!-- 4. FAVORİ EKRANLAR & FAVORİ RAPORLAR -->
+        <section class="favorites-grid">
+          <div class="fav-card">
+            <div class="fav-card-header">
+              <div class="fav-card-title">${ICONS.star}<span>Köklü Agro — Sık Kullanılan İstasyonlar</span></div>
+            </div>
+            <div>
+              ${state.favoriteScreens.map(f => `
+                <button type="button" class="fav-row" data-action="open-module" data-id="${f.id}" data-sub="${esc(f.sub || '')}">
+                  <span>${esc(f.label)}</span>
+                  <span class="fav-row-hint">Aç →</span>
+                </button>
+              `).join('')}
+            </div>
+          </div>
+
+          <div class="fav-card">
+            <div class="fav-card-header">
+              <div class="fav-card-title">${ICONS.raporlar}<span>Resmi ve Mali Defter Raporları</span></div>
+            </div>
+            <div>
+              ${state.favoriteReports.map(r => `
+                <button type="button" class="fav-row" data-action="open-report" data-id="${r.id}" data-report="${r.reportKey}">
+                  <span>${esc(r.label)}</span>
+                  <span class="fav-row-hint">Rapor →</span>
+                </button>
+              `).join('')}
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    /* =========================================================================
+       SUB-VIEWS: KÖKLÜ AGRO ZAHİRE MODÜLLERİ
+       ========================================================================= */
+    function renderModuleHeader(mod, subtitle, primaryBtnHtml) {
+      return `
+        <div class="view-topbar">
+          <div class="view-title-wrap">
+            <div class="netsis-app-icon" style="width:42px;height:42px;border-radius:10px;">${ICONS[mod.icon] || ICONS.silo}</div>
+            <div>
+              <h2 style="font-size:16.5px;font-weight:700;color:var(--text-primary);">${esc(mod.label)}</h2>
+              <div style="font-size:12px;color:var(--text-muted);">${esc(subtitle)}</div>
+            </div>
+          </div>
+          <div class="view-actions">
+            <button type="button" class="btn-secondary" data-action="open-module" data-id="ana-ekran">← Masaüstü</button>
+            ${primaryBtnHtml || ''}
+          </div>
+        </div>
+      `;
+    }
+
+    // 1. KANTAR FİŞLERİ & TARTIM
+    function renderScaleView(mod) {
+      const q = state.tableFilter.trim().toLocaleLowerCase('tr-TR');
+      const rows = state.kantarFisleri.filter(k => {
+        return !q || `${k.no} ${k.plaka} ${k.sofor} ${k.urun} ${k.cari}`.toLocaleLowerCase('tr-TR').includes(q);
+      });
+
+      return `
+        <div class="module-view">
+          ${renderModuleHeader(mod, 'Elektronik kantar tartımları, plaka, şoför ve net teslimat fişleri',
+            '<button type="button" class="btn-primary" data-action="modal-new-kantar">+ Yeni Kantar Fişi Kes</button>')}
+          <div class="panel-card">
+            <div class="panel-toolbar">
+              <strong>Son Kantar Tartımları</strong>
+              <input type="text" class="inline-filter-input" id="moduleSearchInput" value="${esc(state.tableFilter)}" placeholder="Plaka, fiş no veya şoför ara..." />
+            </div>
+            <div class="table-scroll">
+              <table class="erp-table">
+                <thead><tr><th>Fiş No</th><th>Tarih</th><th>Plaka</th><th>Şoför</th><th>Ürün</th><th>Muhatap</th><th class="num-col">Brüt</th><th class="num-col">Dara</th><th class="num-col">Net Kg</th><th>Durum</th></tr></thead>
+                <tbody>
+                  ${rows.map(k => `
+                    <tr>
+                      <td><strong>${esc(k.no)}</strong></td>
+                      <td>${esc(k.tarih)}</td>
+                      <td><span class="badge badge-slate" style="font-family:monospace;font-weight:800;">${esc(k.plaka)}</span></td>
+                      <td>${esc(k.sofor)}</td>
+                      <td><strong>${esc(k.urun)}</strong></td>
+                      <td>${esc(k.cari)}</td>
+                      <td class="num-col">${fmtInt(k.brut)} Kg</td>
+                      <td class="num-col" style="color:var(--text-muted);">${fmtInt(k.dara)} Kg</td>
+                      <td class="num-col" style="color:var(--agro-green);font-weight:800;">${fmtInt(k.net)} Kg</td>
+                      <td><span class="badge badge-green">${esc(k.durum)}</span></td>
+                    </tr>
+                  `).join('')}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // 2. MÜSTAHSİL VE MAL ALIŞLARI
+    function renderPurchasesView(mod) {
+      const q = state.tableFilter.trim().toLocaleLowerCase('tr-TR');
+      const rows = state.ticaretKayitlari.filter(t => t.tur === 'Müstahsil Alışı' && (!q || `${t.no} ${t.cari} ${t.urun}`.toLocaleLowerCase('tr-TR').includes(q)));
+
+      return `
+        <div class="module-view">
+          ${renderModuleHeader(mod, 'Çiftçi müstahsil makbuzu (Stopaj, Borsa, Bağ-Kur kesintili alımlar)',
+            '<button type="button" class="btn-primary" data-action="modal-new-mustahsil">+ Müstahsil Makbuzu Kes</button>')}
+          <div class="panel-card">
+            <div class="panel-toolbar">
+              <strong>Müstahsil Alım Kayıtları</strong>
+              <input type="text" class="inline-filter-input" id="moduleSearchInput" value="${esc(state.tableFilter)}" placeholder="Müstahsil veya belge ara..." />
+            </div>
+            <div class="table-scroll">
+              <table class="erp-table">
+                <thead><tr><th>Belge No</th><th>Tarih</th><th>Çiftçi / Müstahsil</th><th>Hububat</th><th class="num-col">Miktar</th><th class="num-col">Birim Fiyat</th><th class="num-col">Brüt Tutar</th><th class="num-col">Kesinti (Stopaj)</th><th class="num-col">Ödenecek Net</th><th>Durum</th></tr></thead>
+                <tbody>
+                  ${rows.map(r => `
+                    <tr>
+                      <td><strong>${esc(r.no)}</strong></td>
+                      <td>${esc(r.tarih)}</td>
+                      <td><strong>${esc(r.cari)}</strong></td>
+                      <td>${esc(r.urun)}</td>
+                      <td class="num-col">${fmtKg(r.miktarKg)}</td>
+                      <td class="num-col">${fmtTL(r.birimFiyat)}</td>
+                      <td class="num-col">${fmtTL(r.tutar)}</td>
+                      <td class="num-col" style="color:#b45309;">-${fmtTL(r.kesinti)}</td>
+                      <td class="num-col" style="color:var(--agro-green);font-weight:800;">${fmtTL(r.netTutar)}</td>
+                      <td><span class="badge badge-green">${esc(r.durum)}</span></td>
+                    </tr>
+                  `).join('')}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // 3. MAL SATIŞLARI (FABRİKA / TÜCCAR)
+    function renderSalesView(mod) {
+      const q = state.tableFilter.trim().toLocaleLowerCase('tr-TR');
+      const rows = state.ticaretKayitlari.filter(t => t.tur === 'Mal Satışı' && (!q || `${t.no} ${t.cari} ${t.urun}`.toLocaleLowerCase('tr-TR').includes(q)));
+
+      return `
+        <div class="module-view">
+          ${renderModuleHeader(mod, 'Un fabrikaları, yem sanayi ve tüccar toptan mal satış faturaları',
+            '<button type="button" class="btn-primary" data-action="modal-new-satis">+ Yeni Mal Satışı Faturası</button>')}
+          <div class="panel-card">
+            <div class="panel-toolbar">
+              <strong>Mal Satış & Sevk İcmali</strong>
+              <input type="text" class="inline-filter-input" id="moduleSearchInput" value="${esc(state.tableFilter)}" placeholder="Müşteri veya fatura ara..." />
+            </div>
+            <div class="table-scroll">
+              <table class="erp-table">
+                <thead><tr><th>Fatura No</th><th>Tarih</th><th>Alıcı Müşteri</th><th>Ürün</th><th class="num-col">Sevk Miktarı</th><th class="num-col">Satış Fiyatı</th><th class="num-col">Toplam Tutar</th><th>Durum</th></tr></thead>
+                <tbody>
+                  ${rows.map(r => `
+                    <tr>
+                      <td><strong>${esc(r.no)}</strong></td>
+                      <td>${esc(r.tarih)}</td>
+                      <td><strong>${esc(r.cari)}</strong></td>
+                      <td>${esc(r.urun)}</td>
+                      <td class="num-col">${fmtKg(r.miktarKg)}</td>
+                      <td class="num-col">${fmtTL(r.birimFiyat)}</td>
+                      <td class="num-col" style="color:var(--agro-green);font-weight:800;">${fmtTL(r.netTutar)}</td>
+                      <td><span class="badge badge-green">${esc(r.durum)}</span></td>
+                    </tr>
+                  `).join('')}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // 4. SİLO VE DEPO STOKLARI
+    function renderInventoryView(mod) {
+      const filters = ['Tümü', 'Çelik Silo 1', 'Merkez Depo', 'Emanet Silo'];
+      const q = state.tableFilter.trim().toLocaleLowerCase('tr-TR');
+      const rows = state.urunler.filter(s => {
+        if (state.subFilter !== 'Tümü' && s.silo !== state.subFilter) return false;
+        return !q || `${s.kod} ${s.ad} ${s.silo}`.toLocaleLowerCase('tr-TR').includes(q);
+      });
+
+      return `
+        <div class="module-view">
+          ${renderModuleHeader(mod, 'Çelik silolar, merkez ambar ve emanet hububat stok durumları',
+            '<button type="button" class="btn-primary" data-action="modal-new-urun">+ Yeni Ürün / Silo Tanımla</button>')}
+          <div class="panel-card">
+            <div class="panel-toolbar">
+              <div class="subfilter-pills">
+                ${filters.map(f => `<button type="button" class="subfilter-pill ${state.subFilter === f ? 'active' : ''}" data-action="set-subfilter" data-val="${f}">${f}</button>`).join('')}
+              </div>
+              <input type="text" class="inline-filter-input" id="moduleSearchInput" value="${esc(state.tableFilter)}" placeholder="Ürün veya silo ara..." />
+            </div>
+            <div class="table-scroll">
+              <table class="erp-table">
+                <thead><tr><th>Ürün Kodu</th><th>Ürün Adı</th><th>Depolama / Silo</th><th class="num-col">Mevcut Miktar</th><th class="num-col">Ort. Alış</th><th class="num-col">Piyasa Satış</th><th>Standart Fire</th><th>İşlem</th></tr></thead>
+                <tbody>
+                  ${rows.map(s => `
+                    <tr>
+                      <td><strong>${esc(s.kod)}</strong></td>
+                      <td><strong>${esc(s.ad)}</strong></td>
+                      <td><span class="badge badge-agro">${esc(s.silo)}</span></td>
+                      <td class="num-col" style="font-weight:800;color:#0b6e52;">${fmtKg(s.miktar)}</td>
+                      <td class="num-col">${fmtTL(s.alis)} / Kg</td>
+                      <td class="num-col">${fmtTL(s.satis)} / Kg</td>
+                      <td><span class="badge badge-slate">${esc(s.fire)}</span></td>
+                      <td><button type="button" class="btn-secondary" style="height:27px;padding:0 9px;" data-action="silo-giris" data-sku="${s.kod}">+10 Ton Alım</button></td>
+                    </tr>
+                  `).join('')}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // 5. CARİLER VE MÜSTAHSİLLER
+    function renderPartiesView(mod) {
+      const filters = ['Tümü', 'Müstahsil', 'Müşteri', 'Tedarikçi'];
+      const q = state.tableFilter.trim().toLocaleLowerCase('tr-TR');
+      const rows = state.cariler.filter(c => {
+        if (state.subFilter !== 'Tümü' && c.rol !== state.subFilter) return false;
+        return !q || `${c.kod} ${c.unvan} ${c.sehir} ${c.cksNo}`.toLocaleLowerCase('tr-TR').includes(q);
+      });
+
+      return `
+        <div class="module-view">
+          ${renderModuleHeader(mod, 'Çiftçi müstahsiller, un fabrikaları, tüccarlar ve ekstre takibi',
+            '<button type="button" class="btn-primary" data-action="modal-new-cari">+ Yeni Cari / Çiftçi Ekle</button>')}
+          <div class="panel-card">
+            <div class="panel-toolbar">
+              <div class="subfilter-pills">
+                ${filters.map(f => `<button type="button" class="subfilter-pill ${state.subFilter === f ? 'active' : ''}" data-action="set-subfilter" data-val="${f}">${f}</button>`).join('')}
+              </div>
+              <input type="text" class="inline-filter-input" id="moduleSearchInput" value="${esc(state.tableFilter)}" placeholder="Çiftçi adı, ÇKS no veya şehir ara..." />
+            </div>
+            <div class="table-scroll">
+              <table class="erp-table">
+                <thead><tr><th>Cari Kodu</th><th>Ünvan / Ad Soyad</th><th>Rol</th><th>Bölge</th><th>ÇKS / VKN</th><th class="num-col">Bakiye Durumu</th><th>İşlem</th></tr></thead>
+                <tbody>
+                  ${rows.map(c => {
+                    const net = c.borc - c.alacak;
+                    return `
+                      <tr>
+                        <td><strong>${esc(c.kod)}</strong></td>
+                        <td><strong>${esc(c.unvan)}</strong></td>
+                        <td><span class="badge ${c.rol === 'Müstahsil' ? 'badge-amber' : c.rol === 'Müşteri' ? 'badge-green' : 'badge-slate'}">${esc(c.rol)}</span></td>
+                        <td>${esc(c.sehir)}</td>
+                        <td><span style="font-family:monospace;font-size:11px;">${esc(c.cksNo)}</span></td>
+                        <td class="num-col">${fmtTL(Math.abs(net))} <span class="badge ${net > 0 ? 'badge-green' : net < 0 ? 'badge-amber' : 'badge-slate'}">${net > 0 ? 'Alacaklıyız' : net < 0 ? 'Çiftçi Alacağı' : 'Kapalı'}</span></td>
+                        <td><button type="button" class="btn-secondary" style="height:27px;padding:0 9px;" data-action="cari-tahsilat" data-kod="${c.kod}">Ödeme / Tahsilat</button></td>
+                      </tr>
+                    `;
+                  }).join('')}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // 6. TÜM TİCARET DEFTERİ
+    function renderTradesView(mod) {
+      return `
+        <div class="module-view">
+          ${renderModuleHeader(mod, 'Zahire defteri, icmaller, resmi alış ve satış hareketleri dökümü',
+            '<button type="button" class="btn-secondary" data-action="print-page">Yazdır (PDF)</button>')}
+          <div class="panel-card">
+            <div class="table-scroll">
+              <table class="erp-table">
+                <thead><tr><th>Belge No</th><th>Tür</th><th>Tarih</th><th>Cari</th><th>Hububat</th><th class="num-col">Miktar</th><th class="num-col">Net Tutar</th><th>Durum</th></tr></thead>
+                <tbody>
+                  ${state.ticaretKayitlari.map(t => `
+                    <tr>
+                      <td><strong>${esc(t.no)}</strong></td>
+                      <td><span class="badge ${t.tur.includes('Alış') ? 'badge-amber' : 'badge-green'}">${esc(t.tur)}</span></td>
+                      <td>${esc(t.tarih)}</td>
+                      <td><strong>${esc(t.cari)}</strong></td>
+                      <td>${esc(t.urun)}</td>
+                      <td class="num-col">${fmtKg(t.miktarKg)}</td>
+                      <td class="num-col" style="font-weight:800;">${fmtTL(t.netTutar)}</td>
+                      <td><span class="badge badge-green">${esc(t.durum)}</span></td>
+                    </tr>
+                  `).join('')}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // 7. KASA & BANKA HAREKETLERİ
+    function renderCashView(mod) {
+      const filters = ['Tümü', 'Banka', 'Kasa', 'Masraf'];
+      const rows = state.kasaHareketleri.filter(k => state.subFilter === 'Tümü' || k.kanal === state.subFilter);
+
+      return `
+        <div class="module-view">
+          ${renderModuleHeader(mod, 'Nakit kasa, Ziraat Bankası, Garanti BBVA ve İş Bankası akışları',
+            '<button type="button" class="btn-primary" data-action="modal-new-kasa">+ Yeni Kasa / Banka Fişi</button>')}
+          <div class="panel-card">
+            <div class="panel-toolbar">
+              <div class="subfilter-pills">
+                ${filters.map(f => `<button type="button" class="subfilter-pill ${state.subFilter === f ? 'active' : ''}" data-action="set-subfilter" data-val="${f}">${f}</button>`).join('')}
+              </div>
+            </div>
+            <div class="table-scroll">
+              <table class="erp-table">
+                <thead><tr><th>Fiş No</th><th>Tarih</th><th>Kanal</th><th>İşlem Türü</th><th>Açıklama</th><th class="num-col">Giriş (Tahsilat)</th><th class="num-col">Çıkış (Ödeme)</th></tr></thead>
+                <tbody>
+                  ${rows.map(k => `
+                    <tr>
+                      <td><strong>${esc(k.id)}</strong></td>
+                      <td>${esc(k.tarih)}</td>
+                      <td><span class="badge badge-agro">${esc(k.kanal)}</span></td>
+                      <td><strong>${esc(k.islem)}</strong></td>
+                      <td>${esc(k.aciklama)}</td>
+                      <td class="num-col" style="color:var(--agro-green);">${k.giris ? fmtTL(k.giris) : '-'}</td>
+                      <td class="num-col" style="color:var(--agro-red);">${k.cikis ? fmtTL(k.cikis) : '-'}</td>
+                    </tr>
+                  `).join('')}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // 8. ÇEK & SENET
+    function renderInstrumentsView(mod) {
+      return `
+        <div class="module-view">
+          ${renderModuleHeader(mod, 'Portföydeki müşteri çekleri ve vadeli müstahsil borç senetleri',
+            '<button type="button" class="btn-primary" data-action="modal-new-ceksenet">+ Yeni Çek / Senet</button>')}
+          <div class="panel-card">
+            <div class="table-scroll">
+              <table class="erp-table">
+                <thead><tr><th>Evrak No</th><th>Tür</th><th>Vade Tarihi</th><th>Keşideci / Muhatap</th><th>Banka / Şube</th><th class="num-col">Tutar</th><th>Durum</th></tr></thead>
+                <tbody>
+                  ${state.cekSenetler.map(c => `
+                    <tr>
+                      <td><strong>${esc(c.no)}</strong></td>
+                      <td><span class="badge badge-agro">${esc(c.tur)}</span></td>
+                      <td><strong>${esc(c.vade)}</strong></td>
+                      <td>${esc(c.kesideci)}</td>
+                      <td>${esc(c.banka)}</td>
+                      <td class="num-col" style="font-weight:800;">${fmtTL(c.tutar)}</td>
+                      <td><span class="badge ${c.durum === 'Ödenecek' ? 'badge-amber' : 'badge-green'}">${esc(c.durum)}</span></td>
+                    </tr>
+                  `).join('')}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // 9. MASRAF & GİDER
+    function renderExpensesView(mod) {
+      const expenses = state.kasaHareketleri.filter(k => k.kanal === 'Masraf');
+      return `
+        <div class="module-view">
+          ${renderModuleHeader(mod, 'Kantar kalibrasyonu, elektrik, kurutma, nakliye ve saha masrafları',
+            '<button type="button" class="btn-primary" data-action="modal-new-gider">+ Gider Fişi İşle</button>')}
+          <div class="panel-card">
+            <div class="table-scroll">
+              <table class="erp-table">
+                <thead><tr><th>Gider Fişi</th><th>Tarih</th><th>Açıklama</th><th>Muhatap</th><th class="num-col">Tutar</th></tr></thead>
+                <tbody>
+                  ${expenses.map(e => `
+                    <tr>
+                      <td><strong>${esc(e.id)}</strong></td>
+                      <td>${esc(e.tarih)}</td>
+                      <td>${esc(e.aciklama)}</td>
+                      <td>${esc(e.cari || 'Muhtelif Gider')}</td>
+                      <td class="num-col" style="color:var(--agro-red);font-weight:800;">${fmtTL(e.cikis)}</td>
+                    </tr>
+                  `).join('')}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // 10. VADE & YAŞLANDIRMA
+    function renderDueView(mod) {
+      return `
+        <div class="module-view">
+          ${renderModuleHeader(mod, 'Vadeli açık hesap bakiye ve tahsilat yaşlandırma raporu',
+            '<button type="button" class="btn-secondary" data-action="print-page">Yazdır</button>')}
+          <div class="panel-card">
+            <div class="panel-toolbar"><strong>Vadesi Gelen ve Yaklaşan Cari Hesaplar</strong></div>
+            <div class="table-scroll">
+              <table class="erp-table">
+                <thead><tr><th>Cari Kodu</th><th>Ünvan</th><th>Vade Durumu</th><th class="num-col">Vadesi Geçen</th><th class="num-col">0-30 Gün</th><th class="num-col">31-60 Gün</th><th class="num-col">Toplam Bakiye</th></tr></thead>
+                <tbody>
+                  ${state.cariler.map(c => {
+                    const net = c.borc - c.alacak;
+                    return `
+                      <tr>
+                        <td><strong>${esc(c.kod)}</strong></td>
+                        <td>${esc(c.unvan)}</td>
+                        <td><span class="badge ${net > 0 ? 'badge-green' : 'badge-amber'}">${net > 0 ? 'Alacak' : 'Borç'}</span></td>
+                        <td class="num-col" style="color:#dc2626;">0,00 ₺</td>
+                        <td class="num-col">${fmtTL(Math.abs(net) * 0.7)}</td>
+                        <td class="num-col">${fmtTL(Math.abs(net) * 0.3)}</td>
+                        <td class="num-col" style="font-weight:800;">${fmtTL(Math.abs(net))}</td>
+                      </tr>
+                    `;
+                  }).join('')}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // 11. KÂRLILIK & MİZAN ANALİZİ
+    function renderAnalyticsView(mod) {
+      return `
+        <div class="module-view">
+          ${renderModuleHeader(mod, 'Hububat ürünleri brüt kâr marjları ve dönem faaliyet sonuçları',
+            '<button type="button" class="btn-secondary" data-action="print-page">Yazdır (PDF)</button>')}
+          ${buildAgroChartsSection()}
+          <div class="panel-card">
+            <div class="panel-toolbar"><strong>Hububat Bazlı Brüt Kârlılık ve Marjlar</strong></div>
+            <div class="table-scroll">
+              <table class="erp-table">
+                <thead><tr><th>Ürün Kodu</th><th>Hububat Cinsi</th><th class="num-col">Ort. Alış</th><th class="num-col">Satış Fiyatı</th><th class="num-col">Birim Kâr</th><th class="num-col">Kâr Marjı</th></tr></thead>
+                <tbody>
+                  ${state.urunler.map(s => {
+                    const kar = s.satis - s.alis;
+                    return `
+                      <tr>
+                        <td><strong>${esc(s.kod)}</strong></td>
+                        <td><strong>${esc(s.ad)}</strong></td>
+                        <td class="num-col">${fmtTL(s.alis)}</td>
+                        <td class="num-col">${fmtTL(s.satis)}</td>
+                        <td class="num-col" style="color:var(--agro-green);font-weight:800;">+${fmtTL(kar)} / Kg</td>
+                        <td class="num-col"><span class="badge badge-green">%${((kar / s.satis) * 100).toFixed(1)}</span></td>
+                      </tr>
+                    `;
+                  }).join('')}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // 12. BORSA FİYATLARI & KURLAR
+    function renderToolsView(mod) {
+      const item = state.urunler.find(s => s.kod === state.selectedProductSku) || state.urunler[0];
+      const rateObj = state.kurlar.find(k => k.kod === state.fxCurrency) || state.kurlar[0];
+      const converted = (Number(state.fxAmount) || 0) * rateObj.satis;
+
+      return `
+        <div class="module-view">
+          ${renderModuleHeader(mod, 'Ticaret borsası hububat kapanış fiyatları ve TMO müdahale alımları',
+            '<button type="button" class="btn-secondary" data-action="print-page">Yazdır</button>')}
+          <div class="netsis-charts-grid">
+            <div class="panel-card" style="padding:16px;display:flex;flex-direction:column;gap:12px;">
+              <strong>Konya & Polatlı Ticaret Borsası Referans Fiyatları</strong>
+              <table class="erp-table" style="min-width:100%;">
+                <thead><tr><th>Hububat</th><th class="num-col">TMO Alış</th><th class="num-col">Borsa Ort.</th><th>Değişim</th></tr></thead>
+                <tbody>
+                  ${state.borsaFiyatlari.map(b => `
+                    <tr>
+                      <td><strong>${esc(b.urun)}</strong></td>
+                      <td class="num-col">${fmtTL(b.tmoAlis)}</td>
+                      <td class="num-col" style="color:var(--agro-green);font-weight:800;">${fmtTL(b.borsaOrt)}</td>
+                      <td><span class="badge badge-green">${esc(b.degisim)}</span></td>
+                    </tr>
+                  `).join('')}
+                </tbody>
+              </table>
+            </div>
+
+            <div class="panel-card" style="padding:16px;display:flex;flex-direction:column;gap:12px;">
+              <strong>TCMB Döviz Kurları & Çevirici</strong>
+              <div style="display:flex;gap:8px;align-items:flex-end;flex-wrap:wrap;">
+                <div class="form-field"><label>Tutar</label><input type="number" id="fxAmountInput" value="${esc(state.fxAmount)}" style="width:120px;" /></div>
+                <div class="form-field"><label>Döviz</label><select id="fxCurrencySelect">${state.kurlar.map(k => `<option value="${k.kod}" ${k.kod === state.fxCurrency ? 'selected' : ''}>${k.kod}</option>`).join('')}</select></div>
+                <div style="padding:7px 12px;background:var(--agro-green-soft);border-radius:8px;font-weight:800;color:var(--agro-green-dark);">${fmtTL(converted)}</div>
+              </div>
+              <table class="erp-table" style="min-width:100%;">
+                <thead><tr><th>Para Birimi</th><th class="num-col">Alış</th><th class="num-col">Satış</th></tr></thead>
+                <tbody>
+                  ${state.kurlar.map(k => `<tr><td><strong>${esc(k.kod)}</strong> (${esc(k.ad)})</td><td class="num-col">${fmtTL(k.alis)}</td><td class="num-col">${fmtTL(k.satis)}</td></tr>`).join('')}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderCenterStage() {
+      const stage = document.getElementById('centerStage');
+      if (state.activeTabId === 'ana-ekran') {
+        stage.innerHTML = renderHomeStage();
+        return;
+      }
+      const mod = getModuleById(state.activeTabId);
+      switch (mod.viewType) {
+        case 'purchases': stage.innerHTML = renderPurchasesView(mod); break;
+        case 'sales': stage.innerHTML = renderSalesView(mod); break;
+        case 'scale': stage.innerHTML = renderScaleView(mod); break;
+        case 'parties': stage.innerHTML = renderPartiesView(mod); break;
+        case 'inventory': stage.innerHTML = renderInventoryView(mod); break;
+        case 'trades': stage.innerHTML = renderTradesView(mod); break;
+        case 'cash': stage.innerHTML = renderCashView(mod); break;
+        case 'instruments': stage.innerHTML = renderInstrumentsView(mod); break;
+        case 'expenses': stage.innerHTML = renderExpensesView(mod); break;
+        case 'due': stage.innerHTML = renderDueView(mod); break;
+        case 'tools': stage.innerHTML = renderToolsView(mod); break;
+        default: stage.innerHTML = renderAnalyticsView(mod); break;
+      }
+    }
+
+    function renderAll() {
+      renderTopBar();
+      renderSidebar();
+      renderCenterStage();
+    }
+
+    /* =========================================================================
+       MODALLAR
+       ========================================================================= */
+    function openModal(title, bodyHtml, footHtml) {
+      document.getElementById('modalTitle').textContent = title;
+      document.getElementById('modalBody').innerHTML = bodyHtml;
+      document.getElementById('modalFoot').innerHTML = footHtml || '';
+      document.getElementById('modalBackdrop').classList.add('open');
+    }
+
+    function closeModal() {
+      document.getElementById('modalBackdrop').classList.remove('open');
+    }
+
+    function showShortcutPickerModal() {
+      openModal(
+        'Hızlı Modül ve İstasyon Aç (F10)',
+        `
+          <div class="form-field full">
+            <input type="text" id="pickerFilterInput" placeholder="Köklü Agro modülü veya işlemi ara..." />
+          </div>
+          <div id="pickerList" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;">
+            ${MODULES.map(m => `
+              <button type="button" class="btn-secondary" style="justify-content:flex-start;" data-action="pick-module" data-id="${m.id}">
+                <span style="color:var(--agro-green);display:inline-flex;">${ICONS[m.icon]}</span>
+                <span>${esc(m.label)}</span>
+              </button>
+            `).join('')}
+          </div>
+        `,
+        '<button type="button" class="btn-secondary" data-action="close-modal">Kapat</button>'
+      );
+      const inp = document.getElementById('pickerFilterInput');
+      if (inp) {
+        inp.focus();
+        inp.addEventListener('input', () => {
+          const val = inp.value.trim().toLocaleLowerCase('tr-TR');
+          document.getElementById('pickerList').innerHTML = MODULES
+            .filter(m => `${m.label} ${m.keywords}`.toLocaleLowerCase('tr-TR').includes(val))
+            .map(m => `
+              <button type="button" class="btn-secondary" style="justify-content:flex-start;" data-action="pick-module" data-id="${m.id}">
+                <span style="color:var(--agro-green);display:inline-flex;">${ICONS[m.icon]}</span>
+                <span>${esc(m.label)}</span>
+              </button>
+            `).join('');
+        });
+      }
+    }
+
+    function showBackupModal() {
+      openModal(
+        'Bulut Yedekleme & Zahire Veri Yönetimi',
+        `<p style="color:var(--text-secondary);line-height:1.5;">Köklü Agro zahire veritabanı yedeğini JSON olarak indirebilir veya demo durumuna sıfırlayabilirsiniz.</p>`,
+        `<button type="button" class="btn-secondary" data-action="reset-demo">Verileri Sıfırla</button>
+         <button type="button" class="btn-primary" data-action="download-backup">JSON Yedek İndir</button>`
+      );
+    }
+
+    /* =========================================================================
+       EVENT LISTENERS
+       ========================================================================= */
+    document.getElementById('masterMenuBtn').addEventListener('click', toggleSidebar);
+    document.getElementById('sidebarCloseBtn').addEventListener('click', () => {
+      state.sidebarPinned = false;
+      state.sidebarOpen = false;
+      saveState();
+      syncSidebarDOM();
+    });
+    document.getElementById('sidebarPinBtn').addEventListener('click', () => {
+      state.sidebarPinned = !state.sidebarPinned;
+      state.sidebarOpen = state.sidebarPinned;
+      saveState();
+      syncSidebarDOM();
+      showToast(state.sidebarPinned ? 'Sol menü ekrana sabitlendi.' : 'Sol menü açılır/kapanır moda alındı.');
+    });
+    document.getElementById('sidebarOverlay').addEventListener('click', closeSidebarIfFloating);
+    document.getElementById('sidebarFilterInput').addEventListener('input', (e) => {
+      state.sidebarQuery = e.target.value;
+      renderSidebar();
+    });
+
+    document.getElementById('starActiveBtn').addEventListener('click', toggleFavoriteActiveScreen);
+    document.getElementById('cloudBackupBtn').addEventListener('click', showBackupModal);
+    document.getElementById('modalCloseBtn').addEventListener('click', closeModal);
+    document.getElementById('modalBackdrop').addEventListener('click', (e) => {
+      if (e.target.id === 'modalBackdrop') closeModal();
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'F10') {
+        e.preventDefault();
+        showShortcutPickerModal();
+      } else if (e.key === 'Escape') {
+        closeModal();
+        closeSidebarIfFloating();
+      } else if (e.key === 'Enter' && document.activeElement && document.activeElement.id === 'homeModuleSearch') {
+        const q = state.homeSearch.trim().toLocaleLowerCase('tr-TR');
+        if (q) {
+          const match = MODULES.find(m => `${m.label} ${m.keywords}`.toLocaleLowerCase('tr-TR').includes(q));
+          if (match) openModule(match.id);
+        }
+      }
+    });
+
+    document.getElementById('centerStage').addEventListener('input', (e) => {
+      if (e.target.id === 'homeModuleSearch') {
+        const pos = e.target.selectionStart;
+        state.homeSearch = e.target.value;
+        renderCenterStage();
+        const nextInp = document.getElementById('homeModuleSearch');
+        if (nextInp) { nextInp.focus(); nextInp.setSelectionRange(pos, pos); }
+      } else if (e.target.id === 'moduleSearchInput') {
+        const pos = e.target.selectionStart;
+        state.tableFilter = e.target.value;
+        renderCenterStage();
+        const nextInp = document.getElementById('moduleSearchInput');
+        if (nextInp) { nextInp.focus(); nextInp.setSelectionRange(pos, pos); }
+      } else if (e.target.id === 'fxAmountInput') {
+        state.fxAmount = e.target.value;
+        renderCenterStage();
+        const nextInp = document.getElementById('fxAmountInput');
+        if (nextInp) nextInp.focus();
+      }
+    });
+
+    document.getElementById('centerStage').addEventListener('change', (e) => {
+      if (e.target.id === 'fxCurrencySelect') {
+        state.fxCurrency = e.target.value;
+        saveState();
+        renderCenterStage();
+      }
+    });
+
+    document.addEventListener('click', (e) => {
+      const closeChip = e.target.closest('[data-action="close-tab"]');
+      if (closeChip) {
+        e.stopPropagation();
+        closeTab(closeChip.dataset.id);
+        return;
+      }
+
+      const target = e.target.closest('[data-action]');
+      if (!target) return;
+      const action = target.dataset.action;
+
+      if (action === 'toggle-group') {
+        toggleSidebarGroup(target.dataset.group);
+      } else if (action === 'open-module') {
+        openModule(target.dataset.id);
+        if (target.dataset.sub) {
+          state.subFilter = target.dataset.sub;
+          renderCenterStage();
+        }
+      } else if (action === 'open-report') {
+        openModule(target.dataset.id);
+        showToast('Rapor açıldı.');
+      } else if (action === 'pick-module') {
+        closeModal();
+        openModule(target.dataset.id);
+      } else if (action === 'close-modal') {
+        closeModal();
+      } else if (action === 'set-subfilter') {
+        state.subFilter = target.dataset.val;
+        renderCenterStage();
+      } else if (action === 'silo-giris') {
+        const st = state.urunler.find(s => s.kod === target.dataset.sku);
+        if (!st) return;
+        st.miktar += 10000;
+        saveState();
+        renderCenterStage();
+        showToast('+10.000 Kg ' + st.ad + ' silo girişi yapıldı.');
+      } else if (action === 'cari-tahsilat') {
+        const cari = state.cariler.find(c => c.kod === target.dataset.kod);
+        if (!cari) return;
+        if (cari.rol === 'Müstahsil') {
+          cari.alacak = Math.max(0, cari.alacak - 25000);
+          state.kasaHareketleri.unshift({
+            id: 'ÖD-' + Math.floor(100 + Math.random() * 900),
+            tarih: state.currentDate + ' 15:20',
+            kanal: 'Banka',
+            islem: 'Müstahsil Ödemesi',
+            cari: cari.unvan,
+            aciklama: cari.unvan + ' hasat ödemesi',
+            giris: 0,
+            cikis: 25000
+          });
+          showToast('25.000,00 ₺ çiftçi hasat ödemesi yapıldı.');
+        } else {
+          cari.borc = Math.max(0, cari.borc - 50000);
+          state.kasaHareketleri.unshift({
+            id: 'TH-' + Math.floor(100 + Math.random() * 900),
+            tarih: state.currentDate + ' 15:25',
+            kanal: 'Banka',
+            islem: 'Tahsilat',
+            cari: cari.unvan,
+            aciklama: cari.unvan + ' tahsilatı',
+            giris: 50000,
+            cikis: 0
+          });
+          showToast('50.000,00 ₺ müşteri tahsilatı işlendi.');
+        }
+        saveState();
+        renderCenterStage();
+      } else if (action === 'modal-new-kantar') {
+        openModal(
+          'Yeni Kantar Fişi Kes',
+          `<div class="form-grid">
+             <div class="form-field"><label>Araç Plakası</label><input id="nkPlaka" placeholder="42 KNT 101" /></div>
+             <div class="form-field"><label>Şoför Adı</label><input id="nkSofor" placeholder="Şoför adı" /></div>
+             <div class="form-field"><label>Hububat Cinsi</label><select id="nkUrun">${state.urunler.map(u => `<option>${esc(u.ad)}</option>`).join('')}</select></div>
+             <div class="form-field"><label>Muhatap Cari</label><select id="nkCari">${state.cariler.map(c => `<option>${esc(c.unvan)}</option>`).join('')}</select></div>
+             <div class="form-field"><label>Brüt Tartım (Kg)</label><input type="number" id="nkBrut" value="36500" /></div>
+             <div class="form-field"><label>Dara (Kg)</label><input type="number" id="nkDara" value="12500" /></div>
+           </div>`,
+          `<button type="button" class="btn-secondary" data-action="close-modal">Vazgeç</button>
+           <button type="button" class="btn-primary" data-action="save-new-kantar">Fişi Kaydet & Tartımı Onayla</button>`
+        );
+      } else if (action === 'save-new-kantar') {
+        const plaka = (document.getElementById('nkPlaka').value || '').trim();
+        if (!plaka) { showToast('Plaka girin.'); return; }
+        const brut = Number(document.getElementById('nkBrut').value) || 0;
+        const dara = Number(document.getElementById('nkDara').value) || 0;
+        const net = Math.max(0, brut - dara);
+        const urun = document.getElementById('nkUrun').value;
+        state.kantarFisleri.unshift({
+          no: 'KNT-2026-0' + (state.kantarFisleri.length + 5),
+          plaka,
+          sofor: document.getElementById('nkSofor').value || 'Saha Şoförü',
+          urun,
+          cari: document.getElementById('nkCari').value,
+          brut,
+          dara,
+          net,
+          tarih: state.currentDate + ' 16:00',
+          durum: 'Boşaltıldı'
+        });
+        const st = state.urunler.find(u => u.ad === urun);
+        if (st) st.miktar += net;
+        saveState(); closeModal(); renderCenterStage(); showToast('Kantar fişi kesildi, +' + fmtKg(net) + ' stoğa eklendi.');
+      } else if (action === 'modal-new-mustahsil') {
+        openModal(
+          'Yeni Müstahsil Makbuzu',
+          `<div class="form-grid">
+             <div class="form-field full"><label>Çiftçi / Müstahsil</label><select id="nmCari">${state.cariler.filter(c => c.rol === 'Müstahsil').map(c => `<option>${esc(c.unvan)}</option>`).join('')}</select></div>
+             <div class="form-field"><label>Hububat</label><select id="nmUrun">${state.urunler.map(u => `<option>${esc(u.ad)}</option>`).join('')}</select></div>
+             <div class="form-field"><label>Miktar (Kg)</label><input type="number" id="nmMiktar" value="20000" /></div>
+             <div class="form-field"><label>Birim Fiyat (₺/Kg)</label><input type="number" step="0.10" id="nmFiyat" value="8.50" /></div>
+             <div class="form-field"><label>Stopaj Oranı (%)</label><input type="number" id="nmStopaj" value="2" /></div>
+           </div>`,
+          `<button type="button" class="btn-secondary" data-action="close-modal">Vazgeç</button>
+           <button type="button" class="btn-primary" data-action="save-new-mustahsil">Makbuzu Kes & Onayla</button>`
+        );
+      } else if (action === 'save-new-mustahsil') {
+        const cariUnvan = document.getElementById('nmCari').value;
+        const urunAd = document.getElementById('nmUrun').value;
+        const kg = Number(document.getElementById('nmMiktar').value) || 0;
+        const birimFiyat = Number(document.getElementById('nmFiyat').value) || 0;
+        const stopajPct = Number(document.getElementById('nmStopaj').value) || 2;
+        const brut = kg * birimFiyat;
+        const kesinti = brut * (stopajPct / 100);
+        const netTutar = brut - kesinti;
+
+        state.ticaretKayitlari.unshift({
+          no: 'MS-2026-0' + (state.ticaretKayitlari.length + 3),
+          tur: 'Müstahsil Alışı',
+          cari: cariUnvan,
+          urun: urunAd,
+          miktarKg: kg,
+          birimFiyat,
+          tutar: brut,
+          kesinti,
+          netTutar,
+          tarih: state.currentDate,
+          durum: 'Onaylandı'
+        });
+        const cari = state.cariler.find(c => c.unvan === cariUnvan);
+        if (cari) cari.alacak += netTutar;
+        const st = state.urunler.find(u => u.ad === urunAd);
+        if (st) st.miktar += kg;
+        saveState(); closeModal(); renderCenterStage(); showToast('Müstahsil makbuzu kaydedildi.');
+      } else if (action === 'modal-new-satis') {
+        openModal(
+          'Yeni Toptan Mal Satışı (Fatura)',
+          `<div class="form-grid">
+             <div class="form-field full"><label>Müşteri / Fabrika</label><select id="nsCari">${state.cariler.filter(c => c.rol === 'Müşteri').map(c => `<option>${esc(c.unvan)}</option>`).join('')}</select></div>
+             <div class="form-field"><label>Hububat</label><select id="nsUrun">${state.urunler.map(u => `<option>${esc(u.ad)}</option>`).join('')}</select></div>
+             <div class="form-field"><label>Miktar (Kg)</label><input type="number" id="nsMiktar" value="25000" /></div>
+             <div class="form-field"><label>Satış Fiyatı (₺/Kg)</label><input type="number" step="0.10" id="nsFiyat" value="11.50" /></div>
+           </div>`,
+          `<button type="button" class="btn-secondary" data-action="close-modal">Vazgeç</button>
+           <button type="button" class="btn-primary" data-action="save-new-satis">Satışı Faturalandır</button>`
+        );
+      } else if (action === 'save-new-satis') {
+        const cariUnvan = document.getElementById('nsCari').value;
+        const urunAd = document.getElementById('nsUrun').value;
+        const kg = Number(document.getElementById('nsMiktar').value) || 0;
+        const birimFiyat = Number(document.getElementById('nsFiyat').value) || 0;
+        const brut = kg * birimFiyat;
+        state.ticaretKayitlari.unshift({
+          no: 'ST-2026-0' + (state.ticaretKayitlari.length + 3),
+          tur: 'Mal Satışı',
+          cari: cariUnvan,
+          urun: urunAd,
+          miktarKg: kg,
+          birimFiyat,
+          tutar: brut,
+          kesinti: 0,
+          netTutar: brut,
+          tarih: state.currentDate,
+          durum: 'Faturalandı'
+        });
+        const cari = state.cariler.find(c => c.unvan === cariUnvan);
+        if (cari) cari.borc += brut;
+        const st = state.urunler.find(u => u.ad === urunAd);
+        if (st) st.miktar = Math.max(0, st.miktar - kg);
+        saveState(); closeModal(); renderCenterStage(); showToast('Mal satışı faturalandırıldı.');
+      } else if (action === 'modal-new-cari') {
+        openModal(
+          'Yeni Cari / Çiftçi Hesabı',
+          `<div class="form-grid">
+             <div class="form-field full"><label>Ünvan / Ad Soyad</label><input id="ncUnvan" placeholder="Örn: Hasan Yılmaz (Müstahsil Çiftçi)" /></div>
+             <div class="form-field"><label>Rol</label><select id="ncRol"><option>Müstahsil</option><option>Müşteri</option><option>Tedarikçi</option></select></div>
+             <div class="form-field"><label>Şehir / İlçe</label><input id="ncSehir" value="Konya" /></div>
+             <div class="form-field full"><label>ÇKS No / VKN</label><input id="ncCks" placeholder="ÇKS-2026-XXXX veya VKN" /></div>
+             <div class="form-field full"><label>Banka & IBAN</label><input id="ncBanka" placeholder="Ziraat Bankası TR..." /></div>
+           </div>`,
+          `<button type="button" class="btn-secondary" data-action="close-modal">Vazgeç</button>
+           <button type="button" class="btn-primary" data-action="save-new-cari">Kaydet</button>`
+        );
+      } else if (action === 'save-new-cari') {
+        const unvan = (document.getElementById('ncUnvan').value || '').trim();
+        if (!unvan) { showToast('Cari ünvanı girin.'); return; }
+        state.cariler.unshift({
+          kod: 'CR-000' + (state.cariler.length + 1),
+          unvan,
+          rol: document.getElementById('ncRol').value,
+          sehir: document.getElementById('ncSehir').value || 'Konya',
+          cksNo: document.getElementById('ncCks').value || '-',
+          banka: document.getElementById('ncBanka').value || 'T.C. Ziraat Bankası',
+          borc: 0,
+          alacak: 0,
+          tel: '05XX XXX XX XX'
+        });
+        saveState(); closeModal(); renderCenterStage(); showToast('Cari kaydedildi.');
+      } else if (action === 'modal-new-kasa') {
+        openModal(
+          'Yeni Kasa / Banka Fişi',
+          `<div class="form-grid">
+             <div class="form-field"><label>Hesap / Kanal</label><select id="nkKanal"><option>Banka</option><option>Kasa</option></select></div>
+             <div class="form-field"><label>İşlem Yönü</label><select id="nkYon"><option value="giris">Tahsilat (+ Giriş)</option><option value="cikis">Ödeme (- Çıkış)</option></select></div>
+             <div class="form-field full"><label>Muhatap</label><select id="nkCari">${state.cariler.map(c => `<option>${esc(c.unvan)}</option>`).join('')}</select></div>
+             <div class="form-field full"><label>Tutar (₺)</label><input type="number" id="nkTutar" value="45000" /></div>
+             <div class="form-field full"><label>Açıklama</label><input id="nkAciklama" placeholder="Hububat tahsilat veya tediye fişi" /></div>
+           </div>`,
+          `<button type="button" class="btn-secondary" data-action="close-modal">Vazgeç</button>
+           <button type="button" class="btn-primary" data-action="save-new-kasa">Fişi Kaydet</button>`
+        );
+      } else if (action === 'save-new-kasa') {
+        const kanal = document.getElementById('nkKanal').value;
+        const yon = document.getElementById('nkYon').value;
+        const tutar = Number(document.getElementById('nkTutar').value) || 0;
+        state.kasaHareketleri.unshift({
+          id: (yon === 'giris' ? 'TH-' : 'ÖD-') + Math.floor(100 + Math.random() * 900),
+          tarih: state.currentDate + ' 16:15',
+          kanal,
+          islem: yon === 'giris' ? 'Tahsilat' : 'Tediye',
+          cari: document.getElementById('nkCari').value,
+          aciklama: (document.getElementById('nkAciklama').value || '').trim() || (kanal + ' işlemi'),
+          giris: yon === 'giris' ? tutar : 0,
+          cikis: yon === 'cikis' ? tutar : 0
+        });
+        saveState(); closeModal(); renderCenterStage(); showToast('Fiş kaydedildi.');
+      } else if (action === 'modal-new-ceksenet') {
+        openModal(
+          'Yeni Çek / Senet Kaydı',
+          `<div class="form-grid">
+             <div class="form-field"><label>Evrak Türü</label><select id="ncsTur"><option>Müşteri Çeki</option><option>Borç Senedi</option></select></div>
+             <div class="form-field"><label>Vade Tarihi</label><input id="ncsVade" value="28.12.2026" /></div>
+             <div class="form-field full"><label>Keşideci / Muhatap</label><input id="ncsKesideci" value="Bereket Un A.Ş." /></div>
+             <div class="form-field full"><label>Tutar (₺)</label><input type="number" id="ncsTutar" value="75000" /></div>
+           </div>`,
+          `<button type="button" class="btn-secondary" data-action="close-modal">Vazgeç</button>
+           <button type="button" class="btn-primary" data-action="save-new-ceksenet">Kaydet</button>`
+        );
+      } else if (action === 'save-new-ceksenet') {
+        const tur = document.getElementById('ncsTur').value;
+        state.cekSenetler.unshift({
+          no: (tur.includes('Çek') ? 'ÇK-' : 'SN-') + Math.floor(4000 + Math.random() * 5000),
+          tur,
+          vade: document.getElementById('ncsVade').value || '30.12.2026',
+          kesideci: document.getElementById('ncsKesideci').value || 'Muhatap',
+          banka: 'Ticari Portföy',
+          tutar: Number(document.getElementById('ncsTutar').value) || 0,
+          durum: tur.includes('Borç') ? 'Ödenecek' : 'Portföyde'
+        });
+        saveState(); closeModal(); renderCenterStage(); showToast(`${tur} kaydedildi.`);
+      } else if (action === 'print-page') {
+        window.print();
+      } else if (action === 'download-backup') {
+        state.lastBackup = 'Yedek İndirildi';
+        saveState();
+        const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'koklu_agro_erp_yedek.json';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        closeModal();
+        renderTopBar();
+        showToast('JSON yedeği indirildi.');
+      } else if (action === 'reset-demo') {
+        try { localStorage.removeItem(STORAGE_KEY); } catch (err) {}
+        state = createInitialState();
+        closeModal();
+        renderAll();
+        showToast('Tüm Köklü Agro demo verileri sıfırlandı.');
+      }
+    });
+
+    renderAll();
+  </script>
+</body>
+</html>
