@@ -508,7 +508,7 @@
       flex-shrink: 0;
     }
 
-    /* 1. TOP 4 KÖKLÜ AGRO KPI CARDS (Zahire, Alış, Satış, Stok, Borç) */
+    /* 1. TOP 4 KÖKLÜ AGRO KPI CARDS */
     .netsis-kpi-row {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -525,10 +525,12 @@
       flex-direction: column;
       gap: 4px;
       transition: transform 0.12s ease, box-shadow 0.12s ease;
+      cursor: pointer;
+      text-align: left;
     }
     .netsis-kpi-card:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 4px 14px rgba(11, 38, 30, 0.08);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 14px rgba(11, 38, 30, 0.1);
     }
     .netsis-kpi-card.kpi-emerald { border-left-color: var(--agro-emerald); }
     .netsis-kpi-card.kpi-amber   { border-left-color: var(--agro-amber); }
@@ -587,7 +589,7 @@
       font-weight: 500;
     }
 
-    /* 2. NETSİS SHORTCUT LAUNCHER TRAY (Index.htm Exact Box Grid Structure) */
+    /* 2. NETSİS SHORTCUT LAUNCHER TRAY */
     .netsis-launcher-tray {
       position: relative;
       background: linear-gradient(155deg, var(--agro-tray-top) 0%, var(--agro-tray-bot) 100%);
@@ -664,7 +666,7 @@
       flex-shrink: 0;
     }
 
-    /* Symmetrical 6x2 Grid (12 Köklü Agro Modules) */
+    /* Symmetrical 6x2 Grid */
     .modules-grid {
       position: relative;
       z-index: 2;
@@ -748,13 +750,8 @@
       border-color: #059669;
       background: #f0fdf4;
     }
-    .netsis-tile-badge.badge-amber {
-      color: #b45309;
-      border-color: #f59e0b;
-      background: #fffbeb;
-    }
 
-    /* 3. CHARTS ROW (Agro Sales & Purchases Trend + Silo & Grain Distribution) */
+    /* 3. CHARTS ROW */
     .netsis-charts-grid {
       display: grid;
       grid-template-columns: 1.35fr 1fr;
@@ -831,7 +828,7 @@
       border-radius: 999px;
     }
 
-    /* 4. PRESERVED FAVORİ EKRANLAR & FAVORİ RAPORLAR */
+    /* 4. FAVORİLER GRİDİ */
     .favorites-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -893,7 +890,7 @@
     .fav-row:hover .fav-row-hint { opacity: 1; }
 
     /* =======================================================================
-       MODULE SUB-SCREENS (Zahire, Müstahsil, Kantar, Silo & Muhasebe)
+       MODULE SUB-SCREENS
        ======================================================================= */
     .module-view {
       display: flex;
@@ -1060,37 +1057,6 @@
     .badge-agro  { background: var(--agro-green-soft); color: var(--agro-green-dark); }
     .badge-slate { background: #e2e8f0; color: #334155; }
 
-    /* Kantar Fişi & Tartım Görünümü */
-    .scale-card-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-      padding: 14px;
-    }
-    .scale-ticket-box {
-      border: 1px solid var(--border-soft);
-      border-left: 4px solid var(--agro-green);
-      border-radius: 10px;
-      padding: 12px;
-      background: #fbfdfc;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .scale-ticket-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-    .scale-plate {
-      font-size: 14px;
-      font-weight: 800;
-      color: #0b261e;
-      letter-spacing: 0.5px;
-    }
-
     /* MODAL & TOAST */
     .modal-backdrop {
       position: fixed;
@@ -1194,7 +1160,7 @@
     @media (max-width: 1040px) {
       .modules-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
       .netsis-kpi-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .netsis-charts-grid, .scale-card-grid { grid-template-columns: 1fr; }
+      .netsis-charts-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 720px) {
@@ -1288,7 +1254,7 @@
 
   <script>
     /* =========================================================================
-       PICTOGRAM ICONS (Köklü Agro & Netsis Entegrasyonu)
+       PICTOGRAM ICONS
        ========================================================================= */
     const ICONS = {
       home: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>',
@@ -1358,7 +1324,7 @@
         fxCurrency: 'USD',
         favoriteScreens: [
           { id: 'kantar', sub: 'Tümü', label: 'Kantar fişleri & canlı tartım' },
-          { id: 'mustahsil-alis', sub: 'Müstahsil', label: 'Açık müstahsil alım makbuzları' },
+          { id: 'mustahsil-alis', sub: 'Müstahsil Alışı', label: 'Açık müstahsil alım makbuzları' },
           { id: 'cariler', sub: 'Müstahsil', label: 'Çiftçi ekstreleri ve alacakları' },
           { id: 'depo-silo', sub: 'Çelik Silo 1', label: 'Çelik Silo 1 mısır ve buğday stoğu' }
         ],
@@ -1473,7 +1439,7 @@
     }
 
     /* =========================================================================
-       SIDEBAR & TAB CONTROLLERS (Açılır / Kapanır Menü)
+       SIDEBAR & TAB CONTROLLERS
        ========================================================================= */
     function syncSidebarDOM() {
       const sidebar = document.getElementById('leftSidebar');
@@ -1523,10 +1489,10 @@
       renderSidebar();
     }
 
-    function openModule(moduleId) {
+    function openModule(moduleId, optionalSubFilter) {
       const mod = getModuleById(moduleId);
       state.tableFilter = '';
-      state.subFilter = 'Tümü';
+      state.subFilter = optionalSubFilter || 'Tümü';
       if (!state.openTabs.some(t => t.id === mod.id)) {
         state.openTabs.push({ id: mod.id, label: mod.label, icon: mod.icon || 'home' });
       }
@@ -1560,7 +1526,7 @@
         state.favoriteScreens.splice(idx, 1);
         showToast(mod.label + ' favorilerden çıkarıldı.');
       } else {
-        state.favoriteScreens.unshift({ id: mod.id, label: mod.label });
+        state.favoriteScreens.unshift({ id: mod.id, sub: state.subFilter || 'Tümü', label: mod.label });
         showToast(mod.label + ' favori ekranlara eklendi.');
       }
       saveState();
@@ -1633,7 +1599,7 @@
     }
 
     /* =========================================================================
-       KÖKLÜ AGRO CHARTS (Trend + Hububat Dağılımı)
+       KÖKLÜ AGRO CHARTS
        ========================================================================= */
     function buildAgroChartsSection() {
       const monthly = [
@@ -1661,7 +1627,6 @@
         `;
       }).join('');
 
-      // Silo & Hububat dağılımı
       const C = 289.03;
       const p1 = 44, p2 = 28, p3 = 18, p4 = 10;
       const s1 = (p1 / 100) * C, s2 = (p2 / 100) * C, s3 = (p3 / 100) * C, s4 = (p4 / 100) * C;
@@ -1736,7 +1701,7 @@
     }
 
     /* =========================================================================
-       HOME STAGE (Index.htm Kutu Mimarisi + Köklü Agro Zahire Verileri)
+       HOME STAGE
        ========================================================================= */
     function renderHomeStage() {
       const q = state.homeSearch.trim().toLocaleLowerCase('tr-TR');
@@ -1763,34 +1728,34 @@
            </div>`;
 
       return `
-        <!-- 1. ÜST 4 KÖKLÜ AGRO KPI KARTI -->
+        <!-- 1. ÜST 4 KÖKLÜ AGRO KPI KARTI (Tıklanabilir Bağlantılarla) -->
         <section class="netsis-kpi-row">
-          <div class="netsis-kpi-card kpi-emerald">
+          <button type="button" class="netsis-kpi-card kpi-emerald" data-action="open-module" data-id="kasa-banka">
             <div class="netsis-kpi-head"><span>KASA & BANKA MEVCUDU</span><span class="netsis-kpi-mini-icon">${ICONS.kasa}</span></div>
             <div class="netsis-kpi-value">${fmtTL(netKasa)}</div>
-            <div class="netsis-kpi-sub">Garanti, Ziraat & Merkez Kasa</div>
-          </div>
+            <div class="netsis-kpi-sub">Garanti, Ziraat & Merkez Kasa ↗</div>
+          </button>
 
-          <div class="netsis-kpi-card kpi-green-val">
+          <button type="button" class="netsis-kpi-card kpi-green-val" data-action="open-module" data-id="cariler" data-sub="Müşteri">
             <div class="netsis-kpi-head"><span>TÜCCAR / FABRİKA ALACAKLARI</span><span class="netsis-kpi-mini-icon">${ICONS.alacak}</span></div>
             <div class="netsis-kpi-value">${fmtTL(musteriAlacak)}</div>
-            <div class="netsis-kpi-sub">Bereket Un, Ova Tarım açık bakiye</div>
-          </div>
+            <div class="netsis-kpi-sub">Bereket Un, Ova Tarım açık bakiye ↗</div>
+          </button>
 
-          <div class="netsis-kpi-card kpi-amber">
+          <button type="button" class="netsis-kpi-card kpi-amber" data-action="open-module" data-id="cariler" data-sub="Müstahsil">
             <div class="netsis-kpi-head"><span>AÇIK MÜSTAHSİL BORCUMUZ</span><span class="netsis-kpi-mini-icon">${ICONS.cari}</span></div>
             <div class="netsis-kpi-value">${fmtTL(mustahsilBorc)}</div>
-            <div class="netsis-kpi-sub">Hasat teslim eden çiftçi alacakları</div>
-          </div>
+            <div class="netsis-kpi-sub">Hasat teslim eden çiftçi alacakları ↗</div>
+          </button>
 
-          <div class="netsis-kpi-card">
+          <button type="button" class="netsis-kpi-card" data-action="open-module" data-id="depo-silo">
             <div class="netsis-kpi-head"><span>SİLO & DEPO STOK DEĞERİ</span><span class="netsis-kpi-mini-icon">${ICONS.silo}</span></div>
             <div class="netsis-kpi-value">${fmtTL(stokDeger)}</div>
-            <div class="netsis-kpi-sub">${fmtKg(toplamStokKg)} Hububat · 3 Aktif Silo</div>
-          </div>
+            <div class="netsis-kpi-sub">${fmtKg(toplamStokKg)} Hububat · 3 Aktif Silo ↗</div>
+          </button>
         </section>
 
-        <!-- 2. KÖKLÜ AGRO LAUNCHER TRAY (Index.htm Kutu Mimarisi) -->
+        <!-- 2. KÖKLÜ AGRO LAUNCHER TRAY -->
         <section class="netsis-launcher-tray">
           <div class="netsis-watermark">KÖKLÜ AGRO</div>
 
@@ -1850,7 +1815,7 @@
     }
 
     /* =========================================================================
-       SUB-VIEWS: KÖKLÜ AGRO ZAHİRE MODÜLLERİ
+       SUB-VIEWS: KÖKLÜ AGRO REEL VE AKTİF BAŞLIKLAR
        ========================================================================= */
     function renderModuleHeader(mod, subtitle, primaryBtnHtml) {
       return `
@@ -1888,7 +1853,7 @@
             </div>
             <div class="table-scroll">
               <table class="erp-table">
-                <thead><tr><th>Fiş No</th><th>Tarih</th><th>Plaka</th><th>Şoför</th><th>Ürün</th><th>Muhatap</th><th class="num-col">Brüt</th><th class="num-col">Dara</th><th class="num-col">Net Kg</th><th>Durum</th></tr></thead>
+                <thead><tr><th>Fiş No</th><th>Tarih</th><th>Plaka</th><th>Şoför</th><th>Ürün</th><th>Muhatap</th><th class="num-col">Brüt</th><th class="num-col">Dara</th><th class="num-col">Net Kg</th><th>Durum</th><th>İşlem</th></tr></thead>
                 <tbody>
                   ${rows.map(k => `
                     <tr>
@@ -1902,6 +1867,7 @@
                       <td class="num-col" style="color:var(--text-muted);">${fmtInt(k.dara)} Kg</td>
                       <td class="num-col" style="color:var(--agro-green);font-weight:800;">${fmtInt(k.net)} Kg</td>
                       <td><span class="badge badge-green">${esc(k.durum)}</span></td>
+                      <td><button type="button" class="btn-secondary" style="height:27px;padding:0 8px;" data-action="kantar-detay" data-no="${k.no}">Fiş Yazdır</button></td>
                     </tr>
                   `).join('')}
                 </tbody>
@@ -2002,7 +1968,7 @@
       return `
         <div class="module-view">
           ${renderModuleHeader(mod, 'Çelik silolar, merkez ambar ve emanet hububat stok durumları',
-            '<button type="button" class="btn-primary" data-action="modal-new-urun">+ Yeni Ürün / Silo Tanımla</button>')}
+            '<button type="button" class="btn-primary" data-action="modal-new-urun">+ Yeni Silo / Ürün Tanımla</button>')}
           <div class="panel-card">
             <div class="panel-toolbar">
               <div class="subfilter-pills">
@@ -2012,7 +1978,7 @@
             </div>
             <div class="table-scroll">
               <table class="erp-table">
-                <thead><tr><th>Ürün Kodu</th><th>Ürün Adı</th><th>Depolama / Silo</th><th class="num-col">Mevcut Miktar</th><th class="num-col">Ort. Alış</th><th class="num-col">Piyasa Satış</th><th>Standart Fire</th><th>İşlem</th></tr></thead>
+                <thead><tr><th>Ürün Kodu</th><th>Ürün Adı</th><th>Depolama / Silo</th><th class="num-col">Mevcut Miktar</th><th class="num-col">Ort. Alış</th><th class="num-col">Piyasa Satış</th><th>Standart Fire</th><th>Hızlı İşlem</th></tr></thead>
                 <tbody>
                   ${rows.map(s => `
                     <tr>
@@ -2068,7 +2034,12 @@
                         <td>${esc(c.sehir)}</td>
                         <td><span style="font-family:monospace;font-size:11px;">${esc(c.cksNo)}</span></td>
                         <td class="num-col">${fmtTL(Math.abs(net))} <span class="badge ${net > 0 ? 'badge-green' : net < 0 ? 'badge-amber' : 'badge-slate'}">${net > 0 ? 'Alacaklıyız' : net < 0 ? 'Çiftçi Alacağı' : 'Kapalı'}</span></td>
-                        <td><button type="button" class="btn-secondary" style="height:27px;padding:0 9px;" data-action="cari-tahsilat" data-kod="${c.kod}">Ödeme / Tahsilat</button></td>
+                        <td>
+                          <div style="display:flex;gap:4px;justify-content:flex-end;">
+                            <button type="button" class="btn-secondary" style="height:27px;padding:0 8px;" data-action="cari-ekstre" data-kod="${c.kod}">Ekstre</button>
+                            <button type="button" class="btn-secondary" style="height:27px;padding:0 8px;" data-action="cari-tahsilat" data-kod="${c.kod}">Ödeme/Tahsilat</button>
+                          </div>
+                        </td>
                       </tr>
                     `;
                   }).join('')}
@@ -2082,16 +2053,29 @@
 
     // 6. TÜM TİCARET DEFTERİ
     function renderTradesView(mod) {
+      const filters = ['Tümü', 'Müstahsil Alışı', 'Mal Satışı'];
+      const q = state.tableFilter.trim().toLocaleLowerCase('tr-TR');
+      const rows = state.ticaretKayitlari.filter(t => {
+        if (state.subFilter !== 'Tümü' && t.tur !== state.subFilter) return false;
+        return !q || `${t.no} ${t.cari} ${t.urun} ${t.tur}`.toLocaleLowerCase('tr-TR').includes(q);
+      });
+
       return `
         <div class="module-view">
           ${renderModuleHeader(mod, 'Zahire defteri, icmaller, resmi alış ve satış hareketleri dökümü',
             '<button type="button" class="btn-secondary" data-action="print-page">Yazdır (PDF)</button>')}
           <div class="panel-card">
+            <div class="panel-toolbar">
+              <div class="subfilter-pills">
+                ${filters.map(f => `<button type="button" class="subfilter-pill ${state.subFilter === f ? 'active' : ''}" data-action="set-subfilter" data-val="${f}">${f}</button>`).join('')}
+              </div>
+              <input type="text" class="inline-filter-input" id="moduleSearchInput" value="${esc(state.tableFilter)}" placeholder="Belge veya cari ara..." />
+            </div>
             <div class="table-scroll">
               <table class="erp-table">
                 <thead><tr><th>Belge No</th><th>Tür</th><th>Tarih</th><th>Cari</th><th>Hububat</th><th class="num-col">Miktar</th><th class="num-col">Net Tutar</th><th>Durum</th></tr></thead>
                 <tbody>
-                  ${state.ticaretKayitlari.map(t => `
+                  ${rows.map(t => `
                     <tr>
                       <td><strong>${esc(t.no)}</strong></td>
                       <td><span class="badge ${t.tur.includes('Alış') ? 'badge-amber' : 'badge-green'}">${esc(t.tur)}</span></td>
@@ -2260,7 +2244,7 @@
                     return `
                       <tr>
                         <td><strong>${esc(s.kod)}</strong></td>
-                        <td><strong>${esc(s.ad)}</strong></td>
+                        <td>${esc(s.ad)}</td>
                         <td class="num-col">${fmtTL(s.alis)}</td>
                         <td class="num-col">${fmtTL(s.satis)}</td>
                         <td class="num-col" style="color:var(--agro-green);font-weight:800;">+${fmtTL(kar)} / Kg</td>
@@ -2278,7 +2262,6 @@
 
     // 12. BORSA FİYATLARI & KURLAR
     function renderToolsView(mod) {
-      const item = state.urunler.find(s => s.kod === state.selectedProductSku) || state.urunler[0];
       const rateObj = state.kurlar.find(k => k.kod === state.fxCurrency) || state.kurlar[0];
       const converted = (Number(state.fxAmount) || 0) * rateObj.satis;
 
@@ -2500,19 +2483,17 @@
       if (action === 'toggle-group') {
         toggleSidebarGroup(target.dataset.group);
       } else if (action === 'open-module') {
-        openModule(target.dataset.id);
-        if (target.dataset.sub) {
-          state.subFilter = target.dataset.sub;
-          renderCenterStage();
-        }
+        openModule(target.dataset.id, target.dataset.sub);
       } else if (action === 'open-report') {
         openModule(target.dataset.id);
-        showToast('Rapor açıldı.');
+        showToast('Rapor ekranı açıldı.');
       } else if (action === 'pick-module') {
         closeModal();
         openModule(target.dataset.id);
       } else if (action === 'close-modal') {
         closeModal();
+      } else if (action === 'close-tab') {
+        closeTab(target.dataset.id);
       } else if (action === 'set-subfilter') {
         state.subFilter = target.dataset.val;
         renderCenterStage();
@@ -2523,6 +2504,61 @@
         saveState();
         renderCenterStage();
         showToast('+10.000 Kg ' + st.ad + ' silo girişi yapıldı.');
+      } else if (action === 'cari-ekstre') {
+        const cari = state.cariler.find(c => c.kod === target.dataset.kod);
+        if (!cari) return;
+        const net = cari.borc - cari.alacak;
+        const trades = state.ticaretKayitlari.filter(t => t.cari === cari.unvan);
+        const payments = state.kasaHareketleri.filter(k => k.cari && k.cari.includes(cari.unvan.split(' ')[0]));
+        openModal(
+          `Cari Ekstre: ${esc(cari.unvan)}`,
+          `
+            <div style="background:#f6faf8;padding:12px;border-radius:8px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;">
+              <div><strong>${esc(cari.kod)}</strong> · ${esc(cari.rol)} · ${esc(cari.sehir)}<br><small style="color:var(--text-muted);">${esc(cari.cksNo)} · ${esc(cari.banka)}</small></div>
+              <div style="text-align:right;"><span style="font-size:11px;color:var(--text-muted);">Net Bakiye</span><br><strong style="font-size:16px;color:${net > 0 ? '#166534' : net < 0 ? '#92400e' : '#334155'};">${fmtTL(Math.abs(net))}</strong> <small>${net > 0 ? '(Alacaklıyız)' : net < 0 ? '(Çiftçi Alacağı)' : '(Kapalı)'}</small></div>
+            </div>
+            <strong>Ticaret ve Ödeme Hareketleri</strong>
+            <table class="erp-table" style="min-width:100%;margin-top:6px;">
+              <thead><tr><th>Evrak No</th><th>Tarih</th><th>İşlem</th><th class="num-col">Tutar</th></tr></thead>
+              <tbody>
+                ${trades.map(t => `<tr><td>${esc(t.no)}</td><td>${esc(t.tarih)}</td><td>${esc(t.tur)} (${esc(t.urun)})</td><td class="num-col">${fmtTL(t.netTutar)}</td></tr>`).join('')}
+                ${payments.map(p => `<tr><td>${esc(p.id)}</td><td>${esc(p.tarih)}</td><td>${esc(p.islem)}</td><td class="num-col" style="color:#059669;">${fmtTL(p.giris || p.cikis)}</td></tr>`).join('')}
+                ${(trades.length === 0 && payments.length === 0) ? '<tr><td colspan="4" style="text-align:center;padding:16px;color:var(--text-muted);">Henüz hareket kaydedilmedi.</td></tr>' : ''}
+              </tbody>
+            </table>
+          `,
+          `<button type="button" class="btn-secondary" data-action="close-modal">Kapat</button>
+           <button type="button" class="btn-primary" data-action="print-page">Ekstre Yazdır</button>`
+        );
+      } else if (action === 'kantar-detay') {
+        const k = state.kantarFisleri.find(x => x.no === target.dataset.no);
+        if (!k) return;
+        openModal(
+          `Kantar Fişi Detayı: ${esc(k.no)}`,
+          `
+            <div style="border:2px solid var(--border-soft);padding:16px;border-radius:10px;background:#fcfdfc;font-family:sans-serif;">
+              <div style="text-align:center;border-bottom:2px dashed #9cb1a7;padding-bottom:10px;margin-bottom:12px;">
+                <h2 style="font-size:16px;font-weight:900;color:var(--agro-green-dark);margin-bottom:2px;">KÖKLÜ AGRO LİDAŞ & KANTAR</h2>
+                <div style="font-size:11px;color:var(--text-muted);">Resmi Tartım ve Sevk Makbuzu</div>
+              </div>
+              <div class="form-grid" style="font-size:12px;">
+                <div><span style="color:var(--text-muted);">Fiş No:</span> <strong>${esc(k.no)}</strong></div>
+                <div><span style="color:var(--text-muted);">Tarih:</span> <strong>${esc(k.tarih)}</strong></div>
+                <div><span style="color:var(--text-muted);">Plaka:</span> <strong style="font-family:monospace;font-size:13px;">${esc(k.plaka)}</strong></div>
+                <div><span style="color:var(--text-muted);">Şoför:</span> <strong>${esc(k.sofor)}</strong></div>
+                <div class="full"><span style="color:var(--text-muted);">Muhatap:</span> <strong>${esc(k.cari)}</strong></div>
+                <div class="full"><span style="color:var(--text-muted);">Ürün:</span> <strong>${esc(k.urun)}</strong></div>
+              </div>
+              <div style="background:#e5f6ef;border:1px solid var(--agro-green-border);border-radius:8px;padding:12px;margin-top:14px;display:flex;justify-content:space-around;text-align:center;">
+                <div><div style="font-size:11px;color:var(--text-muted);">BRÜT</div><strong style="font-size:15px;">${fmtInt(k.brut)} Kg</strong></div>
+                <div><div style="font-size:11px;color:var(--text-muted);">DARA</div><strong style="font-size:15px;color:#dc2626;">-${fmtInt(k.dara)} Kg</strong></div>
+                <div><div style="font-size:11px;color:var(--text-muted);">NET TARTIM</div><strong style="font-size:17px;color:var(--agro-green-dark);">${fmtInt(k.net)} Kg</strong></div>
+              </div>
+            </div>
+          `,
+          `<button type="button" class="btn-secondary" data-action="close-modal">Kapat</button>
+           <button type="button" class="btn-primary" data-action="print-page">Yazdır</button>`
+        );
       } else if (action === 'cari-tahsilat') {
         const cari = state.cariler.find(c => c.kod === target.dataset.kod);
         if (!cari) return;
@@ -2696,6 +2732,37 @@
           tel: '05XX XXX XX XX'
         });
         saveState(); closeModal(); renderCenterStage(); showToast('Cari kaydedildi.');
+      } else if (action === 'modal-new-urun') {
+        openModal(
+          'Yeni Silo & Hububat Ürünü Tanımla',
+          `<div class="form-grid">
+             <div class="form-field full"><label>Hububat Cinsi & Adı</label><input id="nuAd" placeholder="Örn: Triticale (Yemlik Tahıl)" /></div>
+             <div class="form-field"><label>Depolama / Silo</label><select id="nuSilo"><option>Çelik Silo 1</option><option>Merkez Depo</option><option>Emanet Silo</option></select></div>
+             <div class="form-field"><label>Birim</label><select id="nuBirim"><option>Kg</option><option>Ton</option></select></div>
+             <div class="form-field"><label>Mevcut Miktar (Kg)</label><input type="number" id="nuMiktar" value="50000" /></div>
+             <div class="form-field"><label>Ortalama Alış Fiyatı (₺)</label><input type="number" step="0.10" id="nuAlis" value="7.50" /></div>
+             <div class="form-field full"><label>Piyasa Satış Fiyatı (₺)</label><input type="number" step="0.10" id="nuSatis" value="8.80" /></div>
+           </div>`,
+          `<button type="button" class="btn-secondary" data-action="close-modal">Vazgeç</button>
+           <button type="button" class="btn-primary" data-action="save-new-urun">Ürünü Kaydet</button>`
+        );
+      } else if (action === 'save-new-urun') {
+        const ad = (document.getElementById('nuAd').value || '').trim();
+        if (!ad) { showToast('Ürün adı girin.'); return; }
+        const alis = Number(document.getElementById('nuAlis').value) || 8.00;
+        const satis = Number(document.getElementById('nuSatis').value) || 9.50;
+        state.urunler.unshift({
+          kod: 'HB-0' + (state.urunler.length + 10),
+          ad,
+          silo: document.getElementById('nuSilo').value,
+          birim: document.getElementById('nuBirim').value,
+          miktar: Number(document.getElementById('nuMiktar').value) || 0,
+          kritik: 20000,
+          alis,
+          satis,
+          fire: '%1.0'
+        });
+        saveState(); closeModal(); renderCenterStage(); showToast('Hububat ürünü tanımlandı.');
       } else if (action === 'modal-new-kasa') {
         openModal(
           'Yeni Kasa / Banka Fişi',
@@ -2724,6 +2791,32 @@
           cikis: yon === 'cikis' ? tutar : 0
         });
         saveState(); closeModal(); renderCenterStage(); showToast('Fiş kaydedildi.');
+      } else if (action === 'modal-new-gider') {
+        openModal(
+          'Yeni Masraf & Gider Fişi İşle',
+          `<div class="form-grid">
+             <div class="form-field full"><label>Masraf Açıklaması</label><input id="ngAciklama" placeholder="Örn: Silo kurutma doğalgazı & elektrik bedeli" /></div>
+             <div class="form-field"><label>Ödeme Kanalı</label><select id="ngKanal"><option>Banka</option><option>Kasa</option></select></div>
+             <div class="form-field"><label>Tutar (₺)</label><input type="number" id="ngTutar" value="18500" /></div>
+             <div class="form-field full"><label>Muhatap Firma / Kurum</label><input id="ngCari" value="Konya Gaz / MEDAŞ Elektrik Dağıtım" /></div>
+           </div>`,
+          `<button type="button" class="btn-secondary" data-action="close-modal">Vazgeç</button>
+           <button type="button" class="btn-primary" data-action="save-new-gider">Gideri Kaydet</button>`
+        );
+      } else if (action === 'save-new-gider') {
+        const aciklama = (document.getElementById('ngAciklama').value || '').trim() || 'İşletme gider fişi';
+        const tutar = Number(document.getElementById('ngTutar').value) || 0;
+        state.kasaHareketleri.unshift({
+          id: 'MS-' + Math.floor(100 + Math.random() * 900),
+          tarih: state.currentDate + ' 16:40',
+          kanal: 'Masraf',
+          islem: 'Gider Fişi',
+          cari: document.getElementById('ngCari').value || 'Muhtelif Masraf',
+          aciklama,
+          giris: 0,
+          cikis: tutar
+        });
+        saveState(); closeModal(); renderCenterStage(); showToast('Masraf fişi kaydedildi.');
       } else if (action === 'modal-new-ceksenet') {
         openModal(
           'Yeni Çek / Senet Kaydı',
