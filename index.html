@@ -1114,7 +1114,7 @@
       flex-direction: column;
       gap: 14px;
     }
-    .view-topbar {
+    .view-topbar, .view-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -1130,6 +1130,28 @@
       display: flex;
       align-items: center;
       gap: 12px;
+      min-width: 0;
+    }
+    .view-title-wrap h2 {
+      font-size: 16.5px;
+      font-weight: 700;
+      color: #0f172a;
+      margin: 0 0 2px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .view-title-wrap svg,
+    .view-header svg,
+    .view-topbar svg {
+      width: 22px;
+      height: 22px;
+      max-width: 24px;
+      max-height: 24px;
+    }
+    .view-topbar .netsis-app-icon svg {
+      width: 24px;
+      height: 24px;
     }
     .view-actions {
       display: flex;
@@ -1591,6 +1613,14 @@
       font-size: 12px;
       font-weight: 800;
       color: #0b261e;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .node-title svg {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
     }
     .node-desc {
       font-size: 11px;
@@ -2506,10 +2536,15 @@
        ========================================================================= */
     function renderModuleHeader(mod, subtitle, actionBtns) {
       return `
-        <div class="view-header">
+        <div class="view-topbar">
           <div class="view-title-wrap">
-            <h2>${ICONS[mod.icon]} ${esc(mod.label)}</h2>
-            <p>${esc(subtitle)}</p>
+            <div class="netsis-app-icon" style="width:42px;height:42px;border-radius:10px;flex-shrink:0;">
+              ${ICONS[mod.icon] || ICONS.alis}
+            </div>
+            <div>
+              <h2 style="font-size:16.5px;font-weight:700;color:#0f172a;margin:0 0 2px;">${esc(mod.label)}</h2>
+              <div style="font-size:12px;color:var(--text-muted);">${esc(subtitle)}</div>
+            </div>
           </div>
           <div class="view-actions">
             ${actionBtns || ''}
