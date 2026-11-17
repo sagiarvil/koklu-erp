@@ -1281,31 +1281,41 @@
        12 KÖKLÜ AGRO MODÜLLERİ (Kutular aynı index.htm yapısında)
        ========================================================================= */
     const MODULES = [
-      // 1. TİCARİ OPERASYON & SAHA
-      { id: 'mustahsil-alis', label: 'Müstahsil & Mal Alışı', group: 'TİCARİ OPERASYON & SAHA', icon: 'alis', badge: 'Alım', viewType: 'purchases', keywords: 'müstahsil makbuzu alış çiftçi stopaj borsa tevkifat buğday mısır arpa' },
-      { id: 'mal-satis', label: 'Mal Satışları (Tüccar/Fabrika)', group: 'TİCARİ OPERASYON & SAHA', icon: 'satis', badge: 'Satış', viewType: 'sales', keywords: 'toptan satış fatura un fabrikası yem tüccar sevk irsaliye' },
-      { id: 'kantar', label: 'Kantar Fişleri & Tartım', group: 'TİCARİ OPERASYON & SAHA', icon: 'kantar', badge: 'Kantar', viewType: 'scale', keywords: 'kantar tartım plaka brüt dara net şoför fiş' },
-      { id: 'cariler', label: 'Cariler & Müstahsiller', group: 'TİCARİ OPERASYON & SAHA', icon: 'cari', badge: '6 Cari', viewType: 'parties', keywords: 'çiftçi müstahsil tüccar fabrika ekstre bakiye borç alacak çks' },
-      { id: 'depo-silo', label: 'Silo & Depo Stok', group: 'TİCARİ OPERASYON & SAHA', icon: 'silo', badge: '3 Silo', viewType: 'inventory', keywords: 'çelik silo merkez depo emanet mısır buğday arpa tonaj fire' },
-      { id: 'tum-ticaret', label: 'Tüm Alış & Satış Defteri', group: 'TİCARİ OPERASYON & SAHA', icon: 'ticaret', badge: 'Defter', viewType: 'trades', keywords: 'ticaret defteri icmal faturalar storno iptal' },
+      // 1. GİRİŞ & ALIŞ OPERASYONU (Tartım & Mal Alışı)
+      { id: 'kantar', label: 'Kantar Fişleri & Tartım', group: '1. GİRİŞ & ALIŞ OPERASYONU', icon: 'kantar', badge: '1. Tartım', viewType: 'scale', keywords: 'kantar tartım plaka brüt dara net şoför fiş tonaj mal kabul' },
+      { id: 'mustahsil-alis', label: 'Müstahsil & Mal Alışı', group: '1. GİRİŞ & ALIŞ OPERASYONU', icon: 'alis', badge: '2. Mal Alımı', viewType: 'purchases', keywords: 'müstahsil makbuzu alış çiftçi stopaj borsa tevkifat buğday mısır arpa alım' },
 
-      // 2. FİNANS & ÖDEMELER
-      { id: 'kasa-banka', label: 'Kasa & Bankalar', group: 'FİNANS & ÖDEMELER', icon: 'kasa', badge: 'Konsolide', badgeOk: true, viewType: 'cash', keywords: 'nakit kasa ziraat iş garanti banka havale eft çiftçi tediye' },
-      { id: 'cek-senet', label: 'Çek & Senet Portföyü', group: 'FİNANS & ÖDEMELER', icon: 'ceksenet', badge: '4 Evrak', viewType: 'instruments', keywords: 'portföy müşteri çeki borç senedi ciro tahsil takas' },
-      { id: 'masraf-gider', label: 'Masraf & Gider Fişleri', group: 'FİNANS & ÖDEMELER', icon: 'masraf', badge: 'Giderler', viewType: 'expenses', keywords: 'kantar elektrik kurutma mazot nakliye analiz tahlil masraf' },
-      { id: 'vade-yaslandirma', label: 'Vade & Yaşlandırma', group: 'FİNANS & ÖDEMELER', icon: 'vade', badge: 'Vade Takip', viewType: 'due', keywords: 'vade yaşlandırma açık hesap alacak borç faiz gün' },
+      // 2. STOK, SİLO & FİYAT LİSTESİ (Alt Kırılımlar, Alış ve Satış Fiyatları)
+      { id: 'depo-silo', label: 'Silo & Stok Envanteri', group: '2. STOK & FİYAT LİSTESİ', icon: 'silo', badge: '3. Alt Kırılımlar', viewType: 'inventory', keywords: 'çelik silo merkez depo emanet mısır buğday arpa tonaj fire alt kırılım alış satış fiyatı' },
 
-      // 3. ANALİZ & SİSTEM
-      { id: 'karlilik-analiz', label: 'Kârlılık & Mizan Analizi', group: 'ANALİZ & SİSTEM', icon: 'analiz', badge: 'BI Kokpit', viewType: 'analytics', keywords: 'brüt kar ürün marj ton kar smm faaliyet sonucu fifo grafik' },
-      { id: 'kurlar-etiket', label: 'Borsa Fiyatları & Kurlar', group: 'ANALİZ & SİSTEM', icon: 'borsa', badge: 'TCMB/Borsa', badgeOk: true, viewType: 'tools', keywords: 'tmo konya ticaret borsası hububat fiyat tcmb kur usd eur' }
+      // 3. CARİLER & SATIŞ FATURALAMA (Açılmış Cariye Satış Fiyatından Fatura)
+      { id: 'cariler', label: 'Cariler & Çiftçiler', group: '3. CARİLER & SATIŞ FATURALAMA', icon: 'cari', badge: '4. Açılmış Cari', viewType: 'parties', keywords: 'çiftçi müstahsil tüccar fabrika ekstre bakiye borç alacak çks un fabrikası' },
+      { id: 'mal-satis', label: 'Mal Satış Faturası & İrsaliye', group: '3. CARİLER & SATIŞ FATURALAMA', icon: 'satis', badge: '5. Satış Faturası', viewType: 'sales', keywords: 'toptan satış fatura un fabrikası yem tüccar sevk irsaliye açık kapalı fatura' },
+      { id: 'tum-ticaret', label: 'Tüm Alış & Satış Defteri', group: '3. CARİLER & SATIŞ FATURALAMA', icon: 'ticaret', badge: '6. Ticaret Defteri', viewType: 'trades', keywords: 'ticaret defteri icmal faturalar storno iptal hareket defteri' },
+
+      // 4. FİNANS & ÖDEMELER
+      { id: 'kasa-banka', label: 'Kasa & Bankalar', group: '4. FİNANS & ÖDEMELER', icon: 'kasa', badge: '7. Tahsilat/Ödeme', badgeOk: true, viewType: 'cash', keywords: 'nakit kasa ziraat iş garanti banka havale eft çiftçi tediye tahsilat' },
+      { id: 'cek-senet', label: 'Çek & Senet Portföyü', group: '4. FİNANS & ÖDEMELER', icon: 'ceksenet', badge: '8. Vadeli Evrak', viewType: 'instruments', keywords: 'portföy müşteri çeki borç senedi ciro tahsil takas vadeli' },
+      { id: 'masraf-gider', label: 'Masraf & Gider Fişleri', group: '4. FİNANS & ÖDEMELER', icon: 'masraf', badge: '9. Giderler', viewType: 'expenses', keywords: 'kantar elektrik kurutma mazot nakliye analiz tahlil masraf amortisman' },
+      { id: 'vade-yaslandirma', label: 'Vade & Yaşlandırma', group: '4. FİNANS & ÖDEMELER', icon: 'vade', badge: '10. Yaşlandırma', viewType: 'due', keywords: 'vade yaşlandırma açık hesap alacak borç faiz gün risk' },
+
+      // 5. RAPORLAR, KÂRLILIK & BORSA (Alt Kırılım Kârlılık ve Mizan)
+      { id: 'karlilik-analiz', label: 'Kârlılık Analizi (Alt Kırılımlı)', group: '5. RAPORLAR, KÂRLILIK & BORSA', icon: 'analiz', badge: '11. Kâr Marjı', badgeOk: true, viewType: 'analytics', keywords: 'brüt kar ürün marj ton kar alt kırılım smm faaliyet sonucu fifo grafik' },
+      { id: 'kurlar-etiket', label: 'Borsa Fiyatları & Kurlar', group: '5. RAPORLAR, KÂRLILIK & BORSA', icon: 'borsa', badge: '12. Borsa/TCMB', viewType: 'tools', keywords: 'tmo konya ticaret borsası hububat fiyat tcmb kur usd eur polatlı edirne' }
     ];
 
-    const SIDEBAR_GROUPS = ['TİCARİ OPERASYON & SAHA', 'FİNANS & ÖDEMELER', 'ANALİZ & SİSTEM'];
+    const SIDEBAR_GROUPS = [
+      '1. GİRİŞ & ALIŞ OPERASYONU',
+      '2. STOK & FİYAT LİSTESİ',
+      '3. CARİLER & SATIŞ FATURALAMA',
+      '4. FİNANS & ÖDEMELER',
+      '5. RAPORLAR, KÂRLILIK & BORSA'
+    ];
 
     /* =========================================================================
        STATE YÖNETİMİ
        ========================================================================= */
-    const STORAGE_KEY = 'koklu_agro_erp_v10_state';
+    const STORAGE_KEY = 'koklu_agro_erp_v12_state';
 
     function createInitialState() {
       return {
@@ -1323,10 +1333,12 @@
         fxAmount: 5000,
         fxCurrency: 'USD',
         favoriteScreens: [
-          { id: 'kantar', sub: 'Tümü', label: 'Kantar fişleri & canlı tartım' },
-          { id: 'mustahsil-alis', sub: 'Müstahsil Alışı', label: 'Açık müstahsil alım makbuzları' },
-          { id: 'cariler', sub: 'Müstahsil', label: 'Çiftçi ekstreleri ve alacakları' },
-          { id: 'depo-silo', sub: 'Çelik Silo 1', label: 'Çelik Silo 1 mısır ve buğday stoğu' }
+          { id: 'kantar', sub: 'Tümü', label: '1. Kantar tartımları ve canlı fişler' },
+          { id: 'mustahsil-alis', sub: 'Müstahsil Alışı', label: '2. Çiftçi müstahsil alım makbuzları' },
+          { id: 'depo-silo', sub: 'Tümü', label: '3. Silo stok & alt kırılım fiyatları' },
+          { id: 'cariler', sub: 'Müşteri', label: '4. Açılmış müşteri ve fabrika carileri' },
+          { id: 'mal-satis', sub: 'Mal Satışı', label: '5. Satış fiyatından toptan faturalama' },
+          { id: 'karlilik-analiz', sub: 'Tümü', label: '6. Alt kırılımlar kârlılık & marj raporu' }
         ],
         favoriteReports: [
           { id: 'karlilik-analiz', reportKey: 'urun-kar', label: 'Hububat ürün bazlı brüt kârlılık' },
@@ -1343,13 +1355,13 @@
           { kod: 'CR-0006', unvan: 'Selçuklu Lidaş Lisanslı Depoculuk', rol: 'Tedarikçi', sehir: 'Selçuklu / Konya', cksNo: 'VKN: 7800142890', banka: 'Vakıfbank Konya', borc: 12000, alacak: 48000, tel: '0332 248 11 22' }
         ],
         urunler: [
-          { kod: 'HB-001', ad: 'Mısır (1. Sınıf Tane)', silo: 'Çelik Silo 1', birim: 'Kg', miktar: 385000, kritik: 50000, alis: 8.20, satis: 9.40, fire: '%1.2' },
-          { kod: 'HB-002', ad: 'Arpa (Beyaz Yemlik)', silo: 'Merkez Depo', birim: 'Kg', miktar: 142000, kritik: 30000, alis: 7.10, satis: 8.15, fire: '%0.8' },
-          { kod: 'HB-003', ad: 'Ekmeklik Buğday (Protein %13)', silo: 'Çelik Silo 1', birim: 'Kg', miktar: 265000, kritik: 40000, alis: 9.50, satis: 11.20, fire: '%1.0' },
-          { kod: 'HB-004', ad: 'Makarnalık Buğday (Sert)', silo: 'Merkez Depo', birim: 'Kg', miktar: 98000, kritik: 25000, alis: 10.40, satis: 12.30, fire: '%0.9' },
-          { kod: 'HB-005', ad: 'Yağlık Ayçiçeği (%44 Yağ)', silo: 'Emanet Silo', birim: 'Kg', miktar: 115000, kritik: 20000, alis: 16.50, satis: 18.90, fire: '%1.5' },
-          { kod: 'BK-008', ad: 'Nohut (Koçbaşı 8mm)', silo: 'Merkez Depo', birim: 'Kg', miktar: 42000, kritik: 10000, alis: 38.00, satis: 46.50, fire: '%0.5' },
-          { kod: 'YM-013', ad: 'Ayçiçek Küspesi / Yem', silo: 'Merkez Depo', birim: 'Kg', miktar: 75000, kritik: 15000, alis: 6.80, satis: 8.10, fire: '%0.6' }
+          { kod: 'HB-001', kategori: 'Mısır Grubu', altKirilim: '1. Sınıf Tane Mısır (Rutubet %14)', ad: 'Mısır — 1. Sınıf Tane', silo: 'Çelik Silo 1', birim: 'Kg', miktar: 385000, kritik: 50000, alis: 8.20, satis: 9.40, fire: '%1.2' },
+          { kod: 'HB-002', kategori: 'Arpa Grubu', altKirilim: 'Beyaz Yemlik Arpa (Hektolitre 64)', ad: 'Arpa — Beyaz Yemlik', silo: 'Merkez Depo', birim: 'Kg', miktar: 142000, kritik: 30000, alis: 7.10, satis: 8.15, fire: '%0.8' },
+          { kod: 'HB-003', kategori: 'Buğday Grubu', altKirilim: 'Ekmeklik Kırmızı Sert (Protein %13.5, Gluten 28)', ad: 'Ekmeklik Kırmızı Sert Buğday', silo: 'Çelik Silo 1', birim: 'Kg', miktar: 265000, kritik: 40000, alis: 9.50, satis: 11.20, fire: '%1.0' },
+          { kod: 'HB-004', kategori: 'Buğday Grubu', altKirilim: 'Makarnalık Sert Buğday (Camsı %85)', ad: 'Makarnalık Buğday — Sert', silo: 'Merkez Depo', birim: 'Kg', miktar: 98000, kritik: 25000, alis: 10.40, satis: 12.30, fire: '%0.9' },
+          { kod: 'HB-005', kategori: 'Yağlı Tohumlar', altKirilim: 'Yağlık Ayçiçeği (%44 Yağ, Rutubet %8)', ad: 'Yağlık Ayçiçeği — %44 Yağ', silo: 'Emanet Silo', birim: 'Kg', miktar: 115000, kritik: 20000, alis: 16.50, satis: 18.90, fire: '%1.5' },
+          { kod: 'BK-008', kategori: 'Bakliyat Grubu', altKirilim: 'Koçbaşı Nohut (Elek 8-9mm)', ad: 'Koçbaşı Nohut — 8mm', silo: 'Merkez Depo', birim: 'Kg', miktar: 42000, kritik: 10000, alis: 38.00, satis: 46.50, fire: '%0.5' },
+          { kod: 'YM-013', kategori: 'Yem & Yan Ürün', altKirilim: 'Ayçiçek Küspesi (%28 Protein Pelet)', ad: 'Ayçiçek Küspesi / Pelet Yem', silo: 'Merkez Depo', birim: 'Kg', miktar: 75000, kritik: 15000, alis: 6.80, satis: 8.10, fire: '%0.6' }
         ],
         kantarFisleri: [
           { no: 'KNT-2026-001', plaka: '42 ABC 101', sofor: 'Mehmet Demir', urun: 'Mısır (1. Sınıf Tane)', cari: 'Ahmet Karadağ (Müstahsil Çiftçi)', brut: 38450, dara: 13450, net: 25000, tarih: '17.11.2026 09:30', durum: 'Boşaltıldı' },
@@ -1958,41 +1970,80 @@
 
     // 4. SİLO VE DEPO STOKLARI
     function renderInventoryView(mod) {
-      const filters = ['Tümü', 'Çelik Silo 1', 'Merkez Depo', 'Emanet Silo'];
+      const filters = ['Tümü', 'Çelik Silo 1', 'Merkez Depo', 'Emanet Silo', 'Buğday Grubu', 'Mısır Grubu', 'Arpa Grubu'];
       const q = state.tableFilter.trim().toLocaleLowerCase('tr-TR');
       const rows = state.urunler.filter(s => {
-        if (state.subFilter !== 'Tümü' && s.silo !== state.subFilter) return false;
-        return !q || `${s.kod} ${s.ad} ${s.silo}`.toLocaleLowerCase('tr-TR').includes(q);
+        if (state.subFilter !== 'Tümü') {
+          if (['Çelik Silo 1', 'Merkez Depo', 'Emanet Silo'].includes(state.subFilter) && s.silo !== state.subFilter) return false;
+          if (['Buğday Grubu', 'Mısır Grubu', 'Arpa Grubu'].includes(state.subFilter) && s.kategori !== state.subFilter) return false;
+        }
+        return !q || `${s.kod} ${s.ad} ${s.altKirilim || ''} ${s.kategori || ''} ${s.silo}`.toLocaleLowerCase('tr-TR').includes(q);
       });
+
+      const topKg = rows.reduce((acc, r) => acc + (r.miktar || 0), 0);
+      const topAlisDeger = rows.reduce((acc, r) => acc + (r.miktar * r.alis || 0), 0);
+      const topSatisDeger = rows.reduce((acc, r) => acc + (r.miktar * r.satis || 0), 0);
 
       return `
         <div class="module-view">
-          ${renderModuleHeader(mod, 'Çelik silolar, merkez ambar ve emanet hububat stok durumları',
-            '<button type="button" class="btn-primary" data-action="modal-new-urun">+ Yeni Silo / Ürün Tanımla</button>')}
+          ${renderModuleHeader(mod, 'Hububat ürünleri, alt kırılımları, silo depolama, alış ve belirlenen satış fiyatları',
+            '<button type="button" class="btn-primary" data-action="modal-new-urun">+ Yeni Hububat & Alt Kırılım Tanımla</button>')}
           <div class="panel-card">
             <div class="panel-toolbar">
               <div class="subfilter-pills">
                 ${filters.map(f => `<button type="button" class="subfilter-pill ${state.subFilter === f ? 'active' : ''}" data-action="set-subfilter" data-val="${f}">${f}</button>`).join('')}
               </div>
-              <input type="text" class="inline-filter-input" id="moduleSearchInput" value="${esc(state.tableFilter)}" placeholder="Ürün veya silo ara..." />
+              <input type="text" class="inline-filter-input" id="moduleSearchInput" value="${esc(state.tableFilter)}" placeholder="Ürün, alt kırılım veya silo ara..." />
             </div>
             <div class="table-scroll">
               <table class="erp-table">
-                <thead><tr><th>Ürün Kodu</th><th>Ürün Adı</th><th>Depolama / Silo</th><th class="num-col">Mevcut Miktar</th><th class="num-col">Ort. Alış</th><th class="num-col">Piyasa Satış</th><th>Standart Fire</th><th>Hızlı İşlem</th></tr></thead>
+                <thead>
+                  <tr>
+                    <th>Ürün Kodu</th>
+                    <th>Hububat & Alt Kırılım Tanımı</th>
+                    <th>Grup</th>
+                    <th>Depolama / Silo</th>
+                    <th class="num-col">Mevcut Stok</th>
+                    <th class="num-col">Alış Maliyeti (₺/Kg)</th>
+                    <th class="num-col">Satış Fiyatı (₺/Kg)</th>
+                    <th class="num-col">Birim Marj</th>
+                    <th>Standart Fire</th>
+                    <th>Hızlı İşlem</th>
+                  </tr>
+                </thead>
                 <tbody>
-                  ${rows.map(s => `
-                    <tr>
-                      <td><strong>${esc(s.kod)}</strong></td>
-                      <td><strong>${esc(s.ad)}</strong></td>
-                      <td><span class="badge badge-agro">${esc(s.silo)}</span></td>
-                      <td class="num-col" style="font-weight:800;color:#0b6e52;">${fmtKg(s.miktar)}</td>
-                      <td class="num-col">${fmtTL(s.alis)} / Kg</td>
-                      <td class="num-col">${fmtTL(s.satis)} / Kg</td>
-                      <td><span class="badge badge-slate">${esc(s.fire)}</span></td>
-                      <td><button type="button" class="btn-secondary" style="height:27px;padding:0 9px;" data-action="silo-giris" data-sku="${s.kod}">+10 Ton Alım</button></td>
-                    </tr>
-                  `).join('')}
+                  ${rows.map(s => {
+                    const birimMarj = s.satis - s.alis;
+                    const marjPct = ((birimMarj / s.satis) * 100).toFixed(1);
+                    return `
+                      <tr>
+                        <td><strong>${esc(s.kod)}</strong></td>
+                        <td>
+                          <strong>${esc(s.ad)}</strong>
+                          <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">${esc(s.altKirilim || s.ad)}</div>
+                        </td>
+                        <td><span class="badge badge-slate">${esc(s.kategori || 'Hububat')}</span></td>
+                        <td><span class="badge badge-agro">${esc(s.silo)}</span></td>
+                        <td class="num-col" style="font-weight:800;color:#0b6e52;">${fmtKg(s.miktar)}</td>
+                        <td class="num-col">${fmtTL(s.alis)}</td>
+                        <td class="num-col" style="font-weight:700;color:#0b261e;">${fmtTL(s.satis)}</td>
+                        <td class="num-col"><span class="badge badge-green">+${fmtTL(birimMarj)} (%${marjPct})</span></td>
+                        <td><span class="badge badge-slate">${esc(s.fire)}</span></td>
+                        <td><button type="button" class="btn-secondary" style="height:27px;padding:0 9px;" data-action="silo-giris" data-sku="${s.kod}">+10 Ton Alım</button></td>
+                      </tr>
+                    `;
+                  }).join('')}
                 </tbody>
+                <tfoot>
+                  <tr style="background:#f6faf8;font-weight:700;">
+                    <td colspan="4">Görüntülenen ${rows.length} Ürün Toplamı:</td>
+                    <td class="num-col" style="color:#0b6e52;">${fmtKg(topKg)}</td>
+                    <td class="num-col" title="Toplam Alış Bedeli">${fmtTL(topAlisDeger)}</td>
+                    <td class="num-col" title="Toplam Satış Değeri">${fmtTL(topSatisDeger)}</td>
+                    <td class="num-col" style="color:var(--agro-green);" title="Potansiyel Kâr">+${fmtTL(topSatisDeger - topAlisDeger)}</td>
+                    <td colspan="2"></td>
+                  </tr>
+                </tfoot>
               </table>
             </div>
           </div>
@@ -2228,31 +2279,104 @@
 
     // 11. KÂRLILIK & MİZAN ANALİZİ
     function renderAnalyticsView(mod) {
+      let topMaliyet = 0;
+      let topSatis = 0;
+      let topPotansiyel = 0;
+      let topMiktar = 0;
+
+      state.urunler.forEach(u => {
+        topMiktar += u.miktar;
+        topMaliyet += u.miktar * u.alis;
+        topSatis += u.miktar * u.satis;
+        topPotansiyel += u.miktar * (u.satis - u.alis);
+      });
+      const agirlikliMarj = topSatis > 0 ? ((topPotansiyel / topSatis) * 100).toFixed(1) : 0;
+
       return `
         <div class="module-view">
-          ${renderModuleHeader(mod, 'Hububat ürünleri brüt kâr marjları ve dönem faaliyet sonuçları',
+          ${renderModuleHeader(mod, 'Hububat ürünleri ve alt kırılımları bazında brüt kârlılık, satış marjları ve dönem sonuçları',
             '<button type="button" class="btn-secondary" data-action="print-page">Yazdır (PDF)</button>')}
+
+          <!-- KÂRLILIK ÖZET KARTLARI -->
+          <div class="netsis-kpi-row" style="margin-bottom:14px;">
+            <div class="netsis-kpi-card kpi-emerald">
+              <span class="kpi-title">Toplam Stok Alış Maliyeti</span>
+              <span class="kpi-value">${fmtTL(topMaliyet)}</span>
+              <span class="kpi-desc">Depolardaki ${fmtKg(topMiktar)} hububatın fiili alım maliyeti</span>
+            </div>
+            <div class="netsis-kpi-card kpi-blue">
+              <span class="kpi-title">Belirlenen Satış Değeri</span>
+              <span class="kpi-value">${fmtTL(topSatis)}</span>
+              <span class="kpi-desc">Güncel satış listesi fiyatları üzerinden piyasa hasılatı</span>
+            </div>
+            <div class="netsis-kpi-card kpi-emerald">
+              <span class="kpi-title">Potansiyel Brüt Kâr</span>
+              <span class="kpi-value" style="color:var(--agro-green);">+${fmtTL(topPotansiyel)}</span>
+              <span class="kpi-desc">Tüm stok satıldığında oluşacak toplam brüt kâr</span>
+            </div>
+            <div class="netsis-kpi-card kpi-amber">
+              <span class="kpi-title">Ağırlıklı Kâr Marjı</span>
+              <span class="kpi-value">%${agirlikliMarj}</span>
+              <span class="kpi-desc">Zahire portföyü ortalama satış kârlılık oranı</span>
+            </div>
+          </div>
+
           ${buildAgroChartsSection()}
-          <div class="panel-card">
-            <div class="panel-toolbar"><strong>Hububat Bazlı Brüt Kârlılık ve Marjlar</strong></div>
+
+          <div class="panel-card" style="margin-top:14px;">
+            <div class="panel-toolbar">
+              <strong>Hububat Alt Kırılımları Kârlılık ve Marj Matrisi</strong>
+              <input type="text" class="inline-filter-input" id="moduleSearchInput" value="${esc(state.tableFilter)}" placeholder="Kırılım veya hububat ara..." />
+            </div>
             <div class="table-scroll">
               <table class="erp-table">
-                <thead><tr><th>Ürün Kodu</th><th>Hububat Cinsi</th><th class="num-col">Ort. Alış</th><th class="num-col">Satış Fiyatı</th><th class="num-col">Birim Kâr</th><th class="num-col">Kâr Marjı</th></tr></thead>
+                <thead>
+                  <tr>
+                    <th>Ürün Kodu</th>
+                    <th>Hububat Grubu</th>
+                    <th>Alt Kırılım / Spesifikasyon</th>
+                    <th>Depolama</th>
+                    <th class="num-col">Mevcut Stok</th>
+                    <th class="num-col">Alış Maliyeti (₺/Kg)</th>
+                    <th class="num-col">Satış Fiyatı (₺/Kg)</th>
+                    <th class="num-col">Birim Kâr</th>
+                    <th class="num-col">Kâr Marjı</th>
+                    <th class="num-col">Potansiyel Brüt Kâr (₺)</th>
+                  </tr>
+                </thead>
                 <tbody>
                   ${state.urunler.map(s => {
-                    const kar = s.satis - s.alis;
+                    const birimKar = s.satis - s.alis;
+                    const marjPct = ((birimKar / s.satis) * 100).toFixed(1);
+                    const potansiyel = s.miktar * birimKar;
                     return `
                       <tr>
                         <td><strong>${esc(s.kod)}</strong></td>
-                        <td>${esc(s.ad)}</td>
+                        <td><span class="badge badge-slate">${esc(s.kategori || 'Hububat')}</span></td>
+                        <td>
+                          <strong>${esc(s.ad)}</strong>
+                          <div style="font-size:11px;color:var(--text-muted);">${esc(s.altKirilim || s.ad)}</div>
+                        </td>
+                        <td><span class="badge badge-agro">${esc(s.silo)}</span></td>
+                        <td class="num-col">${fmtKg(s.miktar)}</td>
                         <td class="num-col">${fmtTL(s.alis)}</td>
-                        <td class="num-col">${fmtTL(s.satis)}</td>
-                        <td class="num-col" style="color:var(--agro-green);font-weight:800;">+${fmtTL(kar)} / Kg</td>
-                        <td class="num-col"><span class="badge badge-green">%${((kar / s.satis) * 100).toFixed(1)}</span></td>
+                        <td class="num-col" style="font-weight:700;">${fmtTL(s.satis)}</td>
+                        <td class="num-col" style="color:var(--agro-green);font-weight:800;">+${fmtTL(birimKar)}</td>
+                        <td class="num-col"><span class="badge badge-green">%${marjPct}</span></td>
+                        <td class="num-col" style="color:var(--agro-green-dark);font-weight:800;">+${fmtTL(potansiyel)}</td>
                       </tr>
                     `;
                   }).join('')}
                 </tbody>
+                <tfoot>
+                  <tr style="background:#f6faf8;font-weight:800;">
+                    <td colspan="4">Genel Toplam:</td>
+                    <td class="num-col">${fmtKg(topMiktar)}</td>
+                    <td class="num-col" colspan="2" style="text-align:right;color:var(--text-muted);">Ağırlıklı Marj:</td>
+                    <td class="num-col" colspan="2"><span class="badge badge-green">%${agirlikliMarj}</span></td>
+                    <td class="num-col" style="color:var(--agro-green);font-size:13.5px;">+${fmtTL(topPotansiyel)}</td>
+                  </tr>
+                </tfoot>
               </table>
             </div>
           </div>
@@ -2628,17 +2752,41 @@
         if (st) st.miktar += net;
         saveState(); closeModal(); renderCenterStage(); showToast('Kantar fişi kesildi, +' + fmtKg(net) + ' stoğa eklendi.');
       } else if (action === 'modal-new-mustahsil') {
+        const firstProd = state.urunler[0] || { alis: 8.20 };
         openModal(
           'Yeni Müstahsil Makbuzu',
           `<div class="form-grid">
-             <div class="form-field full"><label>Çiftçi / Müstahsil</label><select id="nmCari">${state.cariler.filter(c => c.rol === 'Müstahsil').map(c => `<option>${esc(c.unvan)}</option>`).join('')}</select></div>
-             <div class="form-field"><label>Hububat</label><select id="nmUrun">${state.urunler.map(u => `<option>${esc(u.ad)}</option>`).join('')}</select></div>
-             <div class="form-field"><label>Miktar (Kg)</label><input type="number" id="nmMiktar" value="20000" /></div>
-             <div class="form-field"><label>Birim Fiyat (₺/Kg)</label><input type="number" step="0.10" id="nmFiyat" value="8.50" /></div>
-             <div class="form-field"><label>Stopaj Oranı (%)</label><input type="number" id="nmStopaj" value="2" /></div>
+             <div class="form-field full">
+               <label>Çiftçi / Müstahsil (Açılmış Cari Hesabı Seçin)</label>
+               <select id="nmCari">
+                 ${state.cariler.filter(c => c.rol === 'Müstahsil').map(c => `<option value="${esc(c.unvan)}">${esc(c.unvan)} — [${esc(c.cksNo)}] Bakiye: ${fmtTL(c.alacak)}</option>`).join('')}
+               </select>
+             </div>
+             <div class="form-field full">
+               <label>Alınan Hububat & Alt Kırılım</label>
+               <select id="nmUrun">
+                 ${state.urunler.map(u => `<option value="${esc(u.ad)}" data-alis="${u.alis}" data-satis="${u.satis}">${esc(u.ad)} (${esc(u.altKirilim || u.ad)}) — Silo: ${esc(u.silo)} | Alış Fiyatı: ${fmtTL(u.alis)}/Kg</option>`).join('')}
+               </select>
+             </div>
+             <div class="form-field">
+               <label>Kantar Net Miktar (Kg)</label>
+               <input type="number" id="nmMiktar" value="20000" />
+             </div>
+             <div class="form-field">
+               <label>Alış Birim Fiyatı (₺/Kg)</label>
+               <input type="number" step="0.10" id="nmFiyat" value="${firstProd.alis}" />
+             </div>
+             <div class="form-field">
+               <label>Stopaj Oranı (%)</label>
+               <input type="number" id="nmStopaj" value="2" />
+             </div>
+             <div class="form-field">
+               <label>Borsa Tescil Fonu (%)</label>
+               <input type="number" step="0.05" id="nmBorsa" value="0.1" />
+             </div>
            </div>`,
           `<button type="button" class="btn-secondary" data-action="close-modal">Vazgeç</button>
-           <button type="button" class="btn-primary" data-action="save-new-mustahsil">Makbuzu Kes & Onayla</button>`
+           <button type="button" class="btn-primary" data-action="save-new-mustahsil">Makbuzu Kes & Stoğa Al</button>`
         );
       } else if (action === 'save-new-mustahsil') {
         const cariUnvan = document.getElementById('nmCari').value;
@@ -2646,8 +2794,9 @@
         const kg = Number(document.getElementById('nmMiktar').value) || 0;
         const birimFiyat = Number(document.getElementById('nmFiyat').value) || 0;
         const stopajPct = Number(document.getElementById('nmStopaj').value) || 2;
+        const borsaPct = Number(document.getElementById('nmBorsa') ? document.getElementById('nmBorsa').value : 0.1) || 0.1;
         const brut = kg * birimFiyat;
-        const kesinti = brut * (stopajPct / 100);
+        const kesinti = brut * ((stopajPct + borsaPct) / 100);
         const netTutar = brut - kesinti;
 
         state.ticaretKayitlari.unshift({
@@ -2667,15 +2816,46 @@
         if (cari) cari.alacak += netTutar;
         const st = state.urunler.find(u => u.ad === urunAd);
         if (st) st.miktar += kg;
-        saveState(); closeModal(); renderCenterStage(); showToast('Müstahsil makbuzu kaydedildi.');
+        saveState(); closeModal(); renderCenterStage(); showToast('Müstahsil alışı (' + fmtKg(kg) + ') kaydedildi ve stoğa eklendi.');
       } else if (action === 'modal-new-satis') {
+        const firstProd = state.urunler[0] || { satis: 9.40, alis: 8.20 };
         openModal(
           'Yeni Toptan Mal Satışı (Fatura)',
           `<div class="form-grid">
-             <div class="form-field full"><label>Müşteri / Fabrika</label><select id="nsCari">${state.cariler.filter(c => c.rol === 'Müşteri').map(c => `<option>${esc(c.unvan)}</option>`).join('')}</select></div>
-             <div class="form-field"><label>Hububat</label><select id="nsUrun">${state.urunler.map(u => `<option>${esc(u.ad)}</option>`).join('')}</select></div>
-             <div class="form-field"><label>Miktar (Kg)</label><input type="number" id="nsMiktar" value="25000" /></div>
-             <div class="form-field"><label>Satış Fiyatı (₺/Kg)</label><input type="number" step="0.10" id="nsFiyat" value="11.50" /></div>
+             <div class="form-field full">
+               <label>Müşteri / Fabrika (Açılmış Cari Hesabı Seçin)</label>
+               <select id="nsCari">
+                 ${state.cariler.filter(c => c.rol === 'Müşteri' || c.rol === 'Tüccar').map(c => `<option value="${esc(c.unvan)}">${esc(c.unvan)} — [${esc(c.sehir)}] Bakiye: ${fmtTL(c.borc > 0 ? c.borc : -c.alacak)}</option>`).join('')}
+               </select>
+             </div>
+             <div class="form-field full">
+               <label>Satılacak Hububat & Alt Kırılım</label>
+               <select id="nsUrun">
+                 ${state.urunler.map(u => `<option value="${esc(u.ad)}" data-satis="${u.satis}" data-alis="${u.alis}" data-stok="${u.miktar}">${esc(u.ad)} (${esc(u.altKirilim || u.ad)}) — Silo: ${esc(u.silo)} | Stok: ${fmtKg(u.miktar)} | Liste Satış: ${fmtTL(u.satis)}</option>`).join('')}
+               </select>
+             </div>
+             <div class="form-field">
+               <label>Satış Miktarı (Kg)</label>
+               <input type="number" id="nsMiktar" value="25000" />
+             </div>
+             <div class="form-field">
+               <label>Belirlenen Satış Fiyatı (₺/Kg)</label>
+               <input type="number" step="0.10" id="nsFiyat" value="${firstProd.satis}" />
+             </div>
+             <div class="form-field">
+               <label>Fatura Türü</label>
+               <select id="nsFaturaTur">
+                 <option>Açık Fatura (Vadeli Cari Borçlandırma)</option>
+                 <option>Kapalı Fatura (Nakit / Havale Tahsilat)</option>
+               </select>
+             </div>
+             <div class="form-field">
+               <label>KDV & Stopaj</label>
+               <select id="nsKdv">
+                 <option>Toptan Hububat Satışı (%1 KDV Dahil)</option>
+                 <option>İhraç Kayıtlı Satış (%0 KDV)</option>
+               </select>
+             </div>
            </div>`,
           `<button type="button" class="btn-secondary" data-action="close-modal">Vazgeç</button>
            <button type="button" class="btn-primary" data-action="save-new-satis">Satışı Faturalandır</button>`
@@ -2685,6 +2865,7 @@
         const urunAd = document.getElementById('nsUrun').value;
         const kg = Number(document.getElementById('nsMiktar').value) || 0;
         const birimFiyat = Number(document.getElementById('nsFiyat').value) || 0;
+        const faturaTur = document.getElementById('nsFaturaTur').value;
         const brut = kg * birimFiyat;
         state.ticaretKayitlari.unshift({
           no: 'ST-2026-0' + (state.ticaretKayitlari.length + 3),
@@ -2700,33 +2881,48 @@
           durum: 'Faturalandı'
         });
         const cari = state.cariler.find(c => c.unvan === cariUnvan);
-        if (cari) cari.borc += brut;
+        if (cari) {
+          if (faturaTur.includes('Açık Fatura')) {
+            cari.borc += brut;
+          }
+        }
+        if (faturaTur.includes('Kapalı Fatura')) {
+          state.kasaHareketleri.unshift({
+            id: 'KS-' + Math.floor(100 + Math.random() * 900),
+            tarih: state.currentDate + ' 15:30',
+            kanal: 'Banka',
+            islem: 'Toptan Satış Tahsilatı',
+            cari: cariUnvan,
+            aciklama: urunAd + ' toptan satış bedeli tahsilatı',
+            giris: brut,
+            cikis: 0
+          });
+        }
         const st = state.urunler.find(u => u.ad === urunAd);
         if (st) st.miktar = Math.max(0, st.miktar - kg);
-        saveState(); closeModal(); renderCenterStage(); showToast('Mal satışı faturalandırıldı.');
+        saveState(); closeModal(); renderCenterStage(); showToast('Toptan mal satışı (' + fmtKg(kg) + ') cariye faturalandı ve stoktan düşüldü.');
       } else if (action === 'modal-new-cari') {
         openModal(
-          'Yeni Cari / Çiftçi Hesabı',
+          'Yeni Cari Kart Açılışı',
           `<div class="form-grid">
-             <div class="form-field full"><label>Ünvan / Ad Soyad</label><input id="ncUnvan" placeholder="Örn: Hasan Yılmaz (Müstahsil Çiftçi)" /></div>
-             <div class="form-field"><label>Rol</label><select id="ncRol"><option>Müstahsil</option><option>Müşteri</option><option>Tedarikçi</option></select></div>
-             <div class="form-field"><label>Şehir / İlçe</label><input id="ncSehir" value="Konya" /></div>
-             <div class="form-field full"><label>ÇKS No / VKN</label><input id="ncCks" placeholder="ÇKS-2026-XXXX veya VKN" /></div>
-             <div class="form-field full"><label>Banka & IBAN</label><input id="ncBanka" placeholder="Ziraat Bankası TR..." /></div>
+             <div class="form-field full"><label>Firma / Şahıs Ünvanı</label><input id="ncUnvan" placeholder="Örn: Selçuklu Un Değirmenleri Sanayi A.Ş." /></div>
+             <div class="form-field"><label>Cari Rolü</label><select id="ncRol"><option>Müşteri</option><option>Müstahsil</option><option>Tedarikçi</option></select></div>
+             <div class="form-field"><label>Şehir / İlçe</label><input id="ncSehir" value="Konya / Karatay" /></div>
+             <div class="form-field full"><label>VKN / TCKN / ÇKS No</label><input id="ncCks" value="VKN: 7120938401" /></div>
            </div>`,
           `<button type="button" class="btn-secondary" data-action="close-modal">Vazgeç</button>
-           <button type="button" class="btn-primary" data-action="save-new-cari">Kaydet</button>`
+           <button type="button" class="btn-primary" data-action="save-new-cari">Cariyi Kaydet</button>`
         );
       } else if (action === 'save-new-cari') {
         const unvan = (document.getElementById('ncUnvan').value || '').trim();
         if (!unvan) { showToast('Cari ünvanı girin.'); return; }
         state.cariler.unshift({
-          kod: 'CR-000' + (state.cariler.length + 1),
+          kod: 'CR-00' + (state.cariler.length + 10),
           unvan,
           rol: document.getElementById('ncRol').value,
-          sehir: document.getElementById('ncSehir').value || 'Konya',
-          cksNo: document.getElementById('ncCks').value || '-',
-          banka: document.getElementById('ncBanka').value || 'T.C. Ziraat Bankası',
+          sehir: document.getElementById('ncSehir').value,
+          cksNo: document.getElementById('ncCks').value,
+          banka: 'Ziraat Bankası',
           borc: 0,
           alacak: 0,
           tel: '05XX XXX XX XX'
@@ -2734,14 +2930,17 @@
         saveState(); closeModal(); renderCenterStage(); showToast('Cari kaydedildi.');
       } else if (action === 'modal-new-urun') {
         openModal(
-          'Yeni Silo & Hububat Ürünü Tanımla',
+          'Yeni Hububat & Alt Kırılım Tanımla',
           `<div class="form-grid">
-             <div class="form-field full"><label>Hububat Cinsi & Adı</label><input id="nuAd" placeholder="Örn: Triticale (Yemlik Tahıl)" /></div>
+             <div class="form-field"><label>Hububat Ana Kategorisi</label><select id="nuKategori"><option>Buğday Grubu</option><option>Mısır Grubu</option><option>Arpa Grubu</option><option>Yağlı Tohumlar</option><option>Bakliyat Grubu</option><option>Yem & Yan Ürün</option></select></div>
+             <div class="form-field"><label>Hububat Cinsi / Tanımı</label><input id="nuAd" placeholder="Örn: Ekmeklik Kırmızı Yarı Sert" /></div>
+             <div class="form-field full"><label>Alt Kırılım / Kalite Spesifikasyonu</label><input id="nuAltKirilim" placeholder="Örn: Protein %12.5, Hektolitre 77, Rutubet %12" /></div>
              <div class="form-field"><label>Depolama / Silo</label><select id="nuSilo"><option>Çelik Silo 1</option><option>Merkez Depo</option><option>Emanet Silo</option></select></div>
              <div class="form-field"><label>Birim</label><select id="nuBirim"><option>Kg</option><option>Ton</option></select></div>
-             <div class="form-field"><label>Mevcut Miktar (Kg)</label><input type="number" id="nuMiktar" value="50000" /></div>
-             <div class="form-field"><label>Ortalama Alış Fiyatı (₺)</label><input type="number" step="0.10" id="nuAlis" value="7.50" /></div>
-             <div class="form-field full"><label>Piyasa Satış Fiyatı (₺)</label><input type="number" step="0.10" id="nuSatis" value="8.80" /></div>
+             <div class="form-field"><label>Mevcut Stok Miktarı (Kg)</label><input type="number" id="nuMiktar" value="50000" /></div>
+             <div class="form-field"><label>Alış Maliyet Fiyatı (₺/Kg)</label><input type="number" step="0.10" id="nuAlis" value="8.40" /></div>
+             <div class="form-field"><label>Belirlenen Satış Fiyatı (₺/Kg)</label><input type="number" step="0.10" id="nuSatis" value="9.90" /></div>
+             <div class="form-field"><label>Standart Fire Oranı</label><input id="nuFire" value="%1.0" /></div>
            </div>`,
           `<button type="button" class="btn-secondary" data-action="close-modal">Vazgeç</button>
            <button type="button" class="btn-primary" data-action="save-new-urun">Ürünü Kaydet</button>`
@@ -2749,10 +2948,14 @@
       } else if (action === 'save-new-urun') {
         const ad = (document.getElementById('nuAd').value || '').trim();
         if (!ad) { showToast('Ürün adı girin.'); return; }
+        const altKirilim = (document.getElementById('nuAltKirilim').value || '').trim() || ad;
+        const kategori = document.getElementById('nuKategori').value || 'Hububat';
         const alis = Number(document.getElementById('nuAlis').value) || 8.00;
         const satis = Number(document.getElementById('nuSatis').value) || 9.50;
         state.urunler.unshift({
           kod: 'HB-0' + (state.urunler.length + 10),
+          kategori,
+          altKirilim,
           ad,
           silo: document.getElementById('nuSilo').value,
           birim: document.getElementById('nuBirim').value,
@@ -2760,9 +2963,9 @@
           kritik: 20000,
           alis,
           satis,
-          fire: '%1.0'
+          fire: document.getElementById('nuFire').value || '%1.0'
         });
-        saveState(); closeModal(); renderCenterStage(); showToast('Hububat ürünü tanımlandı.');
+        saveState(); closeModal(); renderCenterStage(); showToast('Hububat alt kırılımı ile stoğa kaydedildi.');
       } else if (action === 'modal-new-kasa') {
         openModal(
           'Yeni Kasa / Banka Fişi',
@@ -2871,3 +3074,20 @@
   </script>
 </body>
 </html>
+    document.addEventListener('change', (e) => {
+      if (e.target.id === 'nsUrun') {
+        const opt = e.target.selectedOptions[0];
+        if (opt && opt.dataset.satis) {
+          const inp = document.getElementById('nsFiyat');
+          if (inp) inp.value = opt.dataset.satis;
+        }
+      } else if (e.target.id === 'nmUrun') {
+        const opt = e.target.selectedOptions[0];
+        if (opt && opt.dataset.alis) {
+          const inp = document.getElementById('nmFiyat');
+          if (inp) inp.value = opt.dataset.alis;
+        }
+      }
+    });
+
+    
